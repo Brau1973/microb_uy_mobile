@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="microb_uy_mobile.Pages.LoginPage">
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="CenterAndExpand" Padding="20">
+            <Image Source="twitter_logo.png" HeightRequest="100" HorizontalOptions="Center" />
+
+            <!-- Nombre de usuario y contraseña -->
+            <Entry Placeholder="Nombre de usuario" x:Name="usernameEntry" Margin="0, 20" />
+            <Entry Placeholder="Contraseña" IsPassword="True" x:Name="passwordEntry" Margin="0, 10" />
+
+            <!-- Botón de inicio de sesión -->
+            <Button Text="Iniciar sesión" Clicked="OnLoginButtonClicked" Margin="0, 20" />
+
+            <!-- Imagen de Google y Facebook con espacio entre ellas -->
+            <Grid HorizontalOptions="CenterAndExpand">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <!-- <ColumnDefinition Width="Auto" /> -->
+                    <!-- Espacio entre las imágenes -->
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <!-- Imagen de Facebook -->
+                <Frame Grid.Column="0" BackgroundColor="Transparent" Padding="0" HasShadow="False" Margin="0, 0 , 15, 0">
+                    <Image Source="facebook_logo.png" HeightRequest="50" WidthRequest="50">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnFacebookImageClicked" />
+                        </Image.GestureRecognizers>
+                    </Image>
+                </Frame>
+
+                <!-- Espacio entre las imágenes -->
+                <!--<BoxView Grid.Column="1" WidthRequest="10" />-->
+
+                <!-- Imagen de Google -->
+                <Frame Grid.Column="1" BackgroundColor="Transparent" Padding="0" HasShadow="False" Margin="15, 0, 0, 0">
+                    <Image Source="google_logo.png" HeightRequest="50" WidthRequest="50">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnGoogleImageClicked" />
+                        </Image.GestureRecognizers>
+                    </Image>
+                </Frame>
+            </Grid>
+
+            <!-- Botón de Registro -->
+            <!-- <Button Text="Registrarse" Clicked="OnSignUpClicked" TextColor="#1DA1F2" Margin="0, 10" /> -->
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
