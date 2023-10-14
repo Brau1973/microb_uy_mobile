@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="microb_uy_mobile.Pages.SearchPage"
+             IconImageSource="search_icon.png">
+    <ContentPage.Content>
+        <StackLayout>
+            <!-- Barra de búsqueda con campo de texto y botón de búsqueda -->
+            <SearchBar Placeholder="Buscar en microbuy" />
+
+            <!-- Resultados de la búsqueda -->
+            <CollectionView ItemsSource="{Binding SearchResults}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Padding="10">
+                            <!-- Avatar del usuario y nombre -->
+                            <Image Source="{Binding UserProfileImage}" HeightRequest="50" WidthRequest="50" Aspect="AspectFill" />
+                            <StackLayout Margin="10,0,0,0" Spacing="5">
+                                <Label Text="{Binding UserName}" FontAttributes="Bold" />
+                                <Label Text="{Binding PostContent}" />
+                            </StackLayout>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

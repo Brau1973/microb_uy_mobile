@@ -25,7 +25,7 @@ namespace microb_uy_mobile.Pages
             {
                 // Autenticación exitosa
                 // Aquí, navega a la página principal de la aplicación
-                await Navigation.PushAsync(new MainPage());
+                await Navigation.PushAsync(new TabMenu());
             }
         }
 

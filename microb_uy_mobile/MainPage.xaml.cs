@@ -1,36 +1,35 @@
-﻿using microb_uy_mobile;
-using microb_uy_mobile.DTOs;
+﻿using microb_uy_mobile.DTOs;
 using microb_uy_mobile.Pages;
-using System.Collections.ObjectModel;
+using microb_uy_mobile.ViewModels;
 
-namespace microb_uy_mobile;
 
-public partial class MainPage : ContentPage
+namespace microb_uy_mobile
 {
-    public ObservableCollection<InstanciaDTO> Instancias { get; set; }
-
-    public MainPage()
+    public partial class MainPage : ContentPage
     {
-        InitializeComponent();
+        public MainPageViewModel ViewModel { get; set; }
 
-        Instancias = new ObservableCollection<InstanciaDTO>
+        public MainPage()
         {
-            new InstanciaDTO("Futbol", "diego_forlan.jpg", "Futbol en general"),
-            new InstanciaDTO("Politica", "diego_forlan.jpg", "Quien mato a nisman"),
-            new InstanciaDTO("Tech", "diego_forlan.jpg", "Todo sobre tecnologia"),
-            new InstanciaDTO("Bares", "diego_forlan.jpg", "Bares copados"),
-            new InstanciaDTO("Trabajos", "diego_forlan.jpg", "Trabajos remotos"),
-            new InstanciaDTO("Vacaciones", "diego_forlan.jpg", "Lugares para vacacionar")
+            InitializeComponent();
+            // Ocultar completamente la barra de navegación en la página de inicio
+            NavigationPage.SetHasNavigationBar(this, false);
 
-    };
+            ViewModel = new MainPageViewModel();
+            BindingContext = ViewModel;
+        }
 
-        BindingContext = this;
+        private async void OnCardTapped(object sender, EventArgs e)
+        {
+            // Obtener la InstanciaDTO seleccionada
+            var selectedInstancia = ((Frame)sender).BindingContext as InstanciaDTO;
+
+            //if (selectedInstancia != null)
+            //{
+                // Navegar a la página de inicio de sesión (LoginPage) o realizar otra acción
+                // Ejemplo: await Navigation.PushAsync(new LoginPage(selectedInstancia));
+                await Navigation.PushAsync(new LoginPage());
+            //}
+        }
     }
-
-    private async void OnFrameTapped(object sender, EventArgs e)
-    {
-        //await Navigation.PushAsync(new LoginPage());
-        await Navigation.PushAsync(new TabMenu());
-    }
-
 }
