@@ -6,7 +6,7 @@ public partial class HomePage : ContentPage
     {
         InitializeComponent();
 
-        // Ocultar completamente la barra de navegación en la página de inicio
+        // Ocultar completamente la barra de navegación
         NavigationPage.SetHasNavigationBar(this, false);
 
         // Instancia el modelo de vista

@@ -8,7 +8,7 @@ namespace microb_uy_mobile.Pages
         {
             InitializeComponent();
 
-            // Ocultar completamente la barra de navegación en la página de inicio
+            // Ocultar completamente la barra de navegación
             NavigationPage.SetHasNavigationBar(this, false);
         }
 

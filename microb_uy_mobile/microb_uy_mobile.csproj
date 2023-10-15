@@ -50,12 +50,14 @@
 
 	<ItemGroup>
 	  <None Remove="Resources\Icons\search_icon.png" />
+	  <None Remove="Resources\Icons\settings_icon.png" />
 	  <None Remove="Resources\Icons\sign_out_icon.png" />
 	</ItemGroup>
 
 	<ItemGroup>
 	  <MauiImage Include="Resources\Icons\home_icon.png" />
 	  <MauiImage Include="Resources\Icons\search_icon.png" />
+	  <MauiImage Include="Resources\Icons\settings_icon.png" />
 	  <MauiImage Include="Resources\Icons\sign_out_icon.png" />
 	</ItemGroup>
 
@@ -65,6 +67,9 @@
 
 	<ItemGroup>
 	  <MauiXaml Update="Pages\HomePage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\NotificationsSettingsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\SearchPage.xaml">
