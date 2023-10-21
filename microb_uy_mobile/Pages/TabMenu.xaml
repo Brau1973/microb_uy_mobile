@@ -4,7 +4,7 @@
              xmlns:pages="clr-namespace:microb_uy_mobile.Pages"
              xmlns:local="clr-namespace:microb_uy_mobile"
              x:Class="microb_uy_mobile.Pages.TabMenu">
-
+	
     <pages:HomePage/>
     <pages:SearchPage/>
     <pages:NotificationsSettingsPage/>

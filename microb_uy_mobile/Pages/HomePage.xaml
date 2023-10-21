@@ -4,24 +4,26 @@
              x:Class="microb_uy_mobile.Pages.HomePage"
              IconImageSource="home_icon.png">
     <ContentPage.Content>
-        <StackLayout>
-            <!-- Contenido específico de la página, como el feed de posts -->
-            <CollectionView ItemsSource="{Binding Posts}">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <Grid Padding="10">
-                            <!-- Imagen del usuario -->
-                            <Image Source="{Binding UserProfileImage}" HeightRequest="50" WidthRequest="50" Aspect="AspectFill" />
+        <ScrollView>
+            <StackLayout>
+                <!-- Contenido específico de la página, como el feed de posts -->
+                <CollectionView ItemsSource="{Binding Posts}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Padding="10">
+                                <!-- Imagen del usuario -->
+                                <Image Source="{Binding UserProfileImage}" HeightRequest="50" WidthRequest="50" Aspect="AspectFill" />
 
-                            <!-- Nombre de usuario y contenido del post -->
-                            <StackLayout Margin="10,0,0,0" Spacing="5">
-                                <Label Text="{Binding UserName}" FontAttributes="Bold" />
-                                <Label Text="{Binding PostContent}" />
-                            </StackLayout>
-                        </Grid>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
-        </StackLayout>
+                                <!-- Nombre de usuario y contenido del post -->
+                                <StackLayout Margin="10,0,0,0" Spacing="5">
+                                    <Label Text="{Binding UserName}" FontAttributes="Bold" />
+                                    <Label Text="{Binding PostContent}" />
+                                </StackLayout>
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>
