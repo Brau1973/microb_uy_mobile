@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="microb_uy_mobile.MainPage"
              Title="MainPage">
-    <CollectionView ItemsSource="{Binding Instancias}" SelectionMode="Single">
+    <CollectionView ItemsSource="{Binding}" SelectionMode="Single">
         <CollectionView.ItemsLayout>
             <GridItemsLayout Orientation="Vertical" Span="2" />
         </CollectionView.ItemsLayout>
@@ -11,9 +11,10 @@
             <DataTemplate>
                 <Frame CornerRadius="10" HasShadow="True" BorderColor="#dddddd" BackgroundColor="Transparent" HeightRequest="250" WidthRequest="150" Margin="10">
                     <StackLayout Spacing="5">
-                        <Image Source="{Binding Image}" Aspect="AspectFill" HeightRequest="100" WidthRequest="150" />
-                        <Label Text="{Binding Name}" TextColor="Black" FontAttributes="Bold" />
-                        <Label Text="{Binding Description}" TextColor="Gray" LineBreakMode="WordWrap" />
+                        <!--<Image Source="{Binding image}" Aspect="AspectFill" HeightRequest="100" WidthRequest="150" />-->
+                        <Image Source="diego_forlan.jpg" Aspect="AspectFill" HeightRequest="100" WidthRequest="150" />
+                        <Label Text="{Binding nombre}" TextColor="Black" FontAttributes="Bold" />
+                        <Label Text="{Binding url}" TextColor="Gray" LineBreakMode="WordWrap" />
                     </StackLayout>
                     <Frame.GestureRecognizers>
                         <TapGestureRecognizer Tapped="OnCardTapped" />

@@ -1,3 +1,5 @@
+using microb_uy_mobile.DTOs;
+
 namespace microb_uy_mobile.Pages;
 
 public partial class HomePage : ContentPage
@@ -15,5 +17,37 @@ public partial class HomePage : ContentPage
         // Asigna el modelo de vista como contexto de datos para la página
         this.BindingContext = viewModel;
     }
+
+    private async void OnPostContentTapped(object sender, EventArgs e)
+    {
+        // Obtén el post seleccionado (puedes utilizar el BindingContext o alguna otra lógica)
+        //var selectedPost = ...; // Obtén el post seleccionado
+        //await DisplayAlert("Info", "OnPostContentTapped", "OK");
+        // Navega a la página de detalle del post y pasa el post seleccionado
+        await Navigation.PushAsync(new PostDetailPage());
+    }
+
+
+    private void OnRetweetIconTapped(object sender, EventArgs e)
+    {
+        DisplayAlert("Info", "Retweet", "OK");
+        // Lógica para manejar el retweet
+    }
+
+    private void OnLikeIconTapped(object sender, EventArgs e)
+    {
+        DisplayAlert("Info", "Like", "OK");
+        // Lógica para manejar el "Me gusta"
+    }
+
+    private async void OnFeatherIconTapped(object sender, EventArgs e)
+    {
+        // Crear una nueva página para el modal
+        var newPostPage = new NewPostPage();
+
+        // Mostrar la página como un modal
+        await Navigation.PushModalAsync(newPostPage);
+    }
+    
 
 }

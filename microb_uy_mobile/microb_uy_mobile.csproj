@@ -49,11 +49,50 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
+	  <None Remove="Platforms\Android\Resources\xml\network_security_config.xml" />
+	  <None Remove="Resources\Icons\empty_like_icon.png" />
+	  <None Remove="Resources\Icons\feather_icon.png" />
+	  <None Remove="Resources\Icons\fully_like_icon.png" />
+	  <None Remove="Resources\Icons\home_icon.png" />
+	  <None Remove="Resources\Icons\retweet_icon.png" />
+	  <None Remove="Resources\Icons\search_icon.png" />
+	  <None Remove="Resources\Icons\settings_icon.png" />
+	  <None Remove="Resources\Icons\sign_out_icon.png" />
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiImage Include="Resources\Icons\empty_like_icon.png" />
+	  <MauiImage Include="Resources\Icons\feather_icon.png" />
+	  <MauiImage Include="Resources\Icons\fully_like_icon.png" />
+	  <MauiImage Include="Resources\Icons\home_icon.png" />
+	  <MauiImage Include="Resources\Icons\retweet_icon.png" />
+	  <MauiImage Include="Resources\Icons\search_icon.png" />
+	  <MauiImage Include="Resources\Icons\settings_icon.png" />
+	  <MauiImage Include="Resources\Icons\sign_out_icon.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+		<PackageReference Include="Refit" Version="7.0.0" />
+		<PackageReference Include="Refit.HttpClientFactory" Version="7.0.0" />
+		<PackageReference Include="Refit.Newtonsoft.Json" Version="7.0.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Update="Pages\PostDetailPage.xaml.cs">
+	    <DependentUpon>PostDetailPage.xaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="Pages\NewPostPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Pages\NotificationsSettingsPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\PostDetailPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>

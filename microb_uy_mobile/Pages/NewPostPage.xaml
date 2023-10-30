@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="microb_uy_mobile.Pages.NewPostPage"
+             Title="New Post">
+    <ContentPage.Content>
+        <StackLayout Spacing="10" Padding="20">
+            <!-- Editor para ingresar el contenido del post -->
+            <Editor x:Name="PostEditor" Placeholder="¿Qué estás pensando?" MaxLength="280" Text="{Binding PostContent}" AutoSize="TextChanges" VerticalOptions="Start" HeightRequest="150" />
+
+            <!-- Botón para Publicar -->
+            <Button Text="Publicar" TextColor="White" CornerRadius="5" HeightRequest="50" VerticalOptions="Start" Clicked="OnPublishButtonClicked" />
+
+            <!-- Botón para Cancelar -->
+            <Button Text="Cancelar" BackgroundColor="LightGray" TextColor="Black" CornerRadius="5" HeightRequest="50" VerticalOptions="Start" Clicked="OnCancelButtonClicked" />
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

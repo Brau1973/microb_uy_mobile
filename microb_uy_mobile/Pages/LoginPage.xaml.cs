@@ -17,16 +17,17 @@ namespace microb_uy_mobile.Pages
             // Si la autenticación falla, muestra un mensaje de error.
 
             // Ejemplo de autenticación (simplificado):
-            if (string.IsNullOrWhiteSpace(usernameEntry.Text) || string.IsNullOrWhiteSpace(passwordEntry.Text))
-            {
-                await DisplayAlert("Error", "Nombre de usuario y contraseña son obligatorios", "OK");
-            }
-            else
-            {
-                // Autenticación exitosa
-                // Aquí, navega a la página principal de la aplicación
-                await Navigation.PushAsync(new TabMenu());
-            }
+            //if (string.IsNullOrWhiteSpace(usernameEntry.Text) || string.IsNullOrWhiteSpace(passwordEntry.Text))
+            //{
+            //    await DisplayAlert("Error", "Nombre de usuario y contraseña son obligatorios", "OK");
+            //}
+            //else
+            //{
+            //    // Autenticación exitosa
+            //    // Aquí, navega a la página principal de la aplicación
+            //    await Navigation.PushAsync(new TabMenu());
+            //}
+            await Navigation.PushAsync(new TabMenu());
         }
 
         private async void OnFacebookImageClicked(object sender, EventArgs e)

@@ -2,15 +2,16 @@
 {
     public class InstanciaDTO
     {
-        public string Name { get; set; }
-        public string Image { get; set; }
-        public string Description { get; set; }
+        public int id { get; set; }
+        public string nombre { get; set; }
+        public string image { get; set; }
+        public string url { get; set; }
 
-        public InstanciaDTO(string name, string image, string description)
+        public InstanciaDTO(string nombre, string image, string url)
         {
-            Name = name;
-            Image = image;
-            Description = description;
+            this.nombre = nombre;
+            this.image = image;
+            this.url = url;
         }
     }
 }

@@ -32,7 +32,7 @@ namespace microb_uy_mobile
                 {
                     UserProfileImage = "diego_forlan.jpg",
                     UserName = $"Usuario {i}",
-                    PostContent = $"Este es el contenido del post {i}."
+                    PostContent = $"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. At urna condimentum mattis pellentesque id nibh tortor id aliquet. Nunc sed augue lacus viverra vitae congue. Nibh sit amet commodo nulla facilisi nullam vehicula. Dolor purus non enim praesent elementum facilisis. Sed turpis tincidunt id aliquet. Urna condimentum mattis pellentesque id nibh tortor id. {i}."
                 });
             }
 
