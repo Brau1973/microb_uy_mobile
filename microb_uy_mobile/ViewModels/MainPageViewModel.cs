@@ -7,7 +7,7 @@ namespace microb_uy_mobile.ViewModels
 {
     internal class MainPageViewModel
     {
-        public ObservableCollection<DefaultReponseDTO> Instancias { get; set; } = new();
+        public ObservableCollection<DefaultResponseDTO> Instancias { get; set; } = new();
         IInstanciaService iinstanciaService;
 
         public MainPageViewModel()

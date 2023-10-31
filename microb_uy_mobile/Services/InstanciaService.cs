@@ -73,7 +73,7 @@ namespace microb_uy_mobile.Services
                     client = new HttpClient();
 #endif
                 //client.GetFromJsonAsync
-                DefaultReponseDTO response = await client.GetFromJsonAsync<DefaultReponseDTO>(API);
+                DefaultResponseDTO response = await client.GetFromJsonAsync<DefaultResponseDTO>(API);
                 Console.WriteLine("catch llamada api");
                 //var responseBody = await response.Content.ReadAsStringAsync();
                 //JsonNode nodos = JsonNode.Parse(responseBody);

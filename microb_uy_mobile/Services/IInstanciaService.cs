@@ -4,5 +4,5 @@ using Refit;
 internal interface IInstanciaService
 {
     [Get("/api/tenants")]
-    Task<List<DefaultReponseDTO>> GetInstanciasAsync();
+    Task<List<DefaultResponseDTO>> GetInstanciasAsync();
 }
