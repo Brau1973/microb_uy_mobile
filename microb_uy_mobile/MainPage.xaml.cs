@@ -2,7 +2,6 @@
 using microb_uy_mobile.Pages;
 using microb_uy_mobile.ViewModels;
 
-
 namespace microb_uy_mobile
 {
     public partial class MainPage : ContentPage
@@ -16,6 +15,7 @@ namespace microb_uy_mobile
             NavigationPage.SetHasNavigationBar(this, false);
 
             ViewModel = new MainPageViewModel();
+
             BindingContext = ViewModel;
         }
 
@@ -24,12 +24,15 @@ namespace microb_uy_mobile
             // Obtener la InstanciaDTO seleccionada
             var selectedInstancia = ((Frame)sender).BindingContext as InstanciaDTO;
 
-            //if (selectedInstancia != null)
-            //{
-                // Navegar a la página de inicio de sesión (LoginPage) o realizar otra acción
-                // Ejemplo: await Navigation.PushAsync(new LoginPage(selectedInstancia));
-                await Navigation.PushAsync(new LoginPage());
-            //}
+            // Navegar a la página de inicio de sesión (LoginPage) o realizar otra acción
+            // Ejemplo: await Navigation.PushAsync(new LoginPage(selectedInstancia));
+            await Navigation.PushAsync(new LoginPage());
+        }
+
+        protected override async void OnAppearing()
+        {
+            base.OnAppearing();
+            await ViewModel.GetInstancias();
         }
     }
 }
