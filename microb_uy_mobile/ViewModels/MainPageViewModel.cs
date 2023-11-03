@@ -6,28 +6,28 @@ namespace microb_uy_mobile.ViewModels
 {
     public class MainPageViewModel : BaseViewModel
     {
-        private ObservableCollection<Response> instancias;
+        private ObservableCollection<InstanceDTO> instances;
 
-        public ObservableCollection<Response> Instancias
+        public ObservableCollection<InstanceDTO> Instances
         {
-            get { return instancias; }
+            get { return instances; }
             set
             {
-                instancias = value;
+                instances = value;
                 OnPropertyChanged();
             }
         }
 
-        public async Task GetInstancias()
+        public async Task GetInstances()
         {
             try
             {
-                var api = RestService.For<IInstanciaService>("http://10.0.2.2:5067");
-                var instanciasResponse = await api.GetInstanciasAsync();
+                var api = RestService.For<IInstanceService>("http://10.0.2.2:5067");
+                var instancesResponse = await api.GetInstancesAsync();
 
-                if (instanciasResponse != null)
+                if (instancesResponse != null)
                 {
-                    Instancias = new ObservableCollection<Response>(instanciasResponse.Response);
+                    Instances = new ObservableCollection<InstanceDTO>(instancesResponse.Response);
                 }
             }
             catch (Exception ex)
