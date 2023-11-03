@@ -2,13 +2,13 @@
 using microb_uy_mobile.Pages;
 using microb_uy_mobile.ViewModels;
 
-namespace microb_uy_mobile
+namespace microb_uy_mobile.Pages.Integrations
 {
-    public partial class MainPage : ContentPage
+    public partial class IntegrationsMainPage : ContentPage
     {
         public IntegrationsMainPageViewModel ViewModel { get; set; }
 
-        public MainPage()
+        public IntegrationsMainPage()
         {
             InitializeComponent();
             // Ocultar completamente la barra de navegación
