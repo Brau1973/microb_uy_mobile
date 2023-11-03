@@ -3,11 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:pages="clr-namespace:microb_uy_mobile.Pages"
              xmlns:local="clr-namespace:microb_uy_mobile"
-             x:Class="microb_uy_mobile.Pages.TabMenu"
-             Title="TabMenu">
-
-    <local:MainPage/>
-    <pages:LoginPage/>
-    <pages:SignUpPage/>
+             x:Class="microb_uy_mobile.Pages.TabMenu">
+	
+    <pages:HomePage/>
+    <pages:SearchPage/>
+    <pages:NotificationsSettingsPage/>
+    <pages:SignOutPage/>
 
 </TabbedPage>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="microb_uy_mobile.Pages.NotificationsSettingsPage"
+             IconImageSource="settings_icon.png">
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="CenterAndExpand" Padding="20">
+            <Label Text="Configuración de Notificaciones" FontSize="Large" HorizontalOptions="Center" />
+
+            <Switch x:Name="PushNotificationsSwitch" IsToggled="{Binding PushNotificationsEnabled}" HorizontalOptions="Center" />
+            <Label Text="Notificaciones Push" HorizontalOptions="Center" />
+
+            <Switch x:Name="EmailNotificationsSwitch" IsToggled="{Binding EmailNotificationsEnabled}" HorizontalOptions="Center" />
+            <Label Text="Notificaciones por Correo Electrónico" HorizontalOptions="Center" />
+
+            <Switch x:Name="NewFollowerNotificationsSwitch" IsToggled="{Binding NewFollowerNotificationsEnabled}" HorizontalOptions="Center" />
+            <Label Text="Notificar Nuevo Seguidor" HorizontalOptions="Center" />
+
+            <Switch x:Name="ReplyToPostNotificationsSwitch" IsToggled="{Binding ReplyToPostNotificationsEnabled}" HorizontalOptions="Center" />
+            <Label Text="Notificar Respuesta a mi Publicación" HorizontalOptions="Center" />
+
+            <Button Text="Guardar" Clicked="OnSaveButtonClicked" HorizontalOptions="Center" Margin="0, 20" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

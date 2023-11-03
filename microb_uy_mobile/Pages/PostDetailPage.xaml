@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="microb_uy_mobile.Pages.PostDetailPage"
+             Title="Detalle de Post">
+    <ContentPage.Content>
+        <Grid Padding="10">
+            <ScrollView>
+                <StackLayout>
+                    <!-- Detalles del post -->
+                    <StackLayout Padding="10" Margin="5,5,5,0" BackgroundColor="#ffffff">
+                        <!-- Encabezado del post: Imagen de perfil y nombre de usuario -->
+                        <StackLayout Orientation="Horizontal" Spacing="10">
+
+                            <Frame HeightRequest="50" WidthRequest="50" CornerRadius="70" HorizontalOptions="Center" IsClippedToBounds="True" Padding="0" BorderColor="Gray" Margin="0,0,0,0">
+                                <Image Aspect="AspectFit" Source="diego_forlan.jpg" HeightRequest="50" WidthRequest="50" VerticalOptions="Center" HorizontalOptions="Center" />
+                            </Frame>
+                            <Label Text="Usuario 1" FontAttributes="Bold" VerticalOptions="Center" />
+                        </StackLayout>
+
+                        <!-- Contenido del post -->
+                        <Label Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. At urna condimentum mattis pellentesque id nibh tortor id aliquet. Nunc sed augue lacus viverra vitae congue. Nibh sit amet commodo nulla facilisi nullam vehicula. Dolor purus non enim praesent elementum facilisis. Sed turpis tincidunt id aliquet. Urna condimentum mattis pellentesque id nibh tortor id." VerticalOptions="Start">
+                        </Label>
+
+                        <!-- Acciones del post: Retweet y Me gusta -->
+                        <Grid HorizontalOptions="CenterAndExpand" RowSpacing="0" ColumnSpacing="125">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <Image Source="retweet_icon.png" HeightRequest="24" WidthRequest="24" HorizontalOptions="Center">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnRetweetIconTapped" />
+                                </Image.GestureRecognizers>
+                            </Image>
+                            <Image Source="empty_like_icon.png" HeightRequest="24" WidthRequest="24" HorizontalOptions="Center" Grid.Column="1">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnLikeIconTapped" />
+                                </Image.GestureRecognizers>
+                            </Image>
+                        </Grid>
+                    </StackLayout>
+                </StackLayout>
+            </ScrollView>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
