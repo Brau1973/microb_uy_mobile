@@ -1,59 +1,40 @@
-﻿using microb_uy_mobile.DTOs;
-using microb_uy_mobile.Services;
+﻿using System.Collections.ObjectModel;
+using microb_uy_mobile.DTOs;
 using Refit;
-using System.Collections.ObjectModel;
 
 namespace microb_uy_mobile.ViewModels
 {
-    internal class MainPageViewModel
+    public class MainPageViewModel : BaseViewModel
     {
-        public ObservableCollection<DefaultResponseDTO> Instancias { get; set; } = new();
-        IInstanciaService iinstanciaService;
+        private ObservableCollection<Response> instancias;
 
-        public MainPageViewModel()
+        public ObservableCollection<Response> Instancias
         {
-            //iinstanciaService = RestService.For<IInstanciaService>("https://10.0.2.2:5001");
-            //new Action(async () => await LoadData())();
-        }
-
-        async Task LoadData()
-        {
-            var Instancias = await iinstanciaService.GetInstanciasAsync();
-
-            foreach (var instanciasItem in Instancias)
+            get { return instancias; }
+            set
             {
-                this.Instancias.Add(instanciasItem);
+                instancias = value;
+                OnPropertyChanged();
             }
         }
 
-        //Instancias = new ObservableCollection<InstanciaDTO>();
-        //apiService = new InstanciaService();
+        public async Task GetInstancias()
+        {
+            try
+            {
+                var api = RestService.For<IInstanciaService>("http://10.0.2.2:5067");
+                var instanciasResponse = await api.GetInstanciasAsync();
 
-        //Task.Run(async () => await LoadDataFromApiAsync());
-
-        //Instancias = new ObservableCollection<InstanciaDTO>
-        //{
-        //    new InstanciaDTO("Futbol", "diego_forlan.jpg", "URL"),
-        //    new InstanciaDTO("Politica", "diego_forlan.jpg", "URL"),
-        //    new InstanciaDTO("Tech", "diego_forlan.jpg", "URL"),
-        //    new InstanciaDTO("Bares", "diego_forlan.jpg", "URL"),
-        //    new InstanciaDTO("Trabajos", "diego_forlan.jpg", "URL"),
-        //    new InstanciaDTO("Vacaciones", "diego_forlan.jpg", "URL")
-        //};
-    //}
-
-        //private async Task LoadDataFromApiAsync()
-        //{
-        //    var instancias = await apiService.GetInstanciasAsync();
-        //    Console.WriteLine("Volvi de apiService.GetInstanciasAsync()");
-        //    if (instancias != null)
-        //    {
-        //        foreach (var instancia in instancias)
-        //        {
-        //            Instancias.Add(instancia);
-        //        }
-        //    }
-        //}
+                if (instanciasResponse != null)
+                {
+                    Instancias = new ObservableCollection<Response>(instanciasResponse.Response);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Exception: "+ex.ToString());
+                // Manejo de errores
+            }
+        }
     }
-
 }
