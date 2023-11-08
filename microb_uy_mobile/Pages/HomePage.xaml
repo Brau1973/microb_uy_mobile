@@ -8,10 +8,10 @@
             <ScrollView>
                 <StackLayout>
                     <!-- Contenido específico de la página, como el feed de posts -->
-                    <CollectionView ItemsSource="{Binding Posts}" >
+                    <CollectionView x:Name="PostCollectionView" ItemsSource="{Binding Posts}" SelectionMode="Single" >
                         <CollectionView.ItemTemplate>
                             <DataTemplate>
-                                <StackLayout Padding="10" Margin="5,5,5,0" BackgroundColor="#ffffff">
+                                <StackLayout x:Name="PostLayout" Padding="10" Margin="5,5,5,0" BackgroundColor="#ffffff">
                                     <!-- Encabezado del post: Imagen de perfil y nombre de usuario -->
                                     <StackLayout Orientation="Horizontal" Spacing="10">
 
@@ -45,8 +45,6 @@
                                             </Image.GestureRecognizers>
                                         </Image>
                                     </Grid>
-
-
                                 </StackLayout>
                             </DataTemplate>
                         </CollectionView.ItemTemplate>

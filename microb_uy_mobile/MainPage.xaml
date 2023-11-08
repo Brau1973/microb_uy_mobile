@@ -4,16 +4,16 @@
              x:Class="microb_uy_mobile.MainPage"
              Title="MainPage">
 
-    <CollectionView ItemsSource="{Binding Instances}" SelectionMode="Single">
+    <CollectionView x:Name="InstancesCollectionView" ItemsSource="{Binding Instances}" SelectionMode="Single">
         <CollectionView.ItemsLayout>
             <GridItemsLayout Orientation="Vertical" Span="2" />
         </CollectionView.ItemsLayout>
         <CollectionView.ItemTemplate>
             <DataTemplate>
-                <Frame CornerRadius="10" HasShadow="True" BorderColor="#dddddd" BackgroundColor="Transparent" HeightRequest="250" WidthRequest="150" Margin="10">
+                <Frame CornerRadius="10" HasShadow="True" BorderColor="#dddddd" BackgroundColor="Transparent" HeightRequest="225" WidthRequest="150" Margin="10">
                     <StackLayout Spacing="5">
                         <Image Source="diego_forlan.jpg" Aspect="AspectFill" HeightRequest="100" WidthRequest="150" />
-                        <Label Text="{Binding Nombre}" TextColor="Black" FontAttributes="Bold" />
+                        <Label Text="{Binding Nombre}" TextColor="Black" FontAttributes="Bold" HorizontalOptions="CenterAndExpand" />
                         <Label Text="{Binding Url}" TextColor="Gray" LineBreakMode="WordWrap" />
                     </StackLayout>
                     <Frame.GestureRecognizers>

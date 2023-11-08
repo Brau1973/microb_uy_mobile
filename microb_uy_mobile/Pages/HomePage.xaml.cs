@@ -20,10 +20,6 @@ public partial class HomePage : ContentPage
 
     private async void OnPostContentTapped(object sender, EventArgs e)
     {
-        // Obtén el post seleccionado (puedes utilizar el BindingContext o alguna otra lógica)
-        //var selectedPost = ...; // Obtén el post seleccionado
-        //await DisplayAlert("Info", "OnPostContentTapped", "OK");
-        // Navega a la página de detalle del post y pasa el post seleccionado
         await Navigation.PushAsync(new PostDetailPage());
     }
 
