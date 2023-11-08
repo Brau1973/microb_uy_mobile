@@ -27,6 +27,11 @@ namespace microb_uy_mobile.Pages
             //    // Aquí, navega a la página principal de la aplicación
             //    await Navigation.PushAsync(new TabMenu());
             //}
+
+            // Mostrar el indicador de carga
+            loadingIndicator.IsRunning = true;
+            loadingIndicator.IsVisible = true;
+
             await Navigation.PushAsync(new TabMenu());
         }
 

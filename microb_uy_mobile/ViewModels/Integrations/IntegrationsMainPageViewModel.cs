@@ -1,51 +1,31 @@
 ﻿using System.Collections.ObjectModel;
 using microb_uy_mobile.DTOs;
-using Refit;
 
-namespace microb_uy_mobile.Integrations.ViewModels
+namespace microb_uy_mobile.ViewModels.Integrations
 {
     public class IntegrationsMainPageViewModel : BaseViewModel
     {
-        private ObservableCollection<Response> instancias;
+        private ObservableCollection<InstanceDTO> instances;
 
-        public ObservableCollection<Response> Instancias
+        public ObservableCollection<InstanceDTO> Instances
         {
-            get { return instancias; }
+            get { return instances; }
             set
             {
-                instancias = value;
+                instances = value;
                 OnPropertyChanged();
             }
         }
 
-        public async Task GetInstancias()
+        public async Task GetIntegratedInstances()
         {
-            try
-            {
-
-                //InstanciasHardCode = new ObservableCollection<InstanciaDTO>
-                //{
-                //    new InstanciaDTO("Futbol", "diego_forlan.jpg", "Futbol en general y me paso de largo lalala"),
-                //    new InstanciaDTO("Politica", "diego_forlan.jpg", "Quien mato a nisman"),
-                //    new InstanciaDTO("Tech", "diego_forlan.jpg", "Todo sobre tecnologia"),
-                //    new InstanciaDTO("Bares", "diego_forlan.jpg", "Bares copados"),
-                //    new InstanciaDTO("Trabajos", "diego_forlan.jpg", "Trabajos remotos"),
-                //    new InstanciaDTO("Vacaciones", "diego_forlan.jpg", "Lugares para vacacionar")
-                //};
-
-                var api = RestService.For<IInstanciaService>("http://10.0.2.2:5067");
-                var instanciasResponse = await api.GetInstanciasAsync();
-
-                if (instanciasResponse != null)
+            Instances = new ObservableCollection<InstanceDTO>
                 {
-                    Instancias = new ObservableCollection<Response>(instanciasResponse.Response);
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Exception: "+ex.ToString());
-                // Manejo de errores
-            }
+                new InstanceDTO(1, "Integrada 1", "URL1", "Deporte", "LIGHT", "Abierta", false),
+                new InstanceDTO(2, "Integrada 2", "URL2", "Militar", "LIGHT", "Abierta", false),
+                new InstanceDTO(3, "Integrada 3", "URL3", "Política", "LIGHT", "Abierta", false),
+                };
         }
+
     }
 }

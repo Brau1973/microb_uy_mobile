@@ -12,6 +12,7 @@
 
             <!-- Botón de inicio de sesión -->
             <Button Text="Iniciar sesión" Clicked="OnLoginButtonClicked" Margin="0, 20" />
+            <ActivityIndicator x:Name="loadingIndicator" IsRunning="False" IsVisible="False" Color="Blue" Margin="0, 20"/>
 
             <!-- Imagen de Google y Facebook con espacio entre ellas -->
             <Grid HorizontalOptions="CenterAndExpand">
