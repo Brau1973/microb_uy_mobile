@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="microb_uy_mobile.Pages.Integrations.IntegrationsMainPage"
+             IconImageSource="integrations_icon.png">
+
+    <!-- Agrega un Grid para el título centrado en la parte superior -->
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!-- Título centrado -->
+        <Label Text="Integraciones" Margin="0, 20" HorizontalOptions="CenterAndExpand" VerticalOptions="Center" FontSize="Large" FontAttributes="Bold" />
+
+        <!-- Colección de integraciones -->
+        <CollectionView Grid.Row="1" ItemsSource="{Binding Instances}" SelectionMode="Single">
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout Orientation="Vertical" Span="2" />
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame CornerRadius="10" HasShadow="True" BorderColor="#dddddd" BackgroundColor="Transparent" HeightRequest="250" WidthRequest="150" Margin="10">
+                        <StackLayout Spacing="5">
+                            <Image Source="dotnet_bot.svg" Aspect="AspectFill" HeightRequest="100" WidthRequest="150" />
+                            <Label Text="{Binding Nombre}" TextColor="Black" FontAttributes="Bold" />
+                            <Label Text="{Binding Url}" TextColor="Gray" LineBreakMode="WordWrap" />
+                        </StackLayout>
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnCardTapped" />
+                        </Frame.GestureRecognizers>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</ContentPage>

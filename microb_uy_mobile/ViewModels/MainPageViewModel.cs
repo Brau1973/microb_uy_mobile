@@ -1,6 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using microb_uy_mobile.DTOs;
 using Refit;
+using static System.Net.WebRequestMethods;
 
 namespace microb_uy_mobile.ViewModels
 {

@@ -4,13 +4,11 @@
              xmlns:pages="clr-namespace:microb_uy_mobile.Pages"
              xmlns:integrations="clr-namespace:microb_uy_mobile.Pages.Integrations"
              xmlns:local="clr-namespace:microb_uy_mobile"
-             x:Class="microb_uy_mobile.Pages.TabMenu"
+             x:Class="microb_uy_mobile.Pages.Integrations.IntegrationsTabMenu"
             >
-	
+
     <pages:HomePage/>
     <pages:SearchPage/>
-    <integrations:IntegrationsMainPage/>
-    <pages:NotificationsSettingsPage/>
-    <pages:SignOutPage/>
+    <integrations:IntegrationsExitPage/>
 
 </TabbedPage>

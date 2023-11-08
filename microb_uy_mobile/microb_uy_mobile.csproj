@@ -53,7 +53,9 @@
 	  <None Remove="Resources\Icons\empty_like_icon.png" />
 	  <None Remove="Resources\Icons\feather_icon.png" />
 	  <None Remove="Resources\Icons\fully_like_icon.png" />
+	  <None Remove="Resources\Icons\hashtag_icon.png" />
 	  <None Remove="Resources\Icons\home_icon.png" />
+	  <None Remove="Resources\Icons\integrations_icon.png" />
 	  <None Remove="Resources\Icons\retweet_icon.png" />
 	  <None Remove="Resources\Icons\search_icon.png" />
 	  <None Remove="Resources\Icons\settings_icon.png" />
@@ -64,7 +66,9 @@
 	  <MauiImage Include="Resources\Icons\empty_like_icon.png" />
 	  <MauiImage Include="Resources\Icons\feather_icon.png" />
 	  <MauiImage Include="Resources\Icons\fully_like_icon.png" />
+	  <MauiImage Include="Resources\Icons\hashtag_icon.png" />
 	  <MauiImage Include="Resources\Icons\home_icon.png" />
+	  <MauiImage Include="Resources\Icons\integrations_icon.png" />
 	  <MauiImage Include="Resources\Icons\retweet_icon.png" />
 	  <MauiImage Include="Resources\Icons\search_icon.png" />
 	  <MauiImage Include="Resources\Icons\settings_icon.png" />
@@ -80,12 +84,24 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="Pages\Integrations\IntegrationsTabMenu.xaml.cs">
+	    <DependentUpon>IntegrationsTabMenu.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Pages\Integrations\IntegrationsExitPage.xaml.cs">
+	    <DependentUpon>IntegrationsExitPage.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Pages\PostDetailPage.xaml.cs">
 	    <DependentUpon>PostDetailPage.xaml</DependentUpon>
 	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="Pages\Integrations\IntegrationsTabMenu.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\Integrations\IntegrationsExitPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Pages\NewPostPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
