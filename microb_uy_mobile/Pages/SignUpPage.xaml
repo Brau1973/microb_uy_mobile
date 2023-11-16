@@ -13,7 +13,7 @@
                 <Entry Placeholder="Nombre de usuario" x:Name="usernameEntry" />
                 <Entry Placeholder="Correo electrónico" x:Name="emailEntry" Keyboard="Email" />
                 <Entry Placeholder="Contraseña" x:Name="passwordEntry" IsPassword="True" />
-
+    
                 <Button Text="Registrarse" Clicked="OnSignUpClicked" BackgroundColor="#1DA1F2" TextColor="White" />
 
                 <Label Text="¿Ya tienes una cuenta? Inicia sesión" TextColor="#1DA1F2" HorizontalOptions="Center">

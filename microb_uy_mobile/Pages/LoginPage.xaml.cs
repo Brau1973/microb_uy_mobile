@@ -1,47 +1,56 @@
-using Microsoft.Maui.Controls;
+using microb_uy_mobile.DTOs;
+using microb_uy_mobile.Services;
+using Refit;
 
 namespace microb_uy_mobile.Pages
 {
     public partial class LoginPage : ContentPage
     {
-        public LoginPage()
+        private InstanceDTO SelectedInstance {  get; set; }
+        public LoginPage(InstanceDTO selectedInstance)
         {
             InitializeComponent();
+            this.SelectedInstance = selectedInstance;
         }
 
         private async void OnLoginButtonClicked(object sender, EventArgs e)
         {
-            // Aquí debes implementar la lógica de autenticación real.
-            // Puedes realizar la autenticación contra un servicio o API.
-            // Si la autenticación es exitosa, puedes navegar a la siguiente página.
-            // Si la autenticación falla, muestra un mensaje de error.
+            // Acceder a la propiedad Text de los Entry
+            string email = emailEntry.Text;
+            string password = passwordEntry.Text;
+            try
+            {
+                var api = RestService.For<ILoginService>("http://10.0.2.2:5067");
+                var userToken = await api.InternalLogin(email, this.SelectedInstance.Id, password);
 
-            // Ejemplo de autenticación (simplificado):
-            //if (string.IsNullOrWhiteSpace(usernameEntry.Text) || string.IsNullOrWhiteSpace(passwordEntry.Text))
-            //{
-            //    await DisplayAlert("Error", "Nombre de usuario y contraseña son obligatorios", "OK");
-            //}
-            //else
-            //{
-            //    // Autenticación exitosa
-            //    // Aquí, navega a la página principal de la aplicación
-            //    await Navigation.PushAsync(new TabMenu());
-            //}
+                if (userToken != "")
+                {
+                    // Mostrar el indicador de carga
+                    loadingIndicator.IsRunning = true;
+                    loadingIndicator.IsVisible = true;
 
-            // Mostrar el indicador de carga
-            loadingIndicator.IsRunning = true;
-            loadingIndicator.IsVisible = true;
-
-            await Navigation.PushAsync(new TabMenu());
+                    await Navigation.PushAsync(new TabMenu());
+                }
+                else
+                {
+                    await DisplayAlert("Login Error", "Login Error", "OK");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Exception: " + ex.ToString());
+                // Manejo de errores
+            }
         }
 
         private async void OnFacebookImageClicked(object sender, EventArgs e)
         {
             await DisplayAlert("Info", "Facebook", "OK");
-            // Manejar el evento Tapped de la imagen de Facebook
-            // Navegar a la página de autenticación de Facebook
-            //await Navigation.PushAsync(new FacebookAuthPage());
-        }
+            await DisplayAlert("Instancia Seleccionada: ", $"Instancia Seleccionada: {SelectedInstance.Nombre}", "OK");
+        // Manejar el evento Tapped de la imagen de Facebook
+        // Navegar a la página de autenticación de Facebook
+        //await Navigation.PushAsync(new FacebookAuthPage());
+    }
 
         private async void OnGoogleImageClicked(object sender, EventArgs e)
         {

@@ -38,7 +38,7 @@ namespace microb_uy_mobile.Pages
         private void OnLoginLinkClicked(object sender, EventArgs e)
         {
             // Navegar a la página de inicio de sesión (LoginPage)
-            Navigation.PushAsync(new LoginPage());
+            //Navigation.PushAsync(new LoginPage());
         }
     }
 }
