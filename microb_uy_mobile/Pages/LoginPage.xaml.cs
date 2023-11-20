@@ -7,6 +7,8 @@ namespace microb_uy_mobile.Pages
         public LoginPage()
         {
             InitializeComponent();
+            loadingIndicator.IsRunning = false;
+            loadingIndicator.IsVisible = false;
         }
 
         private async void OnLoginButtonClicked(object sender, EventArgs e)

@@ -1,42 +1,49 @@
 using microb_uy_mobile.DTOs;
+using microb_uy_mobile.Pages.BasePages;
 
 namespace microb_uy_mobile.Pages;
 
-public partial class HomePage : ContentPage
+public partial class HomePage : BaseHomePage
 {
     public HomePage()
     {
         InitializeComponent();
 
-        // Ocultar completamente la barra de navegación
-        NavigationPage.SetHasNavigationBar(this, false);
-
         // Instancia el modelo de vista
-        HomePageViewModel viewModel = new HomePageViewModel();
+        HomePageViewModel viewModel = new();
 
         // Asigna el modelo de vista como contexto de datos para la página
         this.BindingContext = viewModel;
     }
-
-    private async void OnPostContentTapped(object sender, EventArgs e)
+    // Sobrescribe el evento OnPostContentTapped
+    public override async void OnPostContentTapped(object sender, EventArgs e)
     {
         await Navigation.PushAsync(new PostDetailPage());
     }
 
-
-    private void OnRetweetIconTapped(object sender, EventArgs e)
+    // Sobrescribe el evento OnReplyIconTapped
+    public override void OnReplyIconTapped(object sender, EventArgs e)
     {
-        DisplayAlert("Info", "Retweet", "OK");
+        // Lógica para manejar la respuesta al post
+        DisplayAlert("Integrations", "Llamo a la api de mi instancia principal" +
+            "Responder al post ", "OK");
+    }
+
+    // Sobrescribe el evento OnRetweetIconTapped
+    public override void OnRetweetIconTapped(object sender, EventArgs e)
+    {
+        DisplayAlert("Integrations", "Llamo a la api de mi instancia principal " + "Retweet", "OK");
         // Lógica para manejar el retweet
     }
 
-    private void OnLikeIconTapped(object sender, EventArgs e)
+    // Sobrescribe el evento OnLikeIconTapped
+    public override void OnLikeIconTapped(object sender, EventArgs e)
     {
-        DisplayAlert("Info", "Like", "OK");
+        DisplayAlert("Integrations", "Llamo a la api de mi instancia principal " + "Like", "OK");
         // Lógica para manejar el "Me gusta"
     }
 
-    private async void OnFeatherIconTapped(object sender, EventArgs e)
+    public override async void OnFeatherIconTapped(object sender, EventArgs e)
     {
         // Crear una nueva página para el modal
         var newPostPage = new NewPostPage();
@@ -44,6 +51,4 @@ public partial class HomePage : ContentPage
         // Mostrar la página como un modal
         await Navigation.PushModalAsync(newPostPage);
     }
-    
-
 }

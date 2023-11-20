@@ -1,64 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="microb_uy_mobile.Pages.HomePage"
-             IconImageSource="home_icon.png">
-    <ContentPage.Content>
-        <Grid Padding="10">
-            <ScrollView>
-                <StackLayout>
-                    <!-- Contenido específico de la página, como el feed de posts -->
-                    <CollectionView x:Name="PostCollectionView" ItemsSource="{Binding Posts}" SelectionMode="Single" >
-                        <CollectionView.ItemTemplate>
-                            <DataTemplate>
-                                <StackLayout x:Name="PostLayout" Padding="10" Margin="5,5,5,0" BackgroundColor="#ffffff">
-                                    <!-- Encabezado del post: Imagen de perfil y nombre de usuario -->
-                                    <StackLayout Orientation="Horizontal" Spacing="10">
+<local:BaseHomePage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:local="clr-namespace:microb_uy_mobile.Pages.BasePages"
+              x:Class="microb_uy_mobile.Pages.HomePage">
 
-                                        <Frame HeightRequest="50" WidthRequest="50" CornerRadius="70" HorizontalOptions="Center" IsClippedToBounds="True" Padding="0" BorderColor="Gray" Margin="0,0,0,0">
-                                            <Image Aspect="AspectFit" Source="{Binding UserProfileImage}" SemanticProperties.Description="Cute dot net bot waving hi to you!" HeightRequest="50" WidthRequest="50" VerticalOptions="Center"                                            HorizontalOptions="Center" />
-                                        </Frame>
-                                        <Label Text="{Binding UserName}" FontAttributes="Bold" VerticalOptions="Center" />
-                                    </StackLayout>
-
-                                    <!-- Contenido del post -->
-                                    <Label Text="{Binding PostContent}" VerticalOptions="Start">
-                                        <Label.GestureRecognizers>
-                                            <TapGestureRecognizer Tapped="OnPostContentTapped" />
-                                        </Label.GestureRecognizers>
-                                    </Label>
-
-                                    <!-- Acciones del post: Retweet y Me gusta -->
-                                    <Grid HorizontalOptions="CenterAndExpand" RowSpacing="0" ColumnSpacing="125">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="Auto" />
-                                            <ColumnDefinition Width="Auto" />
-                                        </Grid.ColumnDefinitions>
-                                        <Image Source="retweet_icon.png" HeightRequest="24" WidthRequest="24" HorizontalOptions="Center">
-                                            <Image.GestureRecognizers>
-                                                <TapGestureRecognizer Tapped="OnRetweetIconTapped" />
-                                            </Image.GestureRecognizers>
-                                        </Image>
-                                        <Image Source="empty_like_icon.png" HeightRequest="24" WidthRequest="24" HorizontalOptions="Center" Grid.Column="1">
-                                            <Image.GestureRecognizers>
-                                                <TapGestureRecognizer Tapped="OnLikeIconTapped" />
-                                            </Image.GestureRecognizers>
-                                        </Image>
-                                    </Grid>
-                                </StackLayout>
-                            </DataTemplate>
-                        </CollectionView.ItemTemplate>
-                    </CollectionView>
-                </StackLayout>
-            </ScrollView>
-
-            <Frame HeightRequest="70" WidthRequest="70" CornerRadius="70" HorizontalOptions="End" VerticalOptions="End" IsClippedToBounds="True" BorderColor="Gray" Margin="0,0,20,20">
-                <Image Source="feather_icon.png" HeightRequest="50" WidthRequest="50" >
-                    <Image.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="OnFeatherIconTapped" />
-                    </Image.GestureRecognizers>
-                </Image>
-            </Frame>
-        </Grid>
-    </ContentPage.Content>
-</ContentPage>
+    <!-- Heredo toda la vista desde el BaseHomePage -->
+</local:BaseHomePage>
