@@ -32,9 +32,6 @@
                     </Image>
                 </Frame>
 
-                <!-- Espacio entre las imágenes -->
-                <!--<BoxView Grid.Column="1" WidthRequest="10" />-->
-
                 <!-- Imagen de Google -->
                 <Frame Grid.Column="1" BackgroundColor="Transparent" Padding="0" HasShadow="False" Margin="15, 0, 0, 0">
                     <Image Source="google_logo.png" HeightRequest="50" WidthRequest="50">
@@ -44,9 +41,6 @@
                     </Image>
                 </Frame>
             </Grid>
-
-            <!-- Botón de Registro -->
-            <!-- <Button Text="Registrarse" Clicked="OnSignUpClicked" TextColor="#1DA1F2" Margin="0, 10" /> -->
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
