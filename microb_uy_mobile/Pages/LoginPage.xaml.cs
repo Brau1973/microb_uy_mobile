@@ -10,7 +10,11 @@ namespace microb_uy_mobile.Pages
         public LoginPage(InstanceDTO selectedInstance)
         {
             InitializeComponent();
+
             this.SelectedInstance = selectedInstance;
+
+            loadingIndicator.IsRunning = false;
+            loadingIndicator.IsVisible = false;
         }
 
         private async void OnLoginButtonClicked(object sender, EventArgs e)
