@@ -24,11 +24,11 @@ namespace microb_uy_mobile
         private async void OnCardTapped(object sender, EventArgs e)
         {
             // Obtener la InstanciaDTO seleccionada
-            var selectedInstancia = ((Frame)sender).BindingContext as InstanceDTO;
+            var selectedInstance = ((Frame)sender).BindingContext as InstanceDTO;
 
             // Navegar a la página de inicio de sesión (LoginPage) o realizar otra acción
             // Ejemplo: await Navigation.PushAsync(new LoginPage(selectedInstancia));
-            await Navigation.PushAsync(new LoginPage());
+            await Navigation.PushAsync(new LoginPage(selectedInstance));
         }
 
         protected override async void OnAppearing()

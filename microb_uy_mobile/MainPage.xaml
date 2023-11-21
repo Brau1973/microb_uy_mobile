@@ -13,8 +13,30 @@
                 <Frame CornerRadius="10" HasShadow="True" BorderColor="#dddddd" BackgroundColor="Transparent" HeightRequest="225" WidthRequest="150" Margin="10">
                     <StackLayout Spacing="5">
                         <Image Source="diego_forlan.jpg" Aspect="AspectFill" HeightRequest="100" WidthRequest="150" />
-                        <Label Text="{Binding Nombre}" TextColor="Black" FontAttributes="Bold" HorizontalOptions="CenterAndExpand" />
-                        <Label Text="{Binding Url}" TextColor="Gray" LineBreakMode="WordWrap" />
+                        <Label Text="{Binding Nombre}" TextColor="Black" FontAttributes="Bold" HorizontalOptions="CenterAndExpand" FontSize="16">
+                            <Label.TextDecorations>
+                                <OnPlatform x:TypeArguments="TextDecorations">
+                                    <On Platform="iOS" Value="Underline" />
+                                    <On Platform="Android" Value="Underline" />
+                                    <On Platform="UWP" Value="Underline" />
+                                </OnPlatform>
+                            </Label.TextDecorations>
+                        </Label>
+                        <Label Text="{Binding Estado}" TextColor="White" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                            <Label.Triggers>
+                                <DataTrigger TargetType="Label" Binding="{Binding Estado}" Value="True">
+                                    <Setter Property="Text" Value="Activo" />
+                                    <Setter Property="BackgroundColor" Value="Green" />
+                                </DataTrigger>
+                                <DataTrigger TargetType="Label" Binding="{Binding Estado}" Value="False">
+                                    <Setter Property="Text" Value="Inactivo" />
+                                    <!-- Puedes establecer otro color para el caso de inactividad si lo deseas -->
+                                    <Setter Property="BackgroundColor" Value="DarkRed" />
+                                </DataTrigger>
+                            </Label.Triggers>
+                        </Label>
+
+                        <!--<Label Text="{Binding Url}" TextColor="Gray" LineBreakMode="WordWrap" />-->
                     </StackLayout>
                     <Frame.GestureRecognizers>
                         <TapGestureRecognizer Tapped="OnCardTapped" />

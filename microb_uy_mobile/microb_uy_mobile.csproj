@@ -56,8 +56,12 @@
 	  <None Remove="Resources\Icons\hashtag_icon.png" />
 	  <None Remove="Resources\Icons\home_icon.png" />
 	  <None Remove="Resources\Icons\integrations_icon.png" />
+	  <None Remove="Resources\Icons\reply_icon.png" />
 	  <None Remove="Resources\Icons\retweet_icon.png" />
 	  <None Remove="Resources\Icons\search_icon.png" />
+	  <None Remove="Resources\Icons\search_icon_hashtag.png" />
+	  <None Remove="Resources\Icons\search_icon_posts.png" />
+	  <None Remove="Resources\Icons\search_icon_users.png" />
 	  <None Remove="Resources\Icons\settings_icon.png" />
 	  <None Remove="Resources\Icons\sign_out_icon.png" />
 	</ItemGroup>
@@ -69,8 +73,12 @@
 	  <MauiImage Include="Resources\Icons\hashtag_icon.png" />
 	  <MauiImage Include="Resources\Icons\home_icon.png" />
 	  <MauiImage Include="Resources\Icons\integrations_icon.png" />
+	  <MauiImage Include="Resources\Icons\reply_icon.png" />
 	  <MauiImage Include="Resources\Icons\retweet_icon.png" />
 	  <MauiImage Include="Resources\Icons\search_icon.png" />
+	  <MauiImage Include="Resources\Icons\search_icon_hashtag.png" />
+	  <MauiImage Include="Resources\Icons\search_icon_posts.png" />
+	  <MauiImage Include="Resources\Icons\search_icon_users.png" />
 	  <MauiImage Include="Resources\Icons\settings_icon.png" />
 	  <MauiImage Include="Resources\Icons\sign_out_icon.png" />
 	</ItemGroup>
@@ -90,16 +98,52 @@
 	  <Compile Update="Pages\Integrations\IntegrationsExitPage.xaml.cs">
 	    <DependentUpon>IntegrationsExitPage.xaml</DependentUpon>
 	  </Compile>
+	  <Compile Update="Pages\Integrations\SearchPages\IntegrationsSearchHashtagsPage.xaml.cs">
+	    <DependentUpon>IntegrationsSearchHashtagsPage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Pages\Integrations\SearchPages\IntegrationsSearchPostsPage.xaml.cs">
+	    <DependentUpon>IntegrationsSearchPostsPage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Pages\Integrations\SearchPages\IntegrationsSearchUsersPage.xaml.cs">
+	    <DependentUpon>IntegrationsSearchUsersPage.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Pages\PostDetailPage.xaml.cs">
 	    <DependentUpon>PostDetailPage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Pages\SearchPages\SearchPageMainTabOption.xaml.cs">
+	    <DependentUpon>SearchPageMainTabOption.xaml</DependentUpon>
 	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="Pages\BasePages\BaseHomePage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\BasePages\BaseSearchHashtagsPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\BasePages\BaseSearchPostsPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\BasePages\BaseSearchUsersPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\Integrations\IntegrationsHomePage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Pages\Integrations\IntegrationsTabMenu.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\Integrations\IntegrationsExitPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\Integrations\SearchPages\IntegrationsSearchHashtagsPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\Integrations\SearchPages\IntegrationsSearchPostsPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\Integrations\SearchPages\IntegrationsSearchUsersPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\NewPostPage.xaml">
@@ -109,6 +153,21 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\PostDetailPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\SearchPages\SearchHashtagsPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\SearchPages\SearchPageMainTabOption.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\SearchPages\SearchPostsPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\SearchPages\SearchUsersPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\SearchPages\SearchTabMenu.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>
