@@ -1,4 +1,5 @@
 ﻿using microb_uy_mobile.DTOs;
+using microb_uy_mobile.Services.Interfaces;
 using microb_uy_mobile.ViewModels.Integrations;
 
 namespace microb_uy_mobile.Pages.Integrations
@@ -10,6 +11,9 @@ namespace microb_uy_mobile.Pages.Integrations
         public IntegrationsMainPage()
         {
             InitializeComponent();
+
+            //_sessionInfoService = Handler.MauiContext.Services.GetRequiredService<ISessionInfoService>();
+
             // Ocultar completamente la barra de navegación
             NavigationPage.SetHasNavigationBar(this, false);
 
@@ -23,8 +27,10 @@ namespace microb_uy_mobile.Pages.Integrations
             // Obtener la InstanciaDTO seleccionada
             var selectedInstancia = ((Frame)sender).BindingContext as InstanceDTO;
 
-            // Navegar a la página de inicio de sesión (LoginPage) o realizar otra acción
-            // Ejemplo: await Navigation.PushAsync(new LoginPage(selectedInstancia));
+            // Setear info de la instancia integrada seleccionada
+            ISessionInfoService _sessionInfoService = Handler.MauiContext.Services.GetRequiredService<ISessionInfoService>();
+            _sessionInfoService.IntegratedTenantId = selectedInstancia.Id;
+
             await Navigation.PushAsync(new IntegrationsTabMenu());
         }
 

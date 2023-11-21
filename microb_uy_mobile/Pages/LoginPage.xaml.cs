@@ -1,5 +1,6 @@
 using microb_uy_mobile.DTOs;
 using microb_uy_mobile.Services;
+using microb_uy_mobile.Services.Interfaces;
 using Refit;
 
 namespace microb_uy_mobile.Pages
@@ -7,10 +8,13 @@ namespace microb_uy_mobile.Pages
     public partial class LoginPage : ContentPage
     {
         private InstanceDTO SelectedInstance {  get; set; }
-        public LoginPage(InstanceDTO selectedInstance)
+
+        private readonly ISessionInfoService _sessionInfoService;
+        public LoginPage(ISessionInfoService sessionInfoService, InstanceDTO selectedInstance)
         {
             InitializeComponent();
 
+            _sessionInfoService = sessionInfoService;
             this.SelectedInstance = selectedInstance;
 
             loadingIndicator.IsRunning = false;
@@ -30,10 +34,13 @@ namespace microb_uy_mobile.Pages
 
                 if (userToken != "\"\"")
                 {
-                    //await DisplayAlert("Login token", "userToken: "+ userToken, "OK");
                     // Mostrar el indicador de carga
                     loadingIndicator.IsRunning = true;
                     loadingIndicator.IsVisible = true;
+
+                    //Guardo la informacion de la session
+                    _sessionInfoService.UserToken = userToken;
+                    _sessionInfoService.TenantId = tenantid;
 
                     await Navigation.PushAsync(new TabMenu());
                 }
@@ -53,17 +60,11 @@ namespace microb_uy_mobile.Pages
         {
             await DisplayAlert("Info", "Facebook", "OK");
             await DisplayAlert("Instancia Seleccionada: ", $"Instancia Seleccionada: {SelectedInstance.Nombre}", "OK");
-        // Manejar el evento Tapped de la imagen de Facebook
-        // Navegar a la página de autenticación de Facebook
-        //await Navigation.PushAsync(new FacebookAuthPage());
     }
 
         private async void OnGoogleImageClicked(object sender, EventArgs e)
         {
             await DisplayAlert("Info", "Google", "OK");
-            // Manejar el evento Tapped de la imagen de Google
-            // Navegar a la página de autenticación de Google
-            //await Navigation.PushAsync(new GoogleAuthPage());
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using microb_uy_mobile.Services.Implementations;
+using microb_uy_mobile.Services.Interfaces;
+using Microsoft.Extensions.Logging;
 
 namespace microb_uy_mobile
 {
@@ -14,9 +16,10 @@ namespace microb_uy_mobile
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
+            builder.Services.AddSingleton<ISessionInfoService, SessionInfoService>();
 
 #if DEBUG
-		builder.Logging.AddDebug();
+            builder.Logging.AddDebug();
 #endif
 
             return builder.Build();
