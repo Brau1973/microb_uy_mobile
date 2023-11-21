@@ -22,13 +22,15 @@ namespace microb_uy_mobile.Pages
             // Acceder a la propiedad Text de los Entry
             string email = emailEntry.Text;
             string password = passwordEntry.Text;
+            int tenantid = this.SelectedInstance.Id;
             try
             {
                 var api = RestService.For<ILoginService>("http://10.0.2.2:5067");
-                var userToken = await api.InternalLogin(email, this.SelectedInstance.Id, password);
+                var userToken = await api.InternalLogin(email, tenantid, password);
 
-                if (userToken != "")
+                if (userToken != "\"\"")
                 {
+                    //await DisplayAlert("Login token", "userToken: "+ userToken, "OK");
                     // Mostrar el indicador de carga
                     loadingIndicator.IsRunning = true;
                     loadingIndicator.IsVisible = true;
@@ -37,7 +39,7 @@ namespace microb_uy_mobile.Pages
                 }
                 else
                 {
-                    await DisplayAlert("Login Error", "Login Error", "OK");
+                    await DisplayAlert("Login Error", "Usuario o contraseña invalidos", "OK");
                 }
             }
             catch (Exception ex)
@@ -63,12 +65,5 @@ namespace microb_uy_mobile.Pages
             // Navegar a la página de autenticación de Google
             //await Navigation.PushAsync(new GoogleAuthPage());
         }
-
-        //private void OnSignUpClicked(object sender, EventArgs e)
-        //{
-        //   // Navegar a la página de registro (SignUpPage)
-        //    Navigation.PushAsync(new SignUpPage());
-        //}
-
     }
 }
