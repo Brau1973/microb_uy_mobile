@@ -1,3 +1,4 @@
+using microb_uy_mobile.Services.Interfaces;
 using Microsoft.Maui.Controls;
 
 namespace microb_uy_mobile.Pages
@@ -14,10 +15,13 @@ namespace microb_uy_mobile.Pages
 
         private async void OnSignOutButtonClicked(object sender, EventArgs e)
         {
-            // Aquí puedes agregar la lógica para cerrar la sesión del usuario
-            // Esto podría incluir la eliminación de tokens de autenticación, restablecimiento de variables de sesión, etc.
+            ISessionInfoService _sessionInfoService = Handler.MauiContext.Services.GetRequiredService<ISessionInfoService>();
+            //Reset datos de session
+            _sessionInfoService.UserToken = null;
+            _sessionInfoService.UserId = 0;
+            _sessionInfoService.TenantId = 0;
+            _sessionInfoService.IntegratedTenantId = 0;
 
-            // Luego, puedes navegar de vuelta a la página de inicio o a la página de login, según tu flujo de la aplicación.
             await Navigation.PushAsync(new MainPage());
         }
     }

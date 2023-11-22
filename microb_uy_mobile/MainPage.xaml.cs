@@ -1,5 +1,6 @@
 ﻿using microb_uy_mobile.DTOs;
 using microb_uy_mobile.Pages;
+using microb_uy_mobile.Services.Interfaces;
 using microb_uy_mobile.ViewModels;
 
 namespace microb_uy_mobile
@@ -26,9 +27,7 @@ namespace microb_uy_mobile
             // Obtener la InstanciaDTO seleccionada
             var selectedInstance = ((Frame)sender).BindingContext as InstanceDTO;
 
-            // Navegar a la página de inicio de sesión (LoginPage) o realizar otra acción
-            // Ejemplo: await Navigation.PushAsync(new LoginPage(selectedInstancia));
-            await Navigation.PushAsync(new LoginPage(selectedInstance));
+            await Navigation.PushAsync(new LoginPage(Handler.MauiContext.Services.GetRequiredService<ISessionInfoService>(), selectedInstance));
         }
 
         protected override async void OnAppearing()

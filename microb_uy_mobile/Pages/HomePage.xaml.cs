@@ -1,5 +1,6 @@
 using microb_uy_mobile.DTOs;
 using microb_uy_mobile.Pages.BasePages;
+using microb_uy_mobile.Services.Interfaces;
 
 namespace microb_uy_mobile.Pages;
 
@@ -24,6 +25,7 @@ public partial class HomePage : BaseHomePage
     // Sobrescribe el evento OnReplyIconTapped
     public override void OnReplyIconTapped(object sender, EventArgs e)
     {
+        ISessionInfoService _sessionInfoService = Handler.MauiContext.Services.GetRequiredService<ISessionInfoService>();
         // Lógica para manejar la respuesta al post
         DisplayAlert("Integrations", "Llamo a la api de mi instancia principal" +
             "Responder al post ", "OK");
