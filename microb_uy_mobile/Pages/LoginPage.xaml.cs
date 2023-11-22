@@ -24,12 +24,12 @@ namespace microb_uy_mobile.Pages
         private async void OnLoginButtonClicked(object sender, EventArgs e)
         {
             // Acceder a la propiedad Text de los Entry
-            string email = emailEntry.Text;
-            string password = passwordEntry.Text;
+            string email = emailEntry.Text.Trim();
+            string password = passwordEntry.Text.Trim();
             int tenantid = this.SelectedInstance.Id;
             try
             {
-                var api = RestService.For<ILoginService>("http://10.0.2.2:5067");
+                var api = RestService.For<ILoginService>("https://backoffice.web.microb-uy.lat"); //http://10.0.2.2:5067
                 var userToken = await api.InternalLogin(email, tenantid, password);
 
                 if (userToken != "\"\"")
