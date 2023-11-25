@@ -1,3 +1,5 @@
+using microb_uy_mobile.DTOs;
+
 namespace microb_uy_mobile.Pages.BasePages;
 
 public partial class BaseSearchPostsPage : ContentPage
@@ -26,9 +28,10 @@ public partial class BaseSearchPostsPage : ContentPage
         //SE COMPLETA EN CLASE HIJA
     }
 
-    public virtual async void OnPostContentTapped(object sender, EventArgs e)
+    public virtual async void OnPostItemSelected(object sender, SelectionChangedEventArgs e)
     {
-        await Navigation.PushAsync(new PostDetailPage());
+        // se completa en el hijo
+        await DisplayAlert("dummy", "pa que no salte warning", "ok");
     }
     public virtual void OnReplyIconTapped(object sender, EventArgs e)
     {

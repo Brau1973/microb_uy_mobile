@@ -16,32 +16,36 @@ public partial class HomePage : BaseHomePage
         // Asigna el modelo de vista como contexto de datos para la página
         this.BindingContext = viewModel;
     }
-    // Sobrescribe el evento OnPostContentTapped
-    public override async void OnPostContentTapped(object sender, EventArgs e)
-    {
-        await Navigation.PushAsync(new PostDetailPage());
-    }
 
     // Sobrescribe el evento OnReplyIconTapped
-    public override void OnReplyIconTapped(object sender, EventArgs e)
+    public override async void OnReplyIconTapped(object sender, EventArgs e)
     {
         ISessionInfoService _sessionInfoService = Handler.MauiContext.Services.GetRequiredService<ISessionInfoService>();
-        // Lógica para manejar la respuesta al post
-        DisplayAlert("Integrations", "Llamo a la api de mi instancia principal" +
-            "Responder al post ", "OK");
+        var image = (Image)sender;
+
+        // Obtén el contexto (en este caso, el objeto vinculado al elemento del CollectionView)
+        if (image.BindingContext is PostDTOOld selectedPost)
+        {
+            // Crear una nueva página para el modal
+            var newReplyPage = new NewReplyPage(selectedPost);
+
+            // Mostrar la página como un modal
+            await Navigation.PushModalAsync(newReplyPage);
+            //await Navigation.PushAsync(new BaseNewReplyPage(selectedPost));
+        }
     }
 
     // Sobrescribe el evento OnRetweetIconTapped
     public override void OnRetweetIconTapped(object sender, EventArgs e)
     {
-        DisplayAlert("Integrations", "Llamo a la api de mi instancia principal " + "Retweet", "OK");
+        DisplayAlert("Main", "Llamo a la api de mi instancia principal " + "Retweet", "OK");
         // Lógica para manejar el retweet
     }
 
     // Sobrescribe el evento OnLikeIconTapped
     public override void OnLikeIconTapped(object sender, EventArgs e)
     {
-        DisplayAlert("Integrations", "Llamo a la api de mi instancia principal " + "Like", "OK");
+        DisplayAlert("Main", "Llamo a la api de mi instancia principal " + "Like", "OK");
         // Lógica para manejar el "Me gusta"
     }
 

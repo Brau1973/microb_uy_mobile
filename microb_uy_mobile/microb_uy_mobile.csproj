@@ -92,11 +92,17 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="Pages\BasePages\BaseNewReplyPage.xaml.cs">
+	    <DependentUpon>BaseNewReplyPage.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Pages\Integrations\IntegrationsTabMenu.xaml.cs">
 	    <DependentUpon>IntegrationsTabMenu.xaml</DependentUpon>
 	  </Compile>
 	  <Compile Update="Pages\Integrations\IntegrationsExitPage.xaml.cs">
 	    <DependentUpon>IntegrationsExitPage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Pages\Integrations\IntegrationsNewReplyPage.xaml.cs">
+	    <DependentUpon>IntegrationsNewReplyPage.xaml</DependentUpon>
 	  </Compile>
 	  <Compile Update="Pages\Integrations\SearchPages\IntegrationsSearchHashtagsPage.xaml.cs">
 	    <DependentUpon>IntegrationsSearchHashtagsPage.xaml</DependentUpon>
@@ -107,10 +113,10 @@
 	  <Compile Update="Pages\Integrations\SearchPages\IntegrationsSearchUsersPage.xaml.cs">
 	    <DependentUpon>IntegrationsSearchUsersPage.xaml</DependentUpon>
 	  </Compile>
-	  <Compile Update="Pages\PostDetailPage.xaml.cs">
+	  <Compile Update="Pages\MainTenant\PostDetailPage.xaml.cs">
 	    <DependentUpon>PostDetailPage.xaml</DependentUpon>
 	  </Compile>
-	  <Compile Update="Pages\SearchPages\SearchPageMainTabOption.xaml.cs">
+	  <Compile Update="Pages\MainTenant\SearchPages\SearchPageMainTabOption.xaml.cs">
 	    <DependentUpon>SearchPageMainTabOption.xaml</DependentUpon>
 	  </Compile>
 	</ItemGroup>
@@ -128,6 +134,9 @@
 	  <MauiXaml Update="Pages\BasePages\BaseSearchUsersPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Pages\BasePages\BaseNewReplyPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Pages\Integrations\IntegrationsHomePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -135,6 +144,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\Integrations\IntegrationsExitPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\Integrations\IntegrationsNewReplyPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\Integrations\SearchPages\IntegrationsSearchHashtagsPage.xaml">
@@ -146,28 +158,31 @@
 	  <MauiXaml Update="Pages\Integrations\SearchPages\IntegrationsSearchUsersPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Pages\NewPostPage.xaml">
+	  <MauiXaml Update="Pages\MainTenant\NewPostPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Pages\NotificationsSettingsPage.xaml">
+	  <MauiXaml Update="Pages\MainTenant\NewReplyPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Pages\PostDetailPage.xaml">
+	  <MauiXaml Update="Pages\MainTenant\NotificationsSettingsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Pages\SearchPages\SearchHashtagsPage.xaml">
+	  <MauiXaml Update="Pages\MainTenant\PostDetailPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Pages\SearchPages\SearchPageMainTabOption.xaml">
+	  <MauiXaml Update="Pages\MainTenant\SearchPages\SearchHashtagsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Pages\SearchPages\SearchPostsPage.xaml">
+	  <MauiXaml Update="Pages\MainTenant\SearchPages\SearchPageMainTabOption.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Pages\SearchPages\SearchUsersPage.xaml">
+	  <MauiXaml Update="Pages\MainTenant\SearchPages\SearchPostsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Pages\SearchPages\SearchTabMenu.xaml">
+	  <MauiXaml Update="Pages\MainTenant\SearchPages\SearchUsersPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\MainTenant\SearchPages\SearchTabMenu.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>

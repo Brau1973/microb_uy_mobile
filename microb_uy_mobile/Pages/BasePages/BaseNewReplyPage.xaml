@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="microb_uy_mobile.Pages.BasePages.BaseNewReplyPage"
+             Title="New Post">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <!-- Detalles del post -->
+                <StackLayout Padding="10" Margin="5,5,5,0" BackgroundColor="#ffffff">
+                    <!-- Encabezado del post: Imagen de perfil y nombre de usuario -->
+                    <StackLayout Orientation="Horizontal" Spacing="10">
+                        <Frame HeightRequest="50" WidthRequest="50" CornerRadius="70" HorizontalOptions="Center" IsClippedToBounds="True" Padding="0" BorderColor="Gray" Margin="0,0,0,0">
+                            <Image x:Name="UserProfileImage" Aspect="AspectFit" HeightRequest="50" WidthRequest="50" VerticalOptions="Center" HorizontalOptions="Center" />
+                        </Frame>
+                        <Label x:Name="UserNameLabel" FontAttributes="Bold" VerticalOptions="Center" />
+                    </StackLayout>
+
+                    <!-- Contenido del post -->
+                    <Label x:Name="PostContentLabel" VerticalOptions="Start"></Label>
+                </StackLayout>
+
+                <StackLayout Spacing="10" Padding="20">
+                    <!-- Editor para ingresar el contenido del post -->
+                    <Editor x:Name="PostEditor" Placeholder="¿Qué estás pensando?" MaxLength="280" AutoSize="TextChanges" VerticalOptions="Start" HeightRequest="150" />
+
+                    <!-- Botón para Publicar -->
+                    <Button Text="Publicar" TextColor="White" CornerRadius="5" HeightRequest="50" VerticalOptions="Start" Clicked="OnPublishButtonClicked" />
+
+                    <!-- Botón para Cancelar -->
+                    <Button Text="Cancelar" BackgroundColor="LightGray" TextColor="Black" CornerRadius="5" HeightRequest="50" VerticalOptions="Start" Clicked="OnCancelButtonClicked" />
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

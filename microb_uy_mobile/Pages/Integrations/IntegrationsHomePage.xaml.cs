@@ -1,4 +1,6 @@
+using microb_uy_mobile.DTOs;
 using microb_uy_mobile.Pages.BasePages;
+using microb_uy_mobile.Services.Interfaces;
 using microb_uy_mobile.ViewModels.Integrations;
 
 namespace microb_uy_mobile.Pages.Integrations;
@@ -26,18 +28,25 @@ public partial class IntegrationsHomePage : BaseHomePage
         set => base.IsFeatherFrameVisible = value;
     }
 
-    // Sobrescribe el evento OnPostContentTapped
-    public override async void OnPostContentTapped(object sender, EventArgs e)
-    {
-        await Navigation.PushAsync(new PostDetailPage());
-    }
-
     // Sobrescribe el evento OnReplyIconTapped
-    public override void OnReplyIconTapped(object sender, EventArgs e)
+    public override async void OnReplyIconTapped(object sender, EventArgs e)
     {
         // Lógica para manejar la respuesta al post
-        DisplayAlert("Integrations", "Chequear si esta habilitada la integracion entre usuarios para poder interactuar " +
+        await DisplayAlert("Integrations", "Chequear si esta habilitada la integracion entre usuarios para poder interactuar " +
             "Responder al post", "OK");
+
+        ISessionInfoService _sessionInfoService = Handler.MauiContext.Services.GetRequiredService<ISessionInfoService>();
+        var image = (Image)sender;
+
+        // Obtén el contexto (en este caso, el objeto vinculado al elemento del CollectionView)
+        if (image.BindingContext is PostDTOOld selectedPost)
+        {
+            // Crear una nueva página para el modal
+            var newReplyPage = new NewReplyPage(selectedPost); //Clase hija de BaseNewReplyPage
+
+            // Mostrar la página como un modal
+            await Navigation.PushModalAsync(newReplyPage);
+        }
     }
 
     // Sobrescribe el evento OnRetweetIconTapped

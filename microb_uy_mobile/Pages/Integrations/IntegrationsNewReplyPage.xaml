@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<local:BaseNewReplyPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:local="clr-namespace:microb_uy_mobile.Pages.BasePages"
+              x:Class="microb_uy_mobile.Pages.Integrations.IntegrationsNewReplyPage">
+
+    <!-- Heredo toda la vista desde el BaseHomePage -->
+</local:BaseNewReplyPage>

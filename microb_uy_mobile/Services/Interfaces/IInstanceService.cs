@@ -5,5 +5,5 @@ using Refit;
 internal interface IInstanceService
 {
     [Get("/api/tenants")]
-    Task <BaseApiResponseDTO<InstanceDTO>> GetInstancesAsync();
+    Task <BaseApiResponseDTO<TenantDto>> GetInstancesAsync();
 }

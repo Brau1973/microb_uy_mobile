@@ -10,7 +10,7 @@
                 <SearchBar x:Name="_searchBar" Placeholder="Buscar en microbuy" SearchButtonPressed="OnSearchButtonPressed"/>
 
                 <!-- Colección y plantilla para la pestaña "Posts" -->
-                <CollectionView x:Name="SearchResultsPosts" ItemsSource="{Binding Posts}" SelectionMode="Single" IsVisible="true">
+                <CollectionView x:Name="SearchResultsPosts" ItemsSource="{Binding Posts}" SelectionMode="Single" IsVisible="true" SelectionChanged="OnPostItemSelected">
                     <CollectionView.ItemTemplate>
                         <!-- SearchPagePosts.xaml -->
                         <DataTemplate>
@@ -24,11 +24,7 @@
                                 </StackLayout>
 
                                 <!-- Contenido del post -->
-                                <Label Text="{Binding PostContent}" VerticalOptions="Start">
-                                    <Label.GestureRecognizers>
-                                        <TapGestureRecognizer Tapped="OnPostContentTapped" />
-                                    </Label.GestureRecognizers>
-                                </Label>
+                                <Label Text="{Binding PostContent}" VerticalOptions="Start"></Label>
 
                                 <!-- Acciones del post: Responder, Retweet y Me gusta -->
                                 <Grid x:Name="ActionsGrid" HorizontalOptions="CenterAndExpand" RowSpacing="0" ColumnSpacing="75">

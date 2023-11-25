@@ -2,21 +2,19 @@ using microb_uy_mobile.DTOs;
 using microb_uy_mobile.Pages.BasePages;
 using microb_uy_mobile.Services.Interfaces;
 
-namespace microb_uy_mobile.Pages.Integrations.SearchPages;
+namespace microb_uy_mobile.Pages.SearchPages;
 
-public partial class IntegrationsSearchPostsPage : BaseSearchPostsPage
+public partial class SearchPostsPage : BaseSearchPostsPage
 {
-	public IntegrationsSearchPostsPage()
+	public SearchPostsPage()
 	{
 		InitializeComponent();
-        // Ocultar completamente la barra de navegación
-        NavigationPage.SetHasNavigationBar(this, false);
-    }
+	}
 
     public override void OnSearchButtonPressed(object sender, EventArgs e)
     {
         string searchText = base.CloseKeyboardAndGetSearchText();
-        DisplayAlert("Integrations instancia Search posts SearchBar", "Buscando " + searchText, "OK");
+        DisplayAlert("MAIN instancia Search posts SearchBar", "Buscando " + searchText, "OK");
 
         // Aquí puedes agregar la lógica de búsqueda con el texto ingresado
 
@@ -51,13 +49,13 @@ public partial class IntegrationsSearchPostsPage : BaseSearchPostsPage
 
     public override void OnRetweetIconTapped(object sender, EventArgs e)
     {
-        DisplayAlert("Integrations instancia Search posts", "Retweet", "OK");
+        DisplayAlert("MAIN instancia Search posts", "Retweet", "OK");
         // Lógica para manejar el retweet
     }
 
     public override void OnLikeIconTapped(object sender, EventArgs e)
     {
-        DisplayAlert("Integrations instancia Search posts", "Like", "OK");
+        DisplayAlert("MAIN instancia Search posts", "Like", "OK");
         // Lógica para manejar el "Me gusta"
     }
 }
