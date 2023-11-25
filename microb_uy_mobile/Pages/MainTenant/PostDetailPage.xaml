@@ -11,14 +11,13 @@
                     <!-- Encabezado del post: Imagen de perfil y nombre de usuario -->
                     <StackLayout Orientation="Horizontal" Spacing="10">
                         <Frame HeightRequest="50" WidthRequest="50" CornerRadius="70" HorizontalOptions="Center" IsClippedToBounds="True" Padding="0" BorderColor="Gray" Margin="0,0,0,0">
-                            <Image Aspect="AspectFit" Source="diego_forlan.jpg" HeightRequest="50" WidthRequest="50" VerticalOptions="Center" HorizontalOptions="Center" />
+                            <Image x:Name="UserProfileImage" Aspect="AspectFit" HeightRequest="50" WidthRequest="50" VerticalOptions="Center" HorizontalOptions="Center" />
                         </Frame>
-                        <Label Text="Usuario 1" FontAttributes="Bold" VerticalOptions="Center" />
+                        <Label x:Name="UserNameLabel" FontAttributes="Bold" VerticalOptions="Center" />
                     </StackLayout>
 
                     <!-- Contenido del post -->
-                    <Label Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. At urna condimentum mattis pellentesque id nibh tortor id aliquet. Nunc sed augue lacus viverra vitae congue. Nibh sit amet commodo nulla facilisi nullam vehicula. Dolor purus non enim praesent elementum facilisis. Sed turpis tincidunt id aliquet. Urna condimentum mattis pellentesque id nibh tortor id." VerticalOptions="Start">
-                    </Label>
+                    <Label x:Name="PostContentLabel" VerticalOptions="Start"></Label>
 
                     <!-- Acciones del post: Retweet y Me gusta -->
                     <Grid HorizontalOptions="CenterAndExpand" RowSpacing="0" ColumnSpacing="125">

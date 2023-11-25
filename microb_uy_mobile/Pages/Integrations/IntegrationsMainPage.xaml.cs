@@ -25,7 +25,7 @@ namespace microb_uy_mobile.Pages.Integrations
         private async void OnCardTapped(object sender, EventArgs e)
         {
             // Obtener la InstanciaDTO seleccionada
-            var selectedInstancia = ((Frame)sender).BindingContext as InstanceDTO;
+            var selectedInstancia = ((Frame)sender).BindingContext as TenantDto;
 
             // Setear info de la instancia integrada seleccionada
             ISessionInfoService _sessionInfoService = Handler.MauiContext.Services.GetRequiredService<ISessionInfoService>();

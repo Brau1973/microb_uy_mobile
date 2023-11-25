@@ -1,18 +1,28 @@
-using System;
 using System.Collections.ObjectModel;
 using microb_uy_mobile.DTOs;
-using microb_uy_mobile.Pages;
 
 namespace microb_uy_mobile.Pages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PostDetailPage : ContentPage
     {
-        public PostDetailPage()
+        private readonly PostDTOOld _mainPost;
+        public PostDetailPage(PostDTOOld mainPost)
         {
             InitializeComponent();
+            _mainPost = mainPost;
 
-            LoadSamplePublicaciones();
+            LoadMainPostDetails();
+            LoadPostResponses();
+        }
+
+        private void LoadMainPostDetails()
+        {
+            // Cargar detalles del post principal desde _mainPost
+            // Por ejemplo:
+            UserProfileImage.Source = _mainPost.UserProfileImage;
+            UserNameLabel.Text = _mainPost.UserName;
+            PostContentLabel.Text = _mainPost.PostContent;
         }
 
         private async void OnRetweetIconTapped(object sender, EventArgs e)
@@ -29,13 +39,13 @@ namespace microb_uy_mobile.Pages
             await DisplayAlert("Info", "Like", "OK");
         }
 
-        private void LoadSamplePublicaciones()
+        private void LoadPostResponses()
         {
-            ObservableCollection<PostDTO> Posts = new ObservableCollection<PostDTO>();
+            ObservableCollection<PostDTOOld> Posts = new ObservableCollection<PostDTOOld>();
 
             for (int i = 1; i <= 4; i++)
             {
-                Posts.Add(new PostDTO
+                Posts.Add(new PostDTOOld
                 {
                     UserProfileImage = "diego_forlan.jpg",
                     UserName = $"Usuario {i}",

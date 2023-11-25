@@ -25,23 +25,23 @@ public partial class BaseSearchHashtagsPage : ContentPage
     // Función para cargar datos de ejemplo en la CollectionView de Hashtags
     private void LoadSampleHashtags()
     {
-        SearchResultsHashtags.ItemsSource = new List<HashTagDTO>
+        SearchResultsHashtags.ItemsSource = new List<HashTagDTOOld>
             {
-                new HashTagDTO { HashTagName = "Tech", HashTagDescription = "All about technology" },
-                new HashTagDTO { HashTagName = "Travel", HashTagDescription = "Explore the world" },
-                new HashTagDTO { HashTagName = "Foodie", HashTagDescription = "For food lovers" },
-                new HashTagDTO { HashTagName = "Fashion", HashTagDescription = "Stay stylish" },
-                new HashTagDTO { HashTagName = "Fitness", HashTagDescription = "Get fit" },
-                new HashTagDTO { HashTagName = "Photography", HashTagDescription = "Capturing moments" },
-                new HashTagDTO { HashTagName = "Nature", HashTagDescription = "Embrace the outdoors" },
-                new HashTagDTO { HashTagName = "Art", HashTagDescription = "Creative expressions" },
-                new HashTagDTO { HashTagName = "Music", HashTagDescription = "Sounds of joy" },
-                new HashTagDTO { HashTagName = "Books", HashTagDescription = "Literary adventures" },
-                new HashTagDTO { HashTagName = "Pets", HashTagDescription = "For pet enthusiasts" },
-                new HashTagDTO { HashTagName = "Gaming", HashTagDescription = "Gamer's paradise" },
-                new HashTagDTO { HashTagName = "Movies", HashTagDescription = "Cinematic experiences" },
-                new HashTagDTO { HashTagName = "Sports", HashTagDescription = "Game on!" },
-                new HashTagDTO { HashTagName = "Health", HashTagDescription = "Wellness matters" }
+                new HashTagDTOOld { HashTagName = "Tech", HashTagDescription = "All about technology" },
+                new HashTagDTOOld { HashTagName = "Travel", HashTagDescription = "Explore the world" },
+                new HashTagDTOOld { HashTagName = "Foodie", HashTagDescription = "For food lovers" },
+                new HashTagDTOOld { HashTagName = "Fashion", HashTagDescription = "Stay stylish" },
+                new HashTagDTOOld { HashTagName = "Fitness", HashTagDescription = "Get fit" },
+                new HashTagDTOOld { HashTagName = "Photography", HashTagDescription = "Capturing moments" },
+                new HashTagDTOOld { HashTagName = "Nature", HashTagDescription = "Embrace the outdoors" },
+                new HashTagDTOOld { HashTagName = "Art", HashTagDescription = "Creative expressions" },
+                new HashTagDTOOld { HashTagName = "Music", HashTagDescription = "Sounds of joy" },
+                new HashTagDTOOld { HashTagName = "Books", HashTagDescription = "Literary adventures" },
+                new HashTagDTOOld { HashTagName = "Pets", HashTagDescription = "For pet enthusiasts" },
+                new HashTagDTOOld { HashTagName = "Gaming", HashTagDescription = "Gamer's paradise" },
+                new HashTagDTOOld { HashTagName = "Movies", HashTagDescription = "Cinematic experiences" },
+                new HashTagDTOOld { HashTagName = "Sports", HashTagDescription = "Game on!" },
+                new HashTagDTOOld { HashTagName = "Health", HashTagDescription = "Wellness matters" }
             };
     }
 }

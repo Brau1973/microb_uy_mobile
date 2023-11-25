@@ -5,9 +5,9 @@ namespace microb_uy_mobile.ViewModels.Integrations
 {
     public class IntegrationsHomePageViewModel : BindableObject
     {
-        private ObservableCollection<PostDTO> posts;
+        private ObservableCollection<PostDTOOld> posts;
 
-        public ObservableCollection<PostDTO> Posts
+        public ObservableCollection<PostDTOOld> Posts
         {
             get { return posts; }
             set
@@ -23,11 +23,11 @@ namespace microb_uy_mobile.ViewModels.Integrations
             // Cuando el servicio esté disponible, reemplaza el código de prueba con datos reales.
 
             // Ejemplo de datos hardcodeados (reemplaza esto con la integración real):
-            Posts = new ObservableCollection<PostDTO>();
+            Posts = new ObservableCollection<PostDTOOld>();
 
             for (int i = 1; i <= 20; i++)
             {
-                Posts.Add(new PostDTO
+                Posts.Add(new PostDTOOld
                 {
                     UserProfileImage = "diego_forlan.jpg",
                     UserName = $"Integracion Usuario {i}",
