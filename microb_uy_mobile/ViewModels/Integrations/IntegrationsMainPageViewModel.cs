@@ -5,9 +5,9 @@ namespace microb_uy_mobile.ViewModels.Integrations
 {
     public class IntegrationsMainPageViewModel : BaseViewModel
     {
-        private ObservableCollection<InstanceDTO> instances;
+        private ObservableCollection<TenantDto> instances;
 
-        public ObservableCollection<InstanceDTO> Instances
+        public ObservableCollection<TenantDto> Instances
         {
             get { return instances; }
             set
@@ -19,11 +19,11 @@ namespace microb_uy_mobile.ViewModels.Integrations
 
         public async Task GetIntegratedInstances()
         {
-            Instances = new ObservableCollection<InstanceDTO>
+            Instances = new ObservableCollection<TenantDto>
                 {
-                new InstanceDTO(1, "Integrada 1", "URL1", "Deporte", "LIGHT", "Abierta", false),
-                new InstanceDTO(2, "Integrada 2", "URL2", "Militar", "LIGHT", "Abierta", false),
-                new InstanceDTO(3, "Integrada 3", "URL3", "Política", "LIGHT", "Abierta", false),
+                new TenantDto(1, "Integrada 1", "URL1", null, "LIGHT", "Abierta", false),
+                new TenantDto(2, "Integrada 2", "URL2", null, "LIGHT", "Abierta", false),
+                new TenantDto(3, "Integrada 3", "URL3", null, "LIGHT", "Abierta", false),
                 };
         }
 

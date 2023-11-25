@@ -1,3 +1,5 @@
+using microb_uy_mobile.DTOs;
+
 namespace microb_uy_mobile.Pages.BasePages;
 
 public partial class BaseHomePage : ContentPage
@@ -14,9 +16,14 @@ public partial class BaseHomePage : ContentPage
         // Ocultar completamente la barra de navegación
         NavigationPage.SetHasNavigationBar(this, false);
     }
-    public virtual async void OnPostContentTapped(object sender, EventArgs e)
+    public async void OnPostItemSelected(object sender, SelectionChangedEventArgs e)
     {
-        await Navigation.PushAsync(new PostDetailPage());
+        if (e.CurrentSelection.FirstOrDefault() is PostDTOOld selectedPost)
+        {
+            await Navigation.PushAsync(new PostDetailPage(selectedPost)); // Pasa el post seleccionado a la página de detalles
+        }
+        // Desmarca el elemento seleccionado
+        ((CollectionView)sender).SelectedItem = null;
     }
     public virtual void OnReplyIconTapped(object sender, EventArgs e)
     {

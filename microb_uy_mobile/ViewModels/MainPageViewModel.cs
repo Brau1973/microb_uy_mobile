@@ -1,15 +1,14 @@
 ﻿using System.Collections.ObjectModel;
 using microb_uy_mobile.DTOs;
 using Refit;
-using static System.Net.WebRequestMethods;
 
 namespace microb_uy_mobile.ViewModels
 {
     public class MainPageViewModel : BaseViewModel
     {
-        private ObservableCollection<InstanceDTO> instances;
+        private ObservableCollection<TenantDto> instances;
 
-        public ObservableCollection<InstanceDTO> Instances
+        public ObservableCollection<TenantDto> Instances
         {
             get { return instances; }
             set
@@ -28,7 +27,7 @@ namespace microb_uy_mobile.ViewModels
 
                 if (instancesResponse != null)
                 {
-                    Instances = new ObservableCollection<InstanceDTO>(instancesResponse.Response.Results);
+                    Instances = new ObservableCollection<TenantDto>(instancesResponse.Response.Results);
                 }
             }
             catch (Exception ex)

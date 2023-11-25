@@ -9,7 +9,7 @@
             <ScrollView>
                 <StackLayout>
                     <!-- Contenido específico de la página, como el feed de posts -->
-                    <CollectionView x:Name="PostCollectionView" ItemsSource="{Binding Posts}" SelectionMode="Single" >
+                    <CollectionView x:Name="PostCollectionView" ItemsSource="{Binding Posts}" SelectionMode="Single" SelectionChanged="OnPostItemSelected">
                         <CollectionView.ItemTemplate>
                             <DataTemplate>
                                 <StackLayout x:Name="PostLayout" Padding="10" Margin="5,5,5,0" BackgroundColor="#ffffff">
@@ -23,11 +23,7 @@
                                     </StackLayout>
 
                                     <!-- Contenido del post -->
-                                    <Label Text="{Binding PostContent}" VerticalOptions="Start">
-                                        <Label.GestureRecognizers>
-                                            <TapGestureRecognizer Tapped="OnPostContentTapped" />
-                                        </Label.GestureRecognizers>
-                                    </Label>
+                                    <Label Text="{Binding PostContent}" VerticalOptions="Start"> </Label>
 
                                     <!-- Acciones del post: Responder ,Retweet y Me gusta -->
                                     <Grid x:Name="ActionsGrid" HorizontalOptions="CenterAndExpand" RowSpacing="0" ColumnSpacing="75">
@@ -39,7 +35,7 @@
                                         
                                         <Image x:Name="ReplyIcon" Source="reply_icon.png" HeightRequest="24" WidthRequest="24" HorizontalOptions="Center">
                                             <Image.GestureRecognizers>
-                                                <TapGestureRecognizer Tapped="OnReplyIconTapped" />
+                                                <TapGestureRecognizer Tapped="OnReplyIconTapped"/>
                                             </Image.GestureRecognizers>
                                         </Image>
 
