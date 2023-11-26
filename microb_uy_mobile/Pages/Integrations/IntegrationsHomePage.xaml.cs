@@ -27,6 +27,15 @@ public partial class IntegrationsHomePage : BaseHomePage
         get => base.IsFeatherFrameVisible;
         set => base.IsFeatherFrameVisible = value;
     }
+    public override async void OnPostItemSelected(object sender, SelectionChangedEventArgs e)
+    {
+        if (e.CurrentSelection.FirstOrDefault() is PostDTOOld selectedPost)
+        {
+            await Navigation.PushAsync(new IntegrationsPostDetailPage(selectedPost)); // Pasa el post seleccionado a la página de detalles
+        }
+        // Desmarca el elemento seleccionado
+        ((CollectionView)sender).SelectedItem = null;
+    }
 
     // Sobrescribe el evento OnReplyIconTapped
     public override async void OnReplyIconTapped(object sender, EventArgs e)
@@ -42,10 +51,10 @@ public partial class IntegrationsHomePage : BaseHomePage
         if (image.BindingContext is PostDTOOld selectedPost)
         {
             // Crear una nueva página para el modal
-            var newReplyPage = new NewReplyPage(selectedPost); //Clase hija de BaseNewReplyPage
+            var integrationsNewReplyPage = new IntegrationsNewReplyPage(selectedPost); //Clase hija de BaseNewReplyPage
 
             // Mostrar la página como un modal
-            await Navigation.PushModalAsync(newReplyPage);
+            await Navigation.PushModalAsync(integrationsNewReplyPage);
         }
     }
 
