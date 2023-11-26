@@ -16,30 +16,28 @@ public partial class BaseHomePage : ContentPage
         // Ocultar completamente la barra de navegación
         NavigationPage.SetHasNavigationBar(this, false);
     }
-    public async void OnPostItemSelected(object sender, SelectionChangedEventArgs e)
+    public virtual async void OnPostItemSelected(object sender, SelectionChangedEventArgs e)
     {
-        if (e.CurrentSelection.FirstOrDefault() is PostDTOOld selectedPost)
-        {
-            await Navigation.PushAsync(new PostDetailPage(selectedPost)); // Pasa el post seleccionado a la página de detalles
-        }
-        // Desmarca el elemento seleccionado
-        ((CollectionView)sender).SelectedItem = null;
+        //Intento de acceder al actions grid, seguir viendo con gpt, quiero ver si logro acceder al actions grid desde la clase base
+        // y si lo logro generar un metodo que oculte el grid y llamarlo desde las hijas
+        //PostCollectionView.GetVisualTreeDescendants();
+        
     }
     public virtual void OnReplyIconTapped(object sender, EventArgs e)
     {
         // Lógica para manejar la respuesta al post
-        DisplayAlert("Info", "Responder al post", "OK");
+        DisplayAlert("Base", "Responder al post", "OK");
     }
 
     public virtual void OnRetweetIconTapped(object sender, EventArgs e)
     {
-        DisplayAlert("Info", "Retweet", "OK");
+        DisplayAlert("Base", "Retweet", "OK");
         // Lógica para manejar el retweet
     }
 
     public virtual void OnLikeIconTapped(object sender, EventArgs e)
     {
-        DisplayAlert("Info", "Like", "OK");
+        DisplayAlert("Base", "Like", "OK");
         // Lógica para manejar el "Me gusta"
     }
     public virtual async void OnFeatherIconTapped(object sender, EventArgs e)
