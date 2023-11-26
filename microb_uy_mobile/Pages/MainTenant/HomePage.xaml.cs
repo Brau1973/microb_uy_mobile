@@ -17,6 +17,16 @@ public partial class HomePage : BaseHomePage
         this.BindingContext = viewModel;
     }
 
+    public override async void OnPostItemSelected(object sender, SelectionChangedEventArgs e)
+    {
+        if (e.CurrentSelection.FirstOrDefault() is PostDTOOld selectedPost)
+        {
+            await Navigation.PushAsync(new PostDetailPage(selectedPost)); // Pasa el post seleccionado a la página de detalles
+        }
+        // Desmarca el elemento seleccionado
+        ((CollectionView)sender).SelectedItem = null;
+    }
+
     // Sobrescribe el evento OnReplyIconTapped
     public override async void OnReplyIconTapped(object sender, EventArgs e)
     {
