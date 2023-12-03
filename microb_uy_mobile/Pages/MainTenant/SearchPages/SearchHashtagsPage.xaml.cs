@@ -1,22 +1,12 @@
-using microb_uy_mobile.Pages.BasePages;
+using microb_uy_mobile.ViewModels;
 
-namespace microb_uy_mobile.Pages.SearchPages;
+namespace microb_uy_mobile.Pages.MainTenant.SearchPages;
 
-public partial class SearchHashtagsPage : BaseSearchHashtagsPage
+public partial class SearchHashtagsPage : ContentPage
 {
-	public SearchHashtagsPage()
-	{
-		InitializeComponent();
-	}
-
-    public override void OnSearchButtonPressed(object sender, EventArgs e)
+    public SearchHashtagsPage()
     {
-        string searchText = base.CloseKeyboardAndGetSearchText();
-        DisplayAlert("MAIN instancia Search HASHTAGS SearchBar", "Buscando " + searchText, "OK");
-
-        // Aquí puedes agregar la lógica de búsqueda con el texto ingresado
-
-        // Por ejemplo, podrías actualizar la CollectionView con nuevos resultados de búsqueda
-        // searchResultsCollectionView.ItemsSource = PerformSearch(searchText);
+        InitializeComponent();
+        BindingContext = new SearchHashtagsViewModel();
     }
 }

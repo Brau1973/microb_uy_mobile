@@ -15,12 +15,13 @@ namespace microb_uy_mobile.Pages
 
         private async void OnSignOutButtonClicked(object sender, EventArgs e)
         {
-            ISessionInfoService _sessionInfoService = Handler.MauiContext.Services.GetRequiredService<ISessionInfoService>();
-            //Reset datos de session
-            _sessionInfoService.UserToken = null;
-            _sessionInfoService.UserId = 0;
-            _sessionInfoService.TenantId = 0;
-            _sessionInfoService.IntegratedTenantId = 0;
+            //SETEAR EN APP INFO
+            //ISessionInfoService _sessionInfoService = Handler.MauiContext.Services.GetRequiredService<ISessionInfoService>();
+            ////Reset datos de session
+            //_sessionInfoService.UserToken = null;
+            //_sessionInfoService.UserId = 0;
+            //_sessionInfoService.TenantId = 0;
+            //_sessionInfoService.IntegratedTenantId = 0;
 
             await Navigation.PushAsync(new MainPage());
         }

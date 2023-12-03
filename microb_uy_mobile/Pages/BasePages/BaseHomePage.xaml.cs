@@ -18,6 +18,7 @@ public partial class BaseHomePage : ContentPage
     }
     public virtual async void OnPostItemSelected(object sender, SelectionChangedEventArgs e)
     {
+        await DisplayAlert("", "", "");
         //Intento de acceder al actions grid, seguir viendo con gpt, quiero ver si logro acceder al actions grid desde la clase base
         // y si lo logro generar un metodo que oculte el grid y llamarlo desde las hijas
         //PostCollectionView.GetVisualTreeDescendants();

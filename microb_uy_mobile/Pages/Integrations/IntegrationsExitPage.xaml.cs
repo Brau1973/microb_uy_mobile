@@ -15,9 +15,7 @@ namespace microb_uy_mobile.Pages.Integrations
 
         private async void OnSignOutButtonClicked(object sender, EventArgs e)
         {
-            //Reset datos session instancia integrada
-            ISessionInfoService _sessionInfoService = Handler.MauiContext.Services.GetRequiredService<ISessionInfoService>();
-            _sessionInfoService.IntegratedTenantId = 0;
+            App.SessionInfo["IntegratedTenantId"] = 0;
 
             await Navigation.PushAsync(new TabMenu());
         }
