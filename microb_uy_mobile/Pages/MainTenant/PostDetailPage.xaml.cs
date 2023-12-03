@@ -18,7 +18,7 @@ namespace microb_uy_mobile.Pages
 
         public override async void OnReplyIconTapped(object sender, EventArgs e)
         {
-            ISessionInfoService _sessionInfoService = Handler.MauiContext.Services.GetRequiredService<ISessionInfoService>();
+            //ISessionInfoService _sessionInfoService = Handler.MauiContext.Services.GetRequiredService<ISessionInfoService>();
             
             var newReplyPage = new NewReplyPage(_mainPost);
 

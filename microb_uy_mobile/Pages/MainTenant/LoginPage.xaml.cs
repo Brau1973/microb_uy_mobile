@@ -9,12 +9,10 @@ namespace microb_uy_mobile.Pages
     {
         private TenantDto SelectedInstance {  get; set; }
 
-        private readonly ISessionInfoService _sessionInfoService;
-        public LoginPage(ISessionInfoService sessionInfoService, TenantDto selectedInstance)
+        public LoginPage(TenantDto selectedInstance)
         {
             InitializeComponent();
 
-            _sessionInfoService = sessionInfoService;
             this.SelectedInstance = selectedInstance;
 
             ShowLoadingIndicator(false);
@@ -30,14 +28,14 @@ namespace microb_uy_mobile.Pages
             //int tenantid = this.SelectedInstance.Id;
             //try
             //{
-            //    var api = RestService.For<ILoginService>("https://backoffice.web.microb-uy.lat"); //http://10.0.2.2:5067
+            //    var api = RestService.For<ILoginService>((string)App.SessionInfo["BaseUrl"]); //http://10.0.2.2:5067
             //    var userToken = await api.InternalLogin(email, tenantid, password);
 
             //    if (userToken != "\"\"")
             //    {
             //        //Guardo la informacion de la session
-            //        _sessionInfoService.UserToken = userToken;
-            //        _sessionInfoService.TenantId = tenantid;
+                      //App.SessionInfo["UserToken"] = userToken;
+                      //App.SessionInfo["MainTenantId"] = tenantid;
 
             //        await Navigation.PushAsync(new TabMenu());
 
@@ -54,6 +52,7 @@ namespace microb_uy_mobile.Pages
             //    // Manejo de errores
             //}
             //ShowLoadingIndicator(false);
+            App.SessionInfo["MainTenantId"] = this.SelectedInstance.Id;
             await Navigation.PushAsync(new TabMenu());
         }
 

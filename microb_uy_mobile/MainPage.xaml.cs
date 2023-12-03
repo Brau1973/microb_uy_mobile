@@ -27,7 +27,7 @@ namespace microb_uy_mobile
             // Obtener la InstanciaDTO seleccionada
             var selectedInstance = ((Frame)sender).BindingContext as TenantDto;
 
-            await Navigation.PushAsync(new LoginPage(Handler.MauiContext.Services.GetRequiredService<ISessionInfoService>(), selectedInstance));
+            await Navigation.PushAsync(new LoginPage(selectedInstance));
         }
 
         protected override async void OnAppearing()

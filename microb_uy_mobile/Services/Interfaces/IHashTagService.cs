@@ -4,7 +4,7 @@ using Refit;
 
 namespace microb_uy_mobile.Services.Interfaces
 {
-    internal interface IHashTagApiService
+    public interface IHashTagService
     {
         // Obtiene una lista paginada de Hashtags pertenecientes a la instancia según los criterios de búsqueda.
         [Get("/api/HashTag")]

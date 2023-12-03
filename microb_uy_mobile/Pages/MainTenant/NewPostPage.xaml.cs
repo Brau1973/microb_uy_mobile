@@ -32,8 +32,7 @@ namespace microb_uy_mobile.Pages
             string postContent = result.Item2;
 
             //Obtengo info del tenant logueado
-            var sessionInfoService = Handler.MauiContext.Services.GetRequiredService<ISessionInfoService>();
-            var tenantId = sessionInfoService.TenantId;
+            int tenantId = (int)App.SessionInfo["MainTenantId"];
 
             // Reemplaza la URL con la dirección real de tu backend
             var apiUrl = "https://backoffice.web.microb-uy.lat";

@@ -17,8 +17,6 @@ namespace microb_uy_mobile.Pages.Integrations
         }
         public override async void OnReplyIconTapped(object sender, EventArgs e)
         {
-            ISessionInfoService _sessionInfoService = Handler.MauiContext.Services.GetRequiredService<ISessionInfoService>();
-
             var integrationsNewReplyPage = new IntegrationsNewReplyPage(_mainPost);
 
             // Mostrar la página como un modal

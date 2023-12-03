@@ -2,14 +2,14 @@
 <TabbedPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:pages="clr-namespace:microb_uy_mobile.Pages"
-             xmlns:searchpages="clr-namespace:microb_uy_mobile.Pages.SearchPages"
+             xmlns:searchpages="clr-namespace:microb_uy_mobile.Pages.MainTenant.SearchPages"
              xmlns:integrations="clr-namespace:microb_uy_mobile.Pages.Integrations"
              xmlns:base="clr-namespace:microb_uy_mobile.Pages.BasePages"
              xmlns:local="clr-namespace:microb_uy_mobile"
              x:Class="microb_uy_mobile.Pages.SearchTabMenu">
 
-    <searchpages:SearchPostsPage/>
+    <!--<searchpages:SearchPostsPage/>-->
     <searchpages:SearchHashtagsPage/>
-    <searchpages:SearchUsersPage/>
+    <!--<searchpages:SearchUsersPage/>-->
 
 </TabbedPage>
