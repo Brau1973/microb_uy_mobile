@@ -44,7 +44,6 @@ public partial class IntegrationsHomePage : BaseHomePage
         await DisplayAlert("Integrations", "Chequear si esta habilitada la integracion entre usuarios para poder interactuar " +
             "Responder al post", "OK");
 
-        ISessionInfoService _sessionInfoService = Handler.MauiContext.Services.GetRequiredService<ISessionInfoService>();
         var image = (Image)sender;
 
         // Obtén el contexto (en este caso, el objeto vinculado al elemento del CollectionView)

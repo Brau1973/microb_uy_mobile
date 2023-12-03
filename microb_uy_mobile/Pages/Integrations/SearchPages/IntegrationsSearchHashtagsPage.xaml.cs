@@ -11,7 +11,7 @@ public partial class IntegrationsSearchHashtagsPage : BaseSearchHashtagsPage
         NavigationPage.SetHasNavigationBar(this, false);
     }
 
-    public override void OnSearchButtonPressed(object sender, EventArgs e)
+    public override void OnSearchButtonClicked(object sender, EventArgs e)
     {
         string searchText = base.CloseKeyboardAndGetSearchText();
         DisplayAlert("Integrations instancia Search HASHTAGS SearchBar", "Buscando " + searchText, "OK");

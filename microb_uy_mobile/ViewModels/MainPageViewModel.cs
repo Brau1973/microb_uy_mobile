@@ -22,7 +22,7 @@ namespace microb_uy_mobile.ViewModels
         {
             try
             {
-                var api = RestService.For<IInstanceService>("https://backoffice.web.microb-uy.lat"); //http://10.0.2.2:5067
+                var api = RestService.For<IInstanceService>((string)App.SessionInfo["BaseUrl"]); //http://10.0.2.2:5067
                 var instancesResponse = await api.GetInstancesAsync();
 
                 if (instancesResponse != null)

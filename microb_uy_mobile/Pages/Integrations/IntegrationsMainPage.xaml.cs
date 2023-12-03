@@ -28,8 +28,7 @@ namespace microb_uy_mobile.Pages.Integrations
             var selectedInstancia = ((Frame)sender).BindingContext as TenantDto;
 
             // Setear info de la instancia integrada seleccionada
-            ISessionInfoService _sessionInfoService = Handler.MauiContext.Services.GetRequiredService<ISessionInfoService>();
-            _sessionInfoService.IntegratedTenantId = selectedInstancia.Id;
+            App.SessionInfo["IntegratedTenantId"] = selectedInstancia.Id;
 
             await Navigation.PushAsync(new IntegrationsTabMenu());
         }

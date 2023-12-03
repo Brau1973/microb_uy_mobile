@@ -35,7 +35,6 @@ public partial class IntegrationsSearchPostsPage : BaseSearchPostsPage
     }
     public override async void OnReplyIconTapped(object sender, EventArgs e)
     {
-        ISessionInfoService _sessionInfoService = Handler.MauiContext.Services.GetRequiredService<ISessionInfoService>();
         var image = (Image)sender;
 
         // Obtén el contexto (en este caso, el objeto vinculado al elemento del CollectionView)
