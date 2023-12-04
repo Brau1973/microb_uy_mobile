@@ -1,14 +1,29 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="microb_uy_mobile.Pages.SearchPages.SearchPageMainTabOption"
+             x:Class="microb_uy_mobile.Pages.MainTenant.SearchPages.SearchPageMainTabOption"
              IconImageSource="search_icon.png">
+    <ContentPage.Content>
+        <StackLayout Margin="20">
+            <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                <!-- Agregar espacio alrededor del contenido -->
 
-    <StackLayout>
-        <!-- Otro contenido de tu página -->
+                <!-- Imagen de encabezado -->
+                <Image Source="search_icon.png" Aspect="AspectFill" HeightRequest="350" />
 
-        <!-- Botón con evento OnClick -->
-        <Button Text="Haz clic" Clicked="OnButtonClick" />
-    </StackLayout>
+                <!-- Título -->
+                <Label Text="Encuentra lo que buscas!" FontSize="24" FontAttributes="Bold" Margin="0,10,0,0" />
 
+                <!-- Descripción -->
+                <Label Text="Explora y descubre contenido interesante" FontSize="16" TextColor="#707070" Margin="0,5,0,20" />
+
+                <!-- Botón estilizado -->
+                <Button Text="Iniciar búsqueda" Clicked="OnButtonClick" BackgroundColor="#3498db" TextColor="White" CornerRadius="8" IsEnabled="True" />
+
+                <!-- Otro contenido de la página -->
+            </StackLayout>
+            <!-- Footer -->
+            <Label Text="© 2023 microb_uy_mobile" FontSize="12" TextColor="#bdc3c7" HorizontalOptions="CenterAndExpand" />
+        </StackLayout>
+    </ContentPage.Content>
 </ContentPage>
