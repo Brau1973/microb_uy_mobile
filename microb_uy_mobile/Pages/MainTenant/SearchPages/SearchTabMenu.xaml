@@ -5,8 +5,8 @@
              xmlns:searchpages="clr-namespace:microb_uy_mobile.Pages.MainTenant.SearchPages"
              xmlns:integrations="clr-namespace:microb_uy_mobile.Pages.Integrations"
              xmlns:base="clr-namespace:microb_uy_mobile.Pages.BasePages"
-             xmlns:local="clr-namespace:microb_uy_mobile"
-             x:Class="microb_uy_mobile.Pages.SearchTabMenu">
+             xmlns:local="clr-namespace:microb_uy_mobile.Pages.MainTenant"
+             x:Class="microb_uy_mobile.Pages.MainTenant.SearchPages.SearchTabMenu">
 
     <!--<searchpages:SearchPostsPage/>-->
     <searchpages:SearchHashtagsPage/>

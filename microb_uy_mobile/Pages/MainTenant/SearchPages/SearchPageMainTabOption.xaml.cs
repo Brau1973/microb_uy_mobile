@@ -1,4 +1,4 @@
-﻿namespace microb_uy_mobile.Pages.SearchPages
+﻿namespace microb_uy_mobile.Pages.MainTenant.SearchPages
 {
     public partial class SearchPageMainTabOption : ContentPage
     {
@@ -10,6 +10,7 @@
         }
         private async void OnButtonClick(object sender, EventArgs e)
         {
+            await DisplayAlert("OK", "OK", "OK");
             await Navigation.PushAsync(new SearchTabMenu());
         }
     }

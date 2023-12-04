@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:pages="clr-namespace:microb_uy_mobile.Pages"
              xmlns:integrations="clr-namespace:microb_uy_mobile.Pages.Integrations"
-             xmlns:searchpages="clr-namespace:microb_uy_mobile.Pages.SearchPages"
+             xmlns:searchpages="clr-namespace:microb_uy_mobile.Pages.MainTenant.SearchPages"
              xmlns:local="clr-namespace:microb_uy_mobile"
              x:Class="microb_uy_mobile.Pages.TabMenu">
 
