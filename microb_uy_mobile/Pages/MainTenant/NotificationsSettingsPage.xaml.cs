@@ -1,6 +1,6 @@
 using microb_uy_mobile.ViewModels;
 
-namespace microb_uy_mobile.Pages
+namespace microb_uy_mobile.Pages.MainTenant
 {
     public partial class NotificationsSettingsPage : ContentPage
     {

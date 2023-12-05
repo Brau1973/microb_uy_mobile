@@ -8,8 +8,8 @@
              xmlns:local="clr-namespace:microb_uy_mobile.Pages.MainTenant"
              x:Class="microb_uy_mobile.Pages.MainTenant.SearchPages.SearchTabMenu">
 
-    <!--<searchpages:SearchPostsPage/>-->
+    <searchpages:SearchPostsPage/>
     <searchpages:SearchHashtagsPage/>
-    <!--<searchpages:SearchUsersPage/>-->
+    <searchpages:SearchUsersPage/>
 
 </TabbedPage>

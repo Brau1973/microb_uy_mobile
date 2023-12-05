@@ -10,7 +10,6 @@
         }
         private async void OnButtonClick(object sender, EventArgs e)
         {
-            await DisplayAlert("OK", "OK", "OK");
             await Navigation.PushAsync(new SearchTabMenu());
         }
     }

@@ -1,7 +1,4 @@
-using microb_uy_mobile.Services.Interfaces;
-using Microsoft.Maui.Controls;
-
-namespace microb_uy_mobile.Pages
+namespace microb_uy_mobile.Pages.MainTenant
 {
     public partial class SignOutPage : ContentPage
     {

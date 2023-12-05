@@ -66,6 +66,8 @@
                                     <Label Text="{Binding PostContent}" VerticalOptions="Start">
                                     </Label>
 
+                                    <!--DE MOMENTO NO VAMOS A PERMITIR INTERACTUAR CON LOS POSTS DE TIPO RESPUESTA-->
+                                    
                                     <!-- Acciones de la respuesta: Retweet y Me gusta --><!--
                                     <Grid HorizontalOptions="CenterAndExpand" RowSpacing="0" ColumnSpacing="125">
                                         <Grid.ColumnDefinitions>
