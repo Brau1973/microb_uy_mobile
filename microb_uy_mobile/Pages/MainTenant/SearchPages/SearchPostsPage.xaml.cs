@@ -1,27 +1,31 @@
 using microb_uy_mobile.DTOs;
-using microb_uy_mobile.Pages.BasePages;
-using microb_uy_mobile.Services.Interfaces;
 
-namespace microb_uy_mobile.Pages.SearchPages;
+namespace microb_uy_mobile.Pages.MainTenant.SearchPages;
 
-public partial class SearchPostsPage : BaseSearchPostsPage
+public partial class SearchPostsPage : ContentPage
 {
 	public SearchPostsPage()
 	{
 		InitializeComponent();
-	}
 
-    public override void OnSearchButtonPressed(object sender, EventArgs e)
+        // Instancia el modelo de vista
+        HomePageViewModel viewModel = new();
+
+        // Asigna el modelo de vista como contexto de datos para la página
+        this.BindingContext = viewModel;
+    }
+
+    public void OnSearchButtonPressed(object sender, EventArgs e)
     {
-        string searchText = base.CloseKeyboardAndGetSearchText();
-        DisplayAlert("MAIN instancia Search posts SearchBar", "Buscando " + searchText, "OK");
+        //string searchText = base.CloseKeyboardAndGetSearchText();
+        //DisplayAlert("MAIN instancia Search posts SearchBar", "Buscando " + searchText, "OK");
 
         // Aquí puedes agregar la lógica de búsqueda con el texto ingresado
 
         // Por ejemplo, podrías actualizar la CollectionView con nuevos resultados de búsqueda
         // searchResultsCollectionView.ItemsSource = PerformSearch(searchText);
     }
-    public override async void OnPostItemSelected(object sender, SelectionChangedEventArgs e)
+    public async void OnPostItemSelected(object sender, SelectionChangedEventArgs e)
     {
         if (e.CurrentSelection.FirstOrDefault() is PostDTOOld selectedPost)
         {
@@ -31,7 +35,7 @@ public partial class SearchPostsPage : BaseSearchPostsPage
         // Desmarca el elemento seleccionado
         ((CollectionView)sender).SelectedItem = null;
     }
-    public override async void OnReplyIconTapped(object sender, EventArgs e)
+    public async void OnReplyIconTapped(object sender, EventArgs e)
     {
         //ISessionInfoService _sessionInfoService = Handler.MauiContext.Services.GetRequiredService<ISessionInfoService>();
         var image = (Image)sender;
@@ -47,13 +51,13 @@ public partial class SearchPostsPage : BaseSearchPostsPage
         }
     }
 
-    public override void OnRetweetIconTapped(object sender, EventArgs e)
+    public void OnRetweetIconTapped(object sender, EventArgs e)
     {
         DisplayAlert("MAIN instancia Search posts", "Retweet", "OK");
         // Lógica para manejar el retweet
     }
 
-    public override void OnLikeIconTapped(object sender, EventArgs e)
+    public void OnLikeIconTapped(object sender, EventArgs e)
     {
         DisplayAlert("MAIN instancia Search posts", "Like", "OK");
         // Lógica para manejar el "Me gusta"

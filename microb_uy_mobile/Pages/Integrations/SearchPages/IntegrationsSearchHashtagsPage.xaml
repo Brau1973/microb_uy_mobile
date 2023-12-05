@@ -1,6 +1,6 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="microb_uy_mobile.Pages.Integrations.IntegrationsSearchHashtagsPage"
+             x:Class="microb_uy_mobile.Pages.Integrations.SearchPages.IntegrationsSearchHashtagsPage"
              xmlns:local="clr-namespace:microb_uy_mobile.Pages.Integrations.SearchPages"
              IconImageSource="search_icon_hashtag.png">
     <ContentPage.Content>
@@ -8,7 +8,7 @@
             <!-- Contenido específico de la pestaña "Hashtags" -->
             <Grid>
                 <SearchBar x:Name="_searchBar" Placeholder="Buscar en microbuy" Grid.Column="0"/>
-                <Button Text="Buscar" Clicked="OnSearchButtonClicked" Grid.Column="1" WidthRequest="40" HeightRequest="40"  HorizontalOptions="EndAndExpand"/>
+                <!--<Button Text="Buscar" Clicked="OnSearchButtonClicked" Grid.Column="1" WidthRequest="40" HeightRequest="40"  HorizontalOptions="EndAndExpand"/>-->
             </Grid>
 
             <Label IsVisible="false" x:Name="NoResults" Text="Busca Hashtags!" FontAttributes="Bold" FontSize="16" TextColor="Black" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"/>
