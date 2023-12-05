@@ -1,14 +1,15 @@
 using microb_uy_mobile.DTOs;
-using microb_uy_mobile.Pages.BasePages;
-using microb_uy_mobile.Services.Interfaces;
 
-namespace microb_uy_mobile.Pages;
+namespace microb_uy_mobile.Pages.MainTenant;
 
-public partial class HomePage : BaseHomePage
+public partial class HomePage : ContentPage
 {
     public HomePage()
     {
         InitializeComponent();
+
+        // Ocultar completamente la barra de navegación
+        NavigationPage.SetHasNavigationBar(this, false);
 
         // Instancia el modelo de vista
         HomePageViewModel viewModel = new();
@@ -17,7 +18,7 @@ public partial class HomePage : BaseHomePage
         this.BindingContext = viewModel;
     }
 
-    public override async void OnPostItemSelected(object sender, SelectionChangedEventArgs e)
+    public async void OnPostItemSelected(object sender, SelectionChangedEventArgs e)
     {
         if (e.CurrentSelection.FirstOrDefault() is PostDTOOld selectedPost)
         {
@@ -28,7 +29,7 @@ public partial class HomePage : BaseHomePage
     }
 
     // Sobrescribe el evento OnReplyIconTapped
-    public override async void OnReplyIconTapped(object sender, EventArgs e)
+    public async void OnReplyIconTapped(object sender, EventArgs e)
     {
         var image = (Image)sender;
 
@@ -45,20 +46,20 @@ public partial class HomePage : BaseHomePage
     }
 
     // Sobrescribe el evento OnRetweetIconTapped
-    public override void OnRetweetIconTapped(object sender, EventArgs e)
+    public void OnRetweetIconTapped(object sender, EventArgs e)
     {
         DisplayAlert("Main", "Llamo a la api de mi instancia principal " + "Retweet", "OK");
         // Lógica para manejar el retweet
     }
 
     // Sobrescribe el evento OnLikeIconTapped
-    public override void OnLikeIconTapped(object sender, EventArgs e)
+    public void OnLikeIconTapped(object sender, EventArgs e)
     {
         DisplayAlert("Main", "Llamo a la api de mi instancia principal " + "Like", "OK");
         // Lógica para manejar el "Me gusta"
     }
 
-    public override async void OnFeatherIconTapped(object sender, EventArgs e)
+    public async void OnFeatherIconTapped(object sender, EventArgs e)
     {
         // Crear una nueva página para el modal
         var newPostPage = new NewPostPage();

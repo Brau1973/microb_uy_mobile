@@ -1,18 +1,16 @@
 using microb_uy_mobile.DTOs;
-using microb_uy_mobile.Pages.BasePages;
-using microb_uy_mobile.Services.Interfaces;
 using microb_uy_mobile.ViewModels.Integrations;
 
 namespace microb_uy_mobile.Pages.Integrations;
 
-public partial class IntegrationsHomePage : BaseHomePage
+public partial class IntegrationsHomePage : ContentPage
 {
 	public IntegrationsHomePage()
 	{
 		InitializeComponent();
 
-        // Ocultar FeatherFrame en IntegrationsHomePage
-        IsFeatherFrameVisible = false;
+        // Ocultar completamente la barra de navegación
+        NavigationPage.SetHasNavigationBar(this, false);
 
         // Instancia el modelo de vista
         IntegrationsHomePageViewModel viewModel = new();
@@ -21,13 +19,7 @@ public partial class IntegrationsHomePage : BaseHomePage
         this.BindingContext = viewModel;
     }
 
-    // Sobrescribe la propiedad para ocultar el FeatherFrame
-    public override bool IsFeatherFrameVisible
-    {
-        get => base.IsFeatherFrameVisible;
-        set => base.IsFeatherFrameVisible = value;
-    }
-    public override async void OnPostItemSelected(object sender, SelectionChangedEventArgs e)
+    public async void OnPostItemSelected(object sender, SelectionChangedEventArgs e)
     {
         if (e.CurrentSelection.FirstOrDefault() is PostDTOOld selectedPost)
         {
@@ -38,7 +30,7 @@ public partial class IntegrationsHomePage : BaseHomePage
     }
 
     // Sobrescribe el evento OnReplyIconTapped
-    public override async void OnReplyIconTapped(object sender, EventArgs e)
+    public async void OnReplyIconTapped(object sender, EventArgs e)
     {
         // Lógica para manejar la respuesta al post
         await DisplayAlert("Integrations", "Chequear si esta habilitada la integracion entre usuarios para poder interactuar " +
@@ -58,14 +50,14 @@ public partial class IntegrationsHomePage : BaseHomePage
     }
 
     // Sobrescribe el evento OnRetweetIconTapped
-    public override void OnRetweetIconTapped(object sender, EventArgs e)
+    public void OnRetweetIconTapped(object sender, EventArgs e)
     {
         DisplayAlert("Integrations", "Chequear si esta habilitada la integracion entre usuarios para poder interactuar " + "Retweet", "OK");
         // Lógica para manejar el retweet
     }
 
     // Sobrescribe el evento OnLikeIconTapped
-    public override void OnLikeIconTapped(object sender, EventArgs e)
+    public void OnLikeIconTapped(object sender, EventArgs e)
     {
         DisplayAlert("Integrations", "Chequear si esta habilitada la integracion entre usuarios para poder interactuar " + "Like", "OK");
         // Lógica para manejar el "Me gusta"

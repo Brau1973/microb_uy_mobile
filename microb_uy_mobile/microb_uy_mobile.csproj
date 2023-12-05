@@ -124,7 +124,7 @@
 	  <Compile Update="Pages\MainTenant\PostDetailPage.xaml.cs">
 	    <DependentUpon>PostDetailPage.xaml</DependentUpon>
 	  </Compile>
-	  <Compile Update="Pages\MainTenant\SearchPages\SearchPageMainTabOption.xaml.cs">
+	  <Compile Update="Pages\MainTenant\SearchPageMainTabOption.xaml.cs">
 	    <DependentUpon>SearchPageMainTabOption.xaml</DependentUpon>
 	  </Compile>
 	</ItemGroup>
@@ -187,7 +187,7 @@
 	  <MauiXaml Update="Pages\MainTenant\SearchPages\SearchHashtagsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Pages\MainTenant\SearchPages\SearchPageMainTabOption.xaml">
+	  <MauiXaml Update="Pages\MainTenant\SearchPageMainTabOption.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\MainTenant\SearchPages\SearchPostsPage.xaml">
