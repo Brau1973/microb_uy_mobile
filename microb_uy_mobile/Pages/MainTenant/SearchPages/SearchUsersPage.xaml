@@ -11,22 +11,26 @@
                 <SearchBar x:Name="_searchBar" Placeholder="Buscar en microbuy" SearchButtonPressed="OnSearchButtonPressed"/>
 
                 <!-- Colección y plantilla para la pestaña "Usuarios" -->
-                <CollectionView x:Name="SearchResultsUsuarios" IsVisible="true">
+                <CollectionView x:Name="SearchResultsUsuarios" IsVisible="true" SelectionMode="Single" SelectionChanged="OnUserSelected">
                     <CollectionView.ItemTemplate>
                         <!-- SearchPageUsuarios.xaml -->
                         <DataTemplate>
-                            <Frame CornerRadius="10" HasShadow="True" BorderColor="#dddddd" BackgroundColor="White" Margin="10">
+                            <Frame x:Name="userFrame" CornerRadius="10" HasShadow="True" BorderColor="#dddddd" BackgroundColor="White" Margin="10" >
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnFrameTapped"/>
+                                </Frame.GestureRecognizers>
+                                
                                 <StackLayout BackgroundColor="#ffffff">
                                     <!-- Encabezado del post: Imagen de perfil y nombre de usuario -->
                                     <StackLayout Orientation="Horizontal" Spacing="10">
                                         <Frame HeightRequest="50" WidthRequest="50" CornerRadius="70" HorizontalOptions="Center" IsClippedToBounds="True" Padding="0" BorderColor="Gray" Margin="0,0,0,0">
-                                            <Image Aspect="AspectFit" Source="{Binding UserProfileImage}" SemanticProperties.Description="Cute dot net bot waving hi to you!" HeightRequest="50" WidthRequest="50" VerticalOptions="Center" HorizontalOptions="Center" />
+                                            <Image Aspect="AspectFit" Source="{Binding PerfilImg}" SemanticProperties.Description="Cute dot net bot waving hi to you!" HeightRequest="50" WidthRequest="50" VerticalOptions="Center" HorizontalOptions="Center" />
                                         </Frame>
-                                        <Label Text="{Binding UserName}" FontAttributes="Bold" VerticalOptions="Center" />
+                                        <Label Text="{Binding Nombre}" FontAttributes="Bold" VerticalOptions="Center" />
                                     </StackLayout>
 
                                     <!-- Contenido del post -->
-                                    <Label Text="{Binding UserBio}" VerticalOptions="Start" Margin="0, 10"></Label>
+                                    <Label Text="{Binding Biografia}" VerticalOptions="Start" Margin="0, 10"></Label>
                                     <!-- Línea separadora -->
                                 </StackLayout>
                             </Frame>
