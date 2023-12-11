@@ -94,12 +94,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Update="Pages\BasePages\BaseNewReplyPage.xaml.cs">
-	    <DependentUpon>BaseNewReplyPage.xaml</DependentUpon>
-	  </Compile>
-	  <Compile Update="Pages\BasePages\BasePostDetailPage.xaml.cs">
-	    <DependentUpon>BasePostDetailPage.xaml</DependentUpon>
-	  </Compile>
 	  <Compile Update="Pages\Integrations\IntegrationsTabMenu.xaml.cs">
 	    <DependentUpon>IntegrationsTabMenu.xaml</DependentUpon>
 	  </Compile>
@@ -130,24 +124,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="Pages\BasePages\BaseHomePage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Pages\BasePages\BaseSearchHashtagsPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Pages\BasePages\BaseSearchPostsPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Pages\BasePages\BaseSearchUsersPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Pages\BasePages\BaseNewReplyPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Pages\BasePages\BasePostDetailPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
 	  <MauiXaml Update="Pages\Integrations\IntegrationsHomePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -197,6 +173,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\MainTenant\SearchPages\SearchTabMenu.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\MainTenant\UserDetailPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>

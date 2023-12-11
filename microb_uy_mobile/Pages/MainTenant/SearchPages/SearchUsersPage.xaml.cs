@@ -1,5 +1,5 @@
 using microb_uy_mobile.DTOs;
-using microb_uy_mobile.Pages.BasePages;
+using microb_uy_mobile.ViewModels;
 
 namespace microb_uy_mobile.Pages.MainTenant.SearchPages;
 
@@ -8,113 +8,178 @@ public partial class SearchUsersPage : ContentPage
 	public SearchUsersPage()
 	{
 		InitializeComponent();
-        LoadSampleUsuarios();
+        BindingContext = new SearchUsersViewModel();
+        //LoadSampleUsuarios();
     }
 
-    public void OnSearchButtonPressed(object sender, EventArgs e)
+    private async void OnFrameUserTapped(object sender, EventArgs e)
     {
-        //string searchText = base.CloseKeyboardAndGetSearchText();
-        //DisplayAlert("MAIN instancia Search USERS SearchBar", "Buscando " + searchText, "OK");
-
-        // Aquí puedes agregar la lógica de búsqueda con el texto ingresado
-
-        // Por ejemplo, podrías actualizar la CollectionView con nuevos resultados de búsqueda
-        // searchResultsCollectionView.ItemsSource = PerformSearch(searchText);
+        if (sender is Frame tappedFrame)
+        {
+            if (tappedFrame.BindingContext is UserDto selectedUser)
+            {
+                await Navigation.PushAsync(new UserDetailPage(selectedUser));
+            }
+        }
     }
+
+    //public void OnSearchButtonPressed(object sender, EventArgs e)
+    //{
+    //    //string searchText = base.CloseKeyboardAndGetSearchText();
+    //    //DisplayAlert("MAIN instancia Search USERS SearchBar", "Buscando " + searchText, "OK");
+
+    //    // Aquí puedes agregar la lógica de búsqueda con el texto ingresado
+
+    //    // Por ejemplo, podrías actualizar la CollectionView con nuevos resultados de búsqueda
+    //    // searchResultsCollectionView.ItemsSource = PerformSearch(searchText);
+    //}
     private void LoadSampleUsuarios()
     {
         SearchResultsUsuarios.ItemsSource = new List<UserDto>
         {
             new UserDto
             {
-                UserProfileImage = "diego_forlan.jpg",
-                UserName = "JohnDoe",
-                UserBio = "Software Engineer, Tech Enthusiast"
+                Id = 1,
+                Nombre = "JohnDoe",
+                Email = "john.doe@example.com",
+                Biografia = "Software Engineer, Tech Enthusiast",
+                PerfilImg = "diego_forlan.jpg",
+                // Otros campos...
             },
             new UserDto
             {
-                UserProfileImage = "diego_forlan.jpg",
-                UserName = "JaneSmith",
-                UserBio = "Designer and Creative Thinker"
+                Id = 2,
+                Nombre = "JaneSmith",
+                Email = "jane.smith@example.com",
+                Biografia = "Designer and Creative Thinker",
+                PerfilImg = "diego_forlan.jpg",
+                // Otros campos...
             },
             new UserDto
             {
-                UserProfileImage = "diego_forlan.jpg",
-                UserName = "AlexJohnson",
-                UserBio = "Coffee Lover and Developer"
+                Id = 3,
+                Nombre = "AlexJohnson",
+                Email = "alex.johnson@example.com",
+                Biografia = "Coffee Lover and Developer",
+                PerfilImg = "diego_forlan.jpg",
+                // Otros campos...
             },
             new UserDto
             {
-                UserProfileImage = "diego_forlan.jpg",
-                UserName = "EmilyDavis",
-                UserBio = "Nature Explorer and Photographer"
+                Id = 4,
+                Nombre = "EmilyDavis",
+                Email = "emily.davis@example.com",
+                Biografia = "Nature Explorer and Photographer",
+                PerfilImg = "diego_forlan.jpg",
+                // Otros campos...
             },
             new UserDto
             {
-                UserProfileImage = "diego_forlan.jpg",
-                UserName = "RobertWilson",
-                UserBio = "Gamer and Streamer"
+                Id = 5,
+                Nombre = "RobertWilson",
+                Email = "robert.wilson@example.com",
+                Biografia = "Gamer and Streamer",
+                PerfilImg = "diego_forlan.jpg",
+                // Otros campos...
             },
             new UserDto
             {
-                UserProfileImage = "diego_forlan.jpg",
-                UserName = "LindaMartin",
-                UserBio = "Foodie and Traveler"
+                Id = 6,
+                Nombre = "LindaMartin",
+                Email = "linda.martin@example.com",
+                Biografia = "Foodie and Traveler",
+                PerfilImg = "diego_forlan.jpg",
+                // Otros campos...
             },
             new UserDto
             {
-                UserProfileImage = "diego_forlan.jpg",
-                UserName = "MichaelBrown",
-                UserBio = "Bookworm and History Buff"
+                Id = 7,
+                Nombre = "MichaelBrown",
+                Email = "michael.brown@example.com",
+                Biografia = "Bookworm and History Buff",
+                PerfilImg = "diego_forlan.jpg",
+                // Otros campos...
             },
             new UserDto
             {
-                UserProfileImage = "diego_forlan.jpg",
-                UserName = "SarahLee",
-                UserBio = "Fitness Enthusiast and Nutritionist"
+                Id = 8,
+                Nombre = "SarahLee",
+                Email = "sarah.lee@example.com",
+                Biografia = "Fitness Enthusiast and Nutritionist",
+                PerfilImg = "diego_forlan.jpg",
+                // Otros campos...
             },
             new UserDto
             {
-                UserProfileImage = "diego_forlan.jpg",
-                UserName = "ChrisHall",
-                UserBio = "Musician and Songwriter"
+                Id = 9,
+                Nombre = "ChrisHall",
+                Email = "chris.hall@example.com",
+                Biografia = "Musician and Songwriter",
+                PerfilImg = "diego_forlan.jpg",
+                // Otros campos...
             },
             new UserDto
             {
-                UserProfileImage = "diego_forlan.jpg",
-                UserName = "MeganWhite",
-                UserBio = "Art Lover and Painter"
+                Id = 10,
+                Nombre = "MeganWhite",
+                Email = "megan.white@example.com",
+                Biografia = "Art Lover and Painter",
+                PerfilImg = "diego_forlan.jpg",
+                // Otros campos...
             },
             new UserDto
             {
-                UserProfileImage = "diego_forlan.jpg",
-                UserName = "WilliamClark",
-                UserBio = "Pet Lover and Animal Rights Advocate"
+                Id = 11,
+                Nombre = "WilliamClark",
+                Email = "william.clark@example.com",
+                Biografia = "Pet Lover and Animal Rights Advocate",
+                PerfilImg = "diego_forlan.jpg",
+                // Otros campos...
             },
             new UserDto
             {
-                UserProfileImage = "diego_forlan.jpg",
-                UserName = "OliviaLewis",
-                UserBio = "Movie Buff and Cinephile"
+                Id = 12,
+                Nombre = "OliviaLewis",
+                Email = "olivia.lewis@example.com",
+                Biografia = "Movie Buff and Cinephile",
+                PerfilImg = "diego_forlan.jpg",
+                // Otros campos...
             },
             new UserDto
             {
-                UserProfileImage = "diego_forlan.jpg",
-                UserName = "DanielYoung",
-                UserBio = "Hiker and Outdoor Enthusiast"
+                Id = 13,
+                Nombre = "DanielYoung",
+                Email = "daniel.young@example.com",
+                Biografia = "Hiker and Outdoor Enthusiast",
+                PerfilImg = "diego_forlan.jpg",
+                // Otros campos...
             },
             new UserDto
             {
-                UserProfileImage = "diego_forlan.jpg",
-                UserName = "AvaHarris",
-                UserBio = "Fashionista and Stylist"
+                Id = 14,
+                Nombre = "AvaHarris",
+                Email = "ava.harris@example.com",
+                Biografia = "Fashionista and Stylist",
+                PerfilImg = "diego_forlan.jpg",
+                // Otros campos...
             },
             new UserDto
             {
-                UserProfileImage = "diego_forlan.jpg",
-                UserName = "JamesTurner",
-                UserBio = "Tech Geek and Coding Ninja"
+                Id = 15,
+                Nombre = "JamesTurner",
+                Email = "james.turner@example.com",
+                Biografia = "Tech Geek and Coding Ninja",
+                PerfilImg = "diego_forlan.jpg",
+                // Otros campos...
             }
         };
+        foreach (var userDto in (List<UserDto>)SearchResultsUsuarios.ItemsSource)
+        {
+            userDto.BannerImg = "https://pbs.twimg.com/media/D-jnKUPU4AE3hVR.jpg";  // Reemplaza con tu valor común para BannerImg
+            userDto.Rol = "Usuario Común";  // Reemplaza con tu valor común para Rol
+            userDto.Ubicacion = "Ubicación Común";  // Reemplaza con tu valor común para Ubicacion
+            userDto.Ocupacion = "Ocupación Común";  // Reemplaza con tu valor común para Ocupacion
+            userDto.Nickname = "Nickname";
+        }
     }
 }

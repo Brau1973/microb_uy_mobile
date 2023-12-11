@@ -1,5 +1,4 @@
 using microb_uy_mobile.DTOs;
-using microb_uy_mobile.Pages.BasePages;
 
 namespace microb_uy_mobile.Pages.Integrations.SearchPages;
 
