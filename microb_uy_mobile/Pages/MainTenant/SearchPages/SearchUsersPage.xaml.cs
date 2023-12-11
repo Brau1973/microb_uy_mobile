@@ -1,4 +1,5 @@
 using microb_uy_mobile.DTOs;
+using microb_uy_mobile.ViewModels;
 
 namespace microb_uy_mobile.Pages.MainTenant.SearchPages;
 
@@ -7,20 +8,11 @@ public partial class SearchUsersPage : ContentPage
 	public SearchUsersPage()
 	{
 		InitializeComponent();
-        LoadSampleUsuarios();
+        BindingContext = new SearchUsersViewModel();
+        //LoadSampleUsuarios();
     }
 
-    public async void OnUserSelected(object sender, SelectionChangedEventArgs e)
-    {
-        if (e.CurrentSelection.FirstOrDefault() is UserDto selectedUser)
-        {
-            await Navigation.PushAsync(new UserDetailPage(selectedUser));
-        }
-        // Desmarca el elemento seleccionado
-        ((CollectionView)sender).SelectedItem = null;
-    }
-
-    private async void OnFrameTapped(object sender, EventArgs e)
+    private async void OnFrameUserTapped(object sender, EventArgs e)
     {
         if (sender is Frame tappedFrame)
         {
@@ -31,16 +23,16 @@ public partial class SearchUsersPage : ContentPage
         }
     }
 
-    public void OnSearchButtonPressed(object sender, EventArgs e)
-    {
-        //string searchText = base.CloseKeyboardAndGetSearchText();
-        //DisplayAlert("MAIN instancia Search USERS SearchBar", "Buscando " + searchText, "OK");
+    //public void OnSearchButtonPressed(object sender, EventArgs e)
+    //{
+    //    //string searchText = base.CloseKeyboardAndGetSearchText();
+    //    //DisplayAlert("MAIN instancia Search USERS SearchBar", "Buscando " + searchText, "OK");
 
-        // Aquí puedes agregar la lógica de búsqueda con el texto ingresado
+    //    // Aquí puedes agregar la lógica de búsqueda con el texto ingresado
 
-        // Por ejemplo, podrías actualizar la CollectionView con nuevos resultados de búsqueda
-        // searchResultsCollectionView.ItemsSource = PerformSearch(searchText);
-    }
+    //    // Por ejemplo, podrías actualizar la CollectionView con nuevos resultados de búsqueda
+    //    // searchResultsCollectionView.ItemsSource = PerformSearch(searchText);
+    //}
     private void LoadSampleUsuarios()
     {
         SearchResultsUsuarios.ItemsSource = new List<UserDto>
