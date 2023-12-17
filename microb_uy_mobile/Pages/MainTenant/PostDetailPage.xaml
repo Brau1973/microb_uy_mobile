@@ -11,13 +11,13 @@
                     <!-- Encabezado del post: Imagen de perfil y nombre de usuario -->
                     <StackLayout Orientation="Horizontal" Spacing="10">
                         <Frame HeightRequest="50" WidthRequest="50" CornerRadius="70" HorizontalOptions="Center" IsClippedToBounds="True" Padding="0" BorderColor="Gray" Margin="0,0,0,0">
-                            <Image x:Name="UserProfileImage" Aspect="AspectFit" HeightRequest="50" WidthRequest="50" VerticalOptions="Center" HorizontalOptions="Center" />
+                            <Image x:Name="AutorImg" Source="{Binding AutorImg}" Aspect="AspectFit" HeightRequest="50" WidthRequest="50" VerticalOptions="Center" HorizontalOptions="Center" />
                         </Frame>
-                        <Label x:Name="UserNameLabel" FontAttributes="Bold" VerticalOptions="Center" />
+                        <Label x:Name="Autor" Text="{Binding Autor}" FontAttributes="Bold" VerticalOptions="Center" />
                     </StackLayout>
 
                     <!-- Contenido del post -->
-                    <Label x:Name="PostContentLabel" VerticalOptions="Start"></Label>
+                    <Label x:Name="PostContentLabel" Text="{Binding Contenido}" VerticalOptions="Start"></Label>
 
                     <!-- Acciones del post: Responder ,Retweet y Me gusta -->
                     <Grid x:Name="ActionsGrid" HorizontalOptions="CenterAndExpand" RowSpacing="0" ColumnSpacing="75">
@@ -57,13 +57,13 @@
                                     <!-- Encabezado de la respuesta: Imagen de perfil y nombre de usuario -->
                                     <StackLayout Orientation="Horizontal" Spacing="10">
                                         <Frame HeightRequest="50" WidthRequest="50" CornerRadius="70" HorizontalOptions="Center" IsClippedToBounds="True" Padding="0" BorderColor="Gray" Margin="0,0,0,0">
-                                            <Image Aspect="AspectFit" Source="{Binding UserProfileImage}" SemanticProperties.Description="Cute dot net bot waving hi to you!" HeightRequest="50" WidthRequest="50" VerticalOptions="Center" HorizontalOptions="Center" />
+                                            <Image Aspect="AspectFit" Source="{Binding AutorImg}" SemanticProperties.Description="Cute dot net bot waving hi to you!" HeightRequest="50" WidthRequest="50" VerticalOptions="Center" HorizontalOptions="Center" />
                                         </Frame>
-                                        <Label Text="{Binding UserName}" FontAttributes="Bold" VerticalOptions="Center" />
+                                        <Label Text="{Binding Autor}" FontAttributes="Bold" VerticalOptions="Center" />
                                     </StackLayout>
 
                                     <!-- Contenido de la respuesta -->
-                                    <Label Text="{Binding PostContent}" VerticalOptions="Start">
+                                    <Label Text="{Binding Contenido}" VerticalOptions="Start">
                                     </Label>
 
                                     <!--DE MOMENTO NO VAMOS A PERMITIR INTERACTUAR CON LOS POSTS DE TIPO RESPUESTA-->

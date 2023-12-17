@@ -56,6 +56,7 @@
 	  <None Remove="Resources\Icons\hashtag_icon.png" />
 	  <None Remove="Resources\Icons\home_icon.png" />
 	  <None Remove="Resources\Icons\integrations_icon.png" />
+	  <None Remove="Resources\Icons\refresh_icon.png" />
 	  <None Remove="Resources\Icons\reply_icon.png" />
 	  <None Remove="Resources\Icons\retweet_icon.png" />
 	  <None Remove="Resources\Icons\search_icon.png" />
@@ -73,6 +74,7 @@
 	  <MauiImage Include="Resources\Icons\hashtag_icon.png" />
 	  <MauiImage Include="Resources\Icons\home_icon.png" />
 	  <MauiImage Include="Resources\Icons\integrations_icon.png" />
+	  <MauiImage Include="Resources\Icons\refresh_icon.png" />
 	  <MauiImage Include="Resources\Icons\reply_icon.png" />
 	  <MauiImage Include="Resources\Icons\retweet_icon.png" />
 	  <MauiImage Include="Resources\Icons\search_icon.png" />
@@ -178,6 +180,10 @@
 	  <MauiXaml Update="Pages\MainTenant\UserDetailPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Services\Implementations\" />
 	</ItemGroup>
 
 </Project>

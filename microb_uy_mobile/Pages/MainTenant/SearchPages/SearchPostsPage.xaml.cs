@@ -1,4 +1,5 @@
 using microb_uy_mobile.DTOs;
+using microb_uy_mobile.ViewModels;
 
 namespace microb_uy_mobile.Pages.MainTenant.SearchPages;
 
@@ -27,7 +28,7 @@ public partial class SearchPostsPage : ContentPage
     }
     public async void OnPostItemSelected(object sender, SelectionChangedEventArgs e)
     {
-        if (e.CurrentSelection.FirstOrDefault() is PostDTOOld selectedPost)
+        if (e.CurrentSelection.FirstOrDefault() is PostDto selectedPost)
         {
             //TODO Hacer Herencia para esta pagina, una para main tenant y otro para integrada
             await Navigation.PushAsync(new PostDetailPage(selectedPost)); // Pasa el post seleccionado a la página de detalles
@@ -41,7 +42,7 @@ public partial class SearchPostsPage : ContentPage
         var image = (Image)sender;
 
         // Obtén el contexto (en este caso, el objeto vinculado al elemento del CollectionView)
-        if (image.BindingContext is PostDTOOld selectedPost)
+        if (image.BindingContext is PostDto selectedPost)
         {
             // Crear una nueva página para el modal
             var newReplyPage = new NewReplyPage(selectedPost); //Clase hija de BaseNewReplyPage

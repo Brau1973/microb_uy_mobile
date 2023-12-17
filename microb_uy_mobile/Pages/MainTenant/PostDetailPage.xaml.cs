@@ -6,35 +6,33 @@ namespace microb_uy_mobile.Pages.MainTenant;
 [XamlCompilation(XamlCompilationOptions.Compile)]
 public partial class PostDetailPage : ContentPage
 {
-    public PostDTOOld _mainPost;
-    public PostDetailPage(PostDTOOld mainPost)
+    public PostDto _mainPost;
+    public PostDetailPage(PostDto mainPost)
     {
         InitializeComponent();
         _mainPost = mainPost;
 
-        LoadMainPostDetails();
+        this.BindingContext = _mainPost;
+
+        //LoadMainPostDetails();
         LoadPostResponses();
     }
-    private void LoadMainPostDetails()
-    {
-        // Cargar detalles del post principal desde _mainPost
-        // Por ejemplo:
-        UserProfileImage.Source = _mainPost.UserProfileImage;
-        UserNameLabel.Text = _mainPost.UserName;
-        PostContentLabel.Text = _mainPost.PostContent;
-    }
+    //private void LoadMainPostDetails()
+    //{
+    //    // Cargar detalles del post principal desde _mainPost
+    //    // Por ejemplo:
+    //    UserProfileImage.Source = _mainPost.UserProfileImage;
+    //    UserNameLabel.Text = _mainPost.UserName;
+    //    PostContentLabel.Text = _mainPost.PostContent;
+    //}
     private void LoadPostResponses()
     {
-        ObservableCollection<PostDTOOld> Posts = new ObservableCollection<PostDTOOld>();
+        ObservableCollection<PostDto> Posts = new ObservableCollection<PostDto>();
 
-        for (int i = 1; i <= 4; i++)
+        // Generar algunos posts normales
+        for (int i = 1; i <= 5; i++)
         {
-            Posts.Add(new PostDTOOld
-            {
-                UserProfileImage = "diego_forlan.jpg",
-                UserName = $"Usuario {i}",
-                PostContent = $"MAIN TENANT Respuesta {i} yurna condimentum mattis pellentesque id nibh tortor id."
-            });
+            Posts.Add(GenerarPostNormal($"Usuario{i}", $"Contenido del post {i}", $"Titulo del post{i}"));
         }
         CollectionViewRespuestas.ItemsSource = Posts;
     }
@@ -57,5 +55,21 @@ public partial class PostDetailPage : ContentPage
         // Maneja el evento cuando el icono de "me gusta" es clicado
         // Realiza la acción correspondiente, como dar "me gusta" al post
         await DisplayAlert("MAIN TENANT", "Like", "OK");
+    }
+
+    // Método para generar un post normal
+    private PostDto GenerarPostNormal(string autor, string contenido, string titulo)
+    {
+        return new PostDto
+        {
+            AutorImg = "https://img.freepik.com/vector-premium/perfil-avatar-hombre-icono-redondo_24640-14044.jpg",
+            Autor = autor,
+            Title = titulo,
+            Contenido = contenido,
+            Fecha = DateTime.Now,
+            TipoPost = "NORMAL",
+            Likes = new Random().Next(1, 10), // Genera likes aleatorios para fines de prueba
+            CantRespuestas = new Random().Next(0, 5) // Genera respuestas aleatorias para fines de prueba
+        };
     }
 }

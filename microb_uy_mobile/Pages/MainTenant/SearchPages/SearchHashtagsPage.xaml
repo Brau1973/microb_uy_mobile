@@ -19,7 +19,7 @@
             <Label IsVisible="{Binding IsLabelVisible}" x:Name="NoResults" Text="{Binding LabelMsg}" FontAttributes="Bold" FontSize="16" TextColor="Black" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"/>
 
             <!-- Colección y plantilla para la pestaña "Hashtags" -->
-            <CollectionView x:Name="SearchResultsHashtags" IsVisible="true" VerticalOptions="FillAndExpand" VerticalScrollBarVisibility="Always"
+            <CollectionView x:Name="SearchResultsHashtags" VerticalOptions="FillAndExpand" VerticalScrollBarVisibility="Always"
                         ItemsSource="{Binding HashTagList}"
                         RemainingItemsThreshold="1"
                         RemainingItemsThresholdReachedCommand="{Binding LoadMoreDataCommand}">
