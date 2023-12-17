@@ -1,6 +1,5 @@
 ﻿using microb_uy_mobile.DTOs;
 using Microsoft.Toolkit.Mvvm.Input;
-using System.Threading.Tasks;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using MvvmHelpers;
 using Refit;
@@ -38,7 +37,7 @@ namespace microb_uy_mobile.ViewModels
 
         public HomePageViewModel()
         {
-            // Ejecutar la carga de posts en una tarea separada
+            // Ejecutar la carga de posts en una tarea separada enseguida se renderiza el home
             Task.Run(async () => await GetPostList());
         }
 
