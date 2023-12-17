@@ -1,67 +1,249 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:microb_uy_mobile.ViewModels"
+             x:DataType="viewModels:HomePageViewModel"
+             xmlns:dto="clr-namespace:microb_uy_mobile.DTOs"
              x:Class="microb_uy_mobile.Pages.MainTenant.HomePage"
-             xmlns:local="clr-namespace:microb_uy_mobile.Pages.MainTenant"
+             xmlns:helpers="clr-namespace:microb_uy_mobile.Helpers"
+             xmlns:local="clr-namespace:microb_uy_mobile"
+             xmlns:converters="clr-namespace:microb_uy_mobile.Converters"
              IconImageSource="home_icon.png">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <!--CONVERTIDOR DE HASHTAGS-->
+            <converters:HashTagListToStringConverter x:Key="HashTagListToStringConverter"/>
+            <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - PLANTILLAS - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+            <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - Plantilla para posts normales - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+            <DataTemplate x:Key="NormalPostTemplate" x:DataType="dto:PostDto">
+                <StackLayout x:Name="PostLayout" Padding="8" Margin="0,2,0,0">
+                    <!-- Encabezado del post: Imagen de perfil, nombre de usuario y fecha -->
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <StackLayout Orientation="Horizontal" Spacing="10" Grid.Column="0">
+                            <Frame HeightRequest="50" WidthRequest="50" CornerRadius="70" HorizontalOptions="Center" IsClippedToBounds="True" Padding="0" BorderColor="Gray">
+                                <Image Aspect="AspectFit" Source="{Binding AutorImg}" HeightRequest="50" WidthRequest="50" VerticalOptions="Center" HorizontalOptions="Center"/>
+                            </Frame>
+                            <Label Text="{Binding Autor}" FontAttributes="Bold" VerticalOptions="Center"/>
+                        </StackLayout>
+
+                        <Label Text="{Binding Fecha, StringFormat='{0:dd MMM yyyy}'}" Grid.Column="1" HorizontalOptions="End" VerticalOptions="Center" FontSize="Small" TextColor="Gray"/>
+                    </Grid>
+
+                    <!-- Contenido del post con hashtags si los tiene -->
+                    <Label Text="{Binding Title}" VerticalOptions="Start" FontAttributes="Bold" Margin="5,10,0,0" ></Label>
+
+                    <Label VerticalOptions="Start" Margin="5,5,0,0">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="{Binding Contenido}" />
+                                <Span Text=" " />
+                                <Span Text="{Binding HashTags, Converter={StaticResource HashTagListToStringConverter}}" FontAttributes="Italic" TextColor="Blue"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+
+                    <!--Acciones del post: Responder ,Retweet y Me gusta-->
+                    <Grid x:Name="ActionsGrid" Margin="0,8,0,0" HorizontalOptions="CenterAndExpand" RowSpacing="0" ColumnSpacing="75">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <Image x:Name="ReplyIcon" Source="reply_icon.png" HeightRequest="24" WidthRequest="24" HorizontalOptions="Center">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnReplyIconTapped"/>
+                            </Image.GestureRecognizers>
+                        </Image>
+
+                        <Image x:Name="RetweetIcon" Source="retweet_icon.png" HeightRequest="24" WidthRequest="24" HorizontalOptions="Center" Grid.Column="1">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnRetweetIconTapped" />
+                            </Image.GestureRecognizers>
+                        </Image>
+
+                        <Image x:Name="LikeIcon" Source="empty_like_icon.png" HeightRequest="24" WidthRequest="24" HorizontalOptions="Center" Grid.Column="2">
+                            <Image.Triggers>
+                                <DataTrigger TargetType="Image" Binding="{Binding Likeado}" Value="True">
+                                    <Setter Property="Source" Value="fully_like_icon.png"/>
+                                </DataTrigger>
+                            </Image.Triggers>
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnLikeIconTapped" />
+                            </Image.GestureRecognizers>
+                        </Image>
+                    </Grid>
+
+                    <!-- Línea Separadora -->
+                    <BoxView HeightRequest="0.05" BackgroundColor="#F0F0F0" Margin="0,8,0,0"/>
+                </StackLayout>
+            </DataTemplate>
+
+            <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - Plantilla para reposts - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+            <DataTemplate x:Key="RepostPostTemplate" x:DataType="dto:PostDto">
+                <StackLayout Padding="8" Margin="0,2,0,0" BackgroundColor="#ffffff">
+                    <!-- Encabezado del post original: Imagen de perfil, nombre de usuario y fecha -->
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <StackLayout Orientation="Horizontal" Spacing="10" Grid.Column="0">
+                            <Frame HeightRequest="50" WidthRequest="50" CornerRadius="25" HorizontalOptions="Center" IsClippedToBounds="True" Padding="0" BorderColor="Gray">
+                                <Image Aspect="AspectFit" Source="{Binding AutorImg}" HeightRequest="50" WidthRequest="50" VerticalOptions="Center" HorizontalOptions="Center"/>
+                            </Frame>
+                            <Label Text="{Binding Autor}" FontAttributes="Bold" VerticalOptions="Center"/>
+                        </StackLayout>
+
+                        <Label Text="{Binding Fecha, StringFormat='{0:dd MMM yyyy}'}" Grid.Column="1" HorizontalOptions="End" VerticalOptions="Center" FontSize="Small" TextColor="Gray"/>
+                    </Grid>
+
+                    <!-- Contenido del post con hashtags si los tiene -->
+                    <Label Text="{Binding Title}" VerticalOptions="Start" FontAttributes="Bold" Margin="5,10,0,0" ></Label>
+
+                    <Label VerticalOptions="Start" Margin="5,5,0,0">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="{Binding Contenido}" />
+                                <Span Text=" " />
+                                <Span Text="{Binding HashTags, Converter={StaticResource HashTagListToStringConverter}}" FontAttributes="Italic" TextColor="Blue"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+
+                    <!-- Sección de Repost -->
+                    <Frame Padding="10" Margin="0,10,0,0" BackgroundColor="#F0F0F0" CornerRadius="10">
+                        <StackLayout>
+                            <!-- Encabezado del repost: Imagen de perfil, nombre de usuario y fecha del repost -->
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <StackLayout Orientation="Horizontal" Spacing="10" Grid.Column="0">
+                                    <Frame HeightRequest="40" WidthRequest="40" CornerRadius="20" HorizontalOptions="Center" IsClippedToBounds="True" Padding="0" BorderColor="Gray" Margin="0,0,0,0">
+                                        <Image Aspect="AspectFit" Source="{Binding Repost.AutorImg}" HeightRequest="40" WidthRequest="40" VerticalOptions="Center" HorizontalOptions="Center"/>
+                                    </Frame>
+                                    <Label Text="{Binding Repost.Autor}" FontAttributes="Bold" VerticalOptions="Center"/>
+                                </StackLayout>
+
+                                <Label Text="{Binding Repost.Fecha, StringFormat='{0:dd MMM yyyy}'}" Grid.Column="1" HorizontalOptions="End" VerticalOptions="Center" FontSize="Small" TextColor="Gray"/>
+                            </Grid>
+
+                            <!-- Contenido del repost con hashtags si los tiene -->
+                            <Label Text="{Binding Repost.Title}" VerticalOptions="Start" FontAttributes="Bold" Margin="5,10,0,0" ></Label>
+
+                            <Label VerticalOptions="Start" Margin="5,5,0,0">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="{Binding Repost.Contenido}" />
+                                        <Span Text=" " />
+                                        <Span Text="{Binding Repost.HashTags, Converter={StaticResource HashTagListToStringConverter}}" FontAttributes="Italic" TextColor="Blue"/>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                        </StackLayout>
+                    </Frame>
+
+                    <!-- Acciones del post (misma estructura que en NormalPostTemplate) -->
+                    <!-- ... -->
+                    <!--Acciones del post: Responder ,Retweet y Me gusta-->
+                    <Grid x:Name="ActionsGrid" Margin="0,8,0,0" HorizontalOptions="CenterAndExpand" RowSpacing="0" ColumnSpacing="75">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <Image x:Name="ReplyIcon" Source="reply_icon.png" HeightRequest="24" WidthRequest="24" HorizontalOptions="Center">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnReplyIconTapped"/>
+                            </Image.GestureRecognizers>
+                        </Image>
+
+                        <Image x:Name="RetweetIcon" Source="retweet_icon.png" HeightRequest="24" WidthRequest="24" HorizontalOptions="Center" Grid.Column="1">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnRetweetIconTapped" />
+                            </Image.GestureRecognizers>
+                        </Image>
+
+                        <Image x:Name="LikeIcon" Source="empty_like_icon.png" HeightRequest="24" WidthRequest="24" HorizontalOptions="Center" Grid.Column="2">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnLikeIconTapped" />
+                            </Image.GestureRecognizers>
+                        </Image>
+                    </Grid>
+                    <!-- Línea Separadora -->
+                    <BoxView HeightRequest="0.05" BackgroundColor="#F0F0F0" Margin="0,8,0,0"/>
+                </StackLayout>
+            </DataTemplate>
+
+            <!--SELECTOR DE PLANTILLAS-->
+            <helpers:PostTemplateSelector x:Key="PostTemplateSelector"
+                            NormalPostTemplate="{StaticResource NormalPostTemplate}"
+                            RepostPostTemplate="{StaticResource RepostPostTemplate}" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - CONTENT - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+    
     <ContentPage.Content>
         <Grid Padding="10">
-            <ScrollView>
-                <StackLayout>
-                    <!-- Contenido específico de la página, como el feed de posts -->
-                    <CollectionView x:Name="PostCollectionView" ItemsSource="{Binding Posts}" SelectionMode="Single" SelectionChanged="OnPostItemSelected">
-                        <CollectionView.ItemTemplate>
-                            <DataTemplate>
-                                <StackLayout x:Name="PostLayout" Padding="10" Margin="5,5,5,0" BackgroundColor="#ffffff">
-                                    <!-- Encabezado del post: Imagen de perfil y nombre de usuario -->
-                                    <StackLayout Orientation="Horizontal" Spacing="10">
+            <StackLayout>
+                <!--PARA CUANDO NO HAY POSTS-->
+                <Label IsVisible="{Binding IsLabelVisible}" x:Name="NoResults" Text="{Binding LabelMsg}" FontAttributes="Bold" FontSize="16" TextColor="Black" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"/>
 
-                                        <Frame HeightRequest="50" WidthRequest="50" CornerRadius="70" HorizontalOptions="Center" IsClippedToBounds="True" Padding="0" BorderColor="Gray" Margin="0,0,0,0">
-                                            <Image Aspect="AspectFit" Source="{Binding UserProfileImage}" SemanticProperties.Description="Cute dot net bot waving hi to you!" HeightRequest="50" WidthRequest="50" VerticalOptions="Center"                                            HorizontalOptions="Center" />
-                                        </Frame>
-                                        <Label Text="{Binding UserName}" FontAttributes="Bold" VerticalOptions="Center" />
-                                    </StackLayout>
+                <!-- Contenido específico de la página, como el feed de posts -->
+                <CollectionView x:Name="PostCollectionView"
+                    SelectionMode="Single"
+                    SelectionChanged="OnPostItemSelected"
+                    VerticalScrollBarVisibility="Always"
+                    VerticalOptions="FillAndExpand"
+                    ItemTemplate="{StaticResource PostTemplateSelector}" 
+                    ItemsSource="{Binding PostList}"
+                    RemainingItemsThreshold="1"
+                    RemainingItemsThresholdReachedCommand="{Binding LoadMoreDataCommand}">
 
-                                    <!-- Contenido del post -->
-                                    <Label Text="{Binding PostContent}" VerticalOptions="Start"></Label>
+                    <!--HEADER LOADER-->
+                    <CollectionView.Header>
+                        <StackLayout>
+                            <ActivityIndicator IsRunning="True" IsVisible="{Binding IsBusy}"
+                                HeightRequest="40" WidthRequest="40" HorizontalOptions="Center"/>
+                        </StackLayout>
+                    </CollectionView.Header>
 
-                                    <!-- Acciones del post: Responder ,Retweet y Me gusta -->
-                                    <Grid x:Name="ActionsGrid" HorizontalOptions="CenterAndExpand" RowSpacing="0" ColumnSpacing="75">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="Auto" />
-                                            <ColumnDefinition Width="Auto" />
-                                            <ColumnDefinition Width="Auto" />
-                                        </Grid.ColumnDefinitions>
-
-                                        <Image x:Name="ReplyIcon" Source="reply_icon.png" HeightRequest="24" WidthRequest="24" HorizontalOptions="Center">
-                                            <Image.GestureRecognizers>
-                                                <TapGestureRecognizer Tapped="OnReplyIconTapped"/>
-                                            </Image.GestureRecognizers>
-                                        </Image>
-
-                                        <Image x:Name="RetweetIcon" Source="retweet_icon.png" HeightRequest="24" WidthRequest="24" HorizontalOptions="Center" Grid.Column="1">
-                                            <Image.GestureRecognizers>
-                                                <TapGestureRecognizer Tapped="OnRetweetIconTapped" />
-                                            </Image.GestureRecognizers>
-                                        </Image>
-
-                                        <Image x:Name="LikeIcon" Source="empty_like_icon.png" HeightRequest="24" WidthRequest="24" HorizontalOptions="Center" Grid.Column="2">
-                                            <Image.GestureRecognizers>
-                                                <TapGestureRecognizer Tapped="OnLikeIconTapped" />
-                                            </Image.GestureRecognizers>
-                                        </Image>
-                                    </Grid>
-                                </StackLayout>
-                            </DataTemplate>
-                        </CollectionView.ItemTemplate>
-                    </CollectionView>
-                </StackLayout>
-            </ScrollView>
+                    <!--FOOTER LOADER-->
+                    <CollectionView.Footer>
+                        <StackLayout>
+                            <ActivityIndicator IsRunning="True" IsVisible="{Binding IsLoading}"
+                        HeightRequest="40" WidthRequest="40" HorizontalOptions="Center"/>
+                        </StackLayout>
+                    </CollectionView.Footer>
+                </CollectionView>
+            </StackLayout>
             <!-- New Post -->
             <Frame x:Name="FeatherFrame" HeightRequest="70" WidthRequest="70" CornerRadius="70" HorizontalOptions="End" VerticalOptions="End" IsClippedToBounds="True" BorderColor="Gray" Margin="0,0,20,20">
                 <Image Source="feather_icon.png" HeightRequest="50" WidthRequest="50">
                     <Image.GestureRecognizers>
                         <TapGestureRecognizer Tapped="OnFeatherIconTapped" />
+                    </Image.GestureRecognizers>
+                </Image>
+            </Frame>
+            <!-- Botón de Refresco -->
+            <Frame x:Name="RefreshFrame" HeightRequest="50" WidthRequest="50" CornerRadius="70" 
+               HorizontalOptions="End" VerticalOptions="End" IsClippedToBounds="True" 
+               BorderColor="Gray" Margin="0,0,20,100">   
+                <Image Source="refresh_icon.png" HeightRequest="30" WidthRequest="30">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnRefreshIconTapped" />
                     </Image.GestureRecognizers>
                 </Image>
             </Frame>

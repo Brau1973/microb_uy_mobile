@@ -12,13 +12,13 @@
                     <!-- Encabezado del post: Imagen de perfil y nombre de usuario -->
                     <StackLayout Orientation="Horizontal" Spacing="10">
                         <Frame HeightRequest="50" WidthRequest="50" CornerRadius="70" HorizontalOptions="Center" IsClippedToBounds="True" Padding="0" BorderColor="Gray" Margin="0,0,0,0">
-                            <Image x:Name="UserProfileImage" Aspect="AspectFit" HeightRequest="50" WidthRequest="50" VerticalOptions="Center" HorizontalOptions="Center" />
+                            <Image x:Name="UserProfileImage" Source="{Binding AutorImg}" Aspect="AspectFit" HeightRequest="50" WidthRequest="50" VerticalOptions="Center" HorizontalOptions="Center" />
                         </Frame>
-                        <Label x:Name="UserNameLabel" FontAttributes="Bold" VerticalOptions="Center" />
+                        <Label x:Name="UserNameLabel" Text="{Binding Autor}" FontAttributes="Bold" VerticalOptions="Center" />
                     </StackLayout>
 
                     <!-- Contenido del post -->
-                    <Label x:Name="PostContentLabel" VerticalOptions="Start"></Label>
+                    <Label x:Name="PostContentLabel" Text="{Binding Contenido}" VerticalOptions="Start"></Label>
                 </StackLayout>
 
                 <StackLayout Spacing="10" Padding="20">

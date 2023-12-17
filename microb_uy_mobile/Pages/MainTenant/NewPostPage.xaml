@@ -5,6 +5,10 @@
              Title="New Post">
     <ContentPage.Content>
         <StackLayout Spacing="10" Padding="20">
+
+            <!-- Campo para ingresar el título del post -->
+            <Entry x:Name="PostTitleEntry" Placeholder="Título del post" MaxLength="100" Text="{Binding PostTitle}" />
+
             <!-- Editor para ingresar el contenido del post -->
             <Editor x:Name="PostEditor" Placeholder="¿Qué estás pensando?" MaxLength="280" Text="{Binding PostContent}" AutoSize="TextChanges" VerticalOptions="Start" HeightRequest="150" />
 

@@ -1,5 +1,7 @@
 using microb_uy_mobile.DTOs;
 using microb_uy_mobile.Services.Interfaces;
+using Refit;
+using System.Globalization;
 using System.Text.RegularExpressions;
 
 namespace microb_uy_mobile.Pages
@@ -16,51 +18,51 @@ namespace microb_uy_mobile.Pages
             // Cerrar el teclado
             PostEditor.Unfocus();
 
-            //await DisplayAlert("Post", "Post: " + result.Item2, "Aceptar");
-
-            await CreateNewPost();
-
-            // Volver a la pantalla anterior
-            await Navigation.PopModalAsync();
+            // Validación
+            if (string.IsNullOrWhiteSpace(PostTitleEntry.Text) || string.IsNullOrWhiteSpace(PostEditor.Text))
+            {
+                await DisplayAlert("Error", "Por favor, ingresa un título y contenido para el post.", "OK");
+            }
+            else
+            {
+                await CreateNewPost();
+                // Volver a la pantalla anterior
+                await Navigation.PopModalAsync();
+            }
         }
 
         public async Task CreateNewPost()
         {
-            //Obtengo en item 1 los hashtags y en item 2 el contenido del post sin hashtags
-            Tuple<List<string>, string> result = ExtractHashtagsAndContent(PostEditor.Text);
-            List<string> hashTags = result.Item1;
-            string postContent = result.Item2;
+            //Obtengo en item 1 el contenido del post sin hashtags y en item 2 los hashtags
+            Tuple<string, List<CrearHashTag>> result = ExtractHashtagsAndContent(PostEditor.Text);
 
-            //Obtengo info del tenant logueado
+            string baseApiUrl = (string)App.SessionInfo["BaseUrl"];
+            string postContent = result.Item1;
+            List<CrearHashTag> hashTags = result.Item2;
+            string postTitle = PostTitleEntry.Text;
             int tenantId = (int)App.SessionInfo["MainTenantId"];
-
-            // Reemplaza la URL con la dirección real de tu backend
-            var apiUrl = "https://backoffice.web.microb-uy.lat";
-            var postsService = new PostsService(apiUrl);
+            string loggedUserEmail = (string)App.SessionInfo["LoggedUserEmail"];
+            DateTime currentDateTimeUtc = DateTime.UtcNow;
 
             try
             {
                 // Crear una instancia de PostDto utilizando el constructor con parámetros
-                var newPost = new PostDto
+                var newPost = new CrearPostDto
                 {
-                    Id = 1,
-                    Autor = "Autor Ejemplo",
-                    MailAutor = "autor@example.com",
-                    Fecha = DateTime.Now,
+                    MailAutor = loggedUserEmail,
+                    Fecha = currentDateTimeUtc,
+                    Title = postTitle,
                     Contenido = postContent,
-                    TipoPost = "Normal",
-                    HashTags = new List<HashTagDto> { new HashTagDto { NombreHT = "EjemploHT", TenantId = tenantId, Cantidad = 1 } },
-                    Likes = 0,
-                    CantRespuestas = 0,
-                    Tenantid = 123
+                    TipoPost = "NORMAL",
+                    HashTags = hashTags,
+                    Tenantid = tenantId
                 };
 
-                // Llama al servicio para crear el nuevo post.
-                var createdPost = await postsService.PostPost(newPost, tenantId);
+                var api = RestService.For<IPostService>(baseApiUrl);
+                var newPostResponse = await api.PostPost(newPost, tenantId);
 
-                // Verifica si la creación fue exitosa.
-                if (createdPost != null)
-                { 
+                if (newPostResponse != null)
+                {
                     await DisplayAlert("Éxito", "Post creado", "Aceptar");
                 }
                 else
@@ -72,6 +74,7 @@ namespace microb_uy_mobile.Pages
             catch (Exception ex)
             {
                 // Manejo de errores generales.
+                await DisplayAlert("Error", "Error al crear el nuevo post, intentelo mas tarde", "OK");
                 Console.WriteLine($"Error: {ex.Message}");
             }
         }
@@ -86,26 +89,30 @@ namespace microb_uy_mobile.Pages
             await Navigation.PopModalAsync();
         }
 
-        static Tuple<List<string>, string> ExtractHashtagsAndContent(string text)
+        public static Tuple<string, List<CrearHashTag>> ExtractHashtagsAndContent(string text)
         {
-            List<string> hashtags = new List<string>();
+            List<CrearHashTag> hashtags = new List<CrearHashTag>();
 
-            // Regular expression pattern to match hashtags
+            // Expresión regular para encontrar hashtags
             string hashtagPattern = @"#\w+";
 
-            // Use Regex to find matches
+            // Usar Regex para encontrar coincidencias
             MatchCollection hashtagMatches = Regex.Matches(text, hashtagPattern);
 
-            // Extract hashtags from matches
+            // Extraer hashtags de las coincidencias y remover el símbolo '#'
             foreach (Match match in hashtagMatches)
             {
-                hashtags.Add(match.Value);
+                string hashtagText = match.Value.Substring(1); // Eliminar el símbolo '#'
+                if (!hashtags.Exists(tag => tag.NombreHT.Equals(hashtagText)))
+                {
+                    hashtags.Add(new CrearHashTag { NombreHT = hashtagText });
+                }
             }
 
-            // Remove hashtags from the original text
+            // Remover hashtags del texto original
             string postContent = Regex.Replace(text, hashtagPattern, "").Trim();
 
-            return Tuple.Create(hashtags, postContent);
+            return Tuple.Create(postContent, hashtags);
         }
     }
 }

@@ -5,16 +5,18 @@ namespace microb_uy_mobile.Pages.MainTenant;
 
 public partial class NewReplyPage : ContentPage
 {
-    private readonly PostDTOOld _mainPost;
+    private readonly PostDto _mainPost;
     protected string postContent { get; set; }
     protected List<string> hashtags { get; set; }
-    public NewReplyPage(PostDTOOld mainPost)
+    public NewReplyPage(PostDto mainPost)
     {
         InitializeComponent();
 
         _mainPost = mainPost;
 
-        LoadMainPostDetails();
+        this.BindingContext = _mainPost;
+
+        //LoadMainPostDetails();
     }
 
     public async void OnPublishButtonClicked(object sender, EventArgs e)
@@ -37,14 +39,14 @@ public partial class NewReplyPage : ContentPage
             await DisplayAlert("Main tenant", "Contenido de respuesta vacío", "OK");
         }
     }
-    public void LoadMainPostDetails()
-    {
-        // Cargar detalles del post principal desde _mainPost
-        // Por ejemplo:
-        UserProfileImage.Source = _mainPost.UserProfileImage;
-        UserNameLabel.Text = _mainPost.UserName;
-        PostContentLabel.Text = _mainPost.PostContent;
-    }
+    //public void LoadMainPostDetails()
+    //{
+    //    // Cargar detalles del post principal desde _mainPost
+    //    // Por ejemplo:
+    //    UserProfileImage.Source = _mainPost.UserProfileImage;
+    //    UserNameLabel.Text = _mainPost.UserName;
+    //    PostContentLabel.Text = _mainPost.PostContent;
+    //}
 
     public string GetContentAndCloseEditor()
     {
