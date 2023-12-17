@@ -25,13 +25,13 @@ internal interface IPostService
     //[Delete("/api/Posts/{id}")]
     //Task<bool> DeletePost(int id, [Query, AliasAs("tenantId")] int tenantId);
 
-    //// Crea un nuevo post de respuesta para un post específico y tenant
-    //[Post("/api/Posts/{PostId}/respuestas")]
-    //Task<PostDto> RespuestaPost(int PostId, [Body] CrearPostDto postDto, [Query, AliasAs("tenantId")] int tenantId);
+    // Crea un nuevo post de respuesta para un post específico y tenant
+    [Post("/api/Posts/{PostId}/respuestas")]
+    Task<PostDto> RespuestaPost(int PostId, [Body] CrearPostDto postDto, [Query, AliasAs("tenantId")] int tenantId);
 
-    //// Obtiene una lista de respuestas para un post específico y tenant
-    //[Get("/api/Posts/{PostId}/respuestas")]
-    //Task<IEnumerable<PostDto>> GetRespuestaPost(int PostId, int tenantId, int pageSize = 10, int? lastId = null, string searchText = "", int idUser = 0, int tenantUser = 0);
+    // Obtiene una lista de respuestas para un post específico y tenant
+    [Get("/api/Posts/{PostId}/respuestas")]
+    Task<BasePaginatedPosts<PostDto>> GetRespuestaPost(int PostId, int tenantId, int pageSize = 10, int? lastId = null, string searchText = "", int idUser = 0, int tenantUser = 0);
 
     //// Obtiene una lista de posts a los que sigue un usuario específico y tenant
     //[Get("/api/posts/seguidos")]
