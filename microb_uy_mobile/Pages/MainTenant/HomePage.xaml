@@ -156,7 +156,7 @@
                     <!-- Acciones del post (misma estructura que en NormalPostTemplate) -->
                     <!-- ... -->
                     <!--Acciones del post: Responder ,Retweet y Me gusta-->
-                    <Grid x:Name="ActionsGrid" Margin="0,8,0,0" HorizontalOptions="CenterAndExpand" RowSpacing="0" ColumnSpacing="75">
+                    <!--<Grid x:Name="ActionsGrid" Margin="0,8,0,0" HorizontalOptions="CenterAndExpand" RowSpacing="0" ColumnSpacing="75">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="Auto" />
@@ -180,7 +180,7 @@
                                 <TapGestureRecognizer Tapped="OnLikeIconTapped" />
                             </Image.GestureRecognizers>
                         </Image>
-                    </Grid>
+                    </Grid>-->
                     <!-- Línea Separadora -->
                     <BoxView HeightRequest="0.05" BackgroundColor="#F0F0F0" Margin="0,8,0,0"/>
                 </StackLayout>

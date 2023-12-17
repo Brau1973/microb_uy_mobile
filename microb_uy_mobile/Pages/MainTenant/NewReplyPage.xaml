@@ -3,33 +3,64 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:microb_uy_mobile.Pages.MainTenant"
              x:Class="microb_uy_mobile.Pages.MainTenant.NewReplyPage"
+             xmlns:converters="clr-namespace:microb_uy_mobile.Converters"
              Title="New Post">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:HashTagListToStringConverter x:Key="HashTagListToStringConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
     <ContentPage.Content>
         <ScrollView>
             <StackLayout>
                 <!-- Detalles del post -->
-                <StackLayout Padding="10" Margin="5,5,5,0" BackgroundColor="#ffffff">
-                    <!-- Encabezado del post: Imagen de perfil y nombre de usuario -->
-                    <StackLayout Orientation="Horizontal" Spacing="10">
-                        <Frame HeightRequest="50" WidthRequest="50" CornerRadius="70" HorizontalOptions="Center" IsClippedToBounds="True" Padding="0" BorderColor="Gray" Margin="0,0,0,0">
-                            <Image x:Name="UserProfileImage" Source="{Binding AutorImg}" Aspect="AspectFit" HeightRequest="50" WidthRequest="50" VerticalOptions="Center" HorizontalOptions="Center" />
-                        </Frame>
-                        <Label x:Name="UserNameLabel" Text="{Binding Autor}" FontAttributes="Bold" VerticalOptions="Center" />
-                    </StackLayout>
+                <StackLayout x:Name="PostLayout" Padding="10" Margin="5,5,5,0">
+                    <!-- Encabezado del post: Imagen de perfil, nombre de usuario y fecha -->
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
 
-                    <!-- Contenido del post -->
-                    <Label x:Name="PostContentLabel" Text="{Binding Contenido}" VerticalOptions="Start"></Label>
+                        <StackLayout Orientation="Horizontal" Spacing="10" Grid.Column="0">
+                            <Frame HeightRequest="50" WidthRequest="50" CornerRadius="70" HorizontalOptions="Center" IsClippedToBounds="True" Padding="0" BorderColor="Gray">
+                                <Image Aspect="AspectFit" Source="{Binding AutorImg}" HeightRequest="50" WidthRequest="50" VerticalOptions="Center" HorizontalOptions="Center"/>
+                            </Frame>
+                            <Label Text="{Binding Autor}" FontAttributes="Bold" VerticalOptions="Center"/>
+                        </StackLayout>
+
+                        <Label Text="{Binding Fecha, StringFormat='{0:dd MMM yyyy}'}" Grid.Column="1" HorizontalOptions="End" VerticalOptions="Center" FontSize="Small" TextColor="Gray"/>
+                    </Grid>
+
+                    <!-- Contenido del post con hashtags si los tiene -->
+                    <Label Text="{Binding Title}" VerticalOptions="Start" FontAttributes="Bold" Margin="5,10,0,0" ></Label>
+
+                    <Label VerticalOptions="Start" Margin="5,5,0,0">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="{Binding Contenido}" />
+                                <Span Text=" " />
+                                <Span Text="{Binding HashTags, Converter={StaticResource HashTagListToStringConverter}}" FontAttributes="Italic" TextColor="Blue"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
                 </StackLayout>
 
                 <StackLayout Spacing="10" Padding="20">
+
+                    <!-- Campo para ingresar el título del post -->
+                    <Entry x:Name="PostTitleEntry" Placeholder="Título de la respuesta" MaxLength="100" Text="{Binding PostTitle}" />
+
                     <!-- Editor para ingresar el contenido del post -->
-                    <Editor x:Name="PostEditor" Placeholder="¿Qué estás pensando?" MaxLength="280" AutoSize="TextChanges" VerticalOptions="Start" HeightRequest="150" />
+                    <Editor x:Name="PostEditor" Placeholder="¿Qué estás pensando?" MaxLength="280" Text="{Binding PostContent}" AutoSize="TextChanges" VerticalOptions="Start" HeightRequest="150" />
 
                     <!-- Botón para Publicar -->
                     <Button Text="Publicar" TextColor="White" CornerRadius="5" HeightRequest="50" VerticalOptions="Start" Clicked="OnPublishButtonClicked" />
 
                     <!-- Botón para Cancelar -->
                     <Button Text="Cancelar" BackgroundColor="LightGray" TextColor="Black" CornerRadius="5" HeightRequest="50" VerticalOptions="Start" Clicked="OnCancelButtonClicked" />
+
                 </StackLayout>
             </StackLayout>
         </ScrollView>

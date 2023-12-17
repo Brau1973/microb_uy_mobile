@@ -49,6 +49,15 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <AndroidResource Remove="Services\Implementations\**" />
+	  <Compile Remove="Services\Implementations\**" />
+	  <EmbeddedResource Remove="Services\Implementations\**" />
+	  <MauiCss Remove="Services\Implementations\**" />
+	  <MauiXaml Remove="Services\Implementations\**" />
+	  <None Remove="Services\Implementations\**" />
+	</ItemGroup>
+
+	<ItemGroup>
 	  <None Remove="Platforms\Android\Resources\xml\network_security_config.xml" />
 	  <None Remove="Resources\Icons\empty_like_icon.png" />
 	  <None Remove="Resources\Icons\feather_icon.png" />
@@ -180,10 +189,6 @@
 	  <MauiXaml Update="Pages\MainTenant\UserDetailPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="Services\Implementations\" />
 	</ItemGroup>
 
 </Project>
