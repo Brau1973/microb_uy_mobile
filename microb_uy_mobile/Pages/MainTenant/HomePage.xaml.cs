@@ -1,4 +1,5 @@
 using microb_uy_mobile.DTOs;
+using microb_uy_mobile.ViewModels;
 
 namespace microb_uy_mobile.Pages.MainTenant;
 
@@ -11,16 +12,23 @@ public partial class HomePage : ContentPage
         // Ocultar completamente la barra de navegación
         NavigationPage.SetHasNavigationBar(this, false);
 
-        // Instancia el modelo de vista
-        HomePageViewModel viewModel = new();
-
         // Asigna el modelo de vista como contexto de datos para la página
-        this.BindingContext = viewModel;
+        BindingContext = new HomePageViewModel();
     }
 
+    private async void OnRefreshIconTapped(object sender, EventArgs e)
+    {
+        var viewModel = BindingContext as HomePageViewModel;
+        if (viewModel != null)
+        {
+            viewModel.IsBusy = true; // Opcional, para mostrar el indicador de carga
+            await viewModel.GetPostList();
+            viewModel.IsBusy = false;
+        }
+    }
     public async void OnPostItemSelected(object sender, SelectionChangedEventArgs e)
     {
-        if (e.CurrentSelection.FirstOrDefault() is PostDTOOld selectedPost)
+        if (e.CurrentSelection.FirstOrDefault() is PostDto selectedPost)
         {
             await Navigation.PushAsync(new PostDetailPage(selectedPost)); // Pasa el post seleccionado a la página de detalles
         }
@@ -28,13 +36,12 @@ public partial class HomePage : ContentPage
         ((CollectionView)sender).SelectedItem = null;
     }
 
-    // Sobrescribe el evento OnReplyIconTapped
     public async void OnReplyIconTapped(object sender, EventArgs e)
     {
         var image = (Image)sender;
 
         // Obtén el contexto (en este caso, el objeto vinculado al elemento del CollectionView)
-        if (image.BindingContext is PostDTOOld selectedPost)
+        if (image.BindingContext is PostDto selectedPost)
         {
             // Crear una nueva página para el modal
             var newReplyPage = new NewReplyPage(selectedPost);
@@ -44,15 +51,12 @@ public partial class HomePage : ContentPage
             //await Navigation.PushAsync(new BaseNewReplyPage(selectedPost));
         }
     }
-
-    // Sobrescribe el evento OnRetweetIconTapped
     public void OnRetweetIconTapped(object sender, EventArgs e)
     {
         DisplayAlert("Main", "Llamo a la api de mi instancia principal " + "Retweet", "OK");
         // Lógica para manejar el retweet
     }
 
-    // Sobrescribe el evento OnLikeIconTapped
     public void OnLikeIconTapped(object sender, EventArgs e)
     {
         DisplayAlert("Main", "Llamo a la api de mi instancia principal " + "Like", "OK");

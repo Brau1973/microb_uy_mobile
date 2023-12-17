@@ -11,7 +11,8 @@
             {
                 {"BaseUrl", "https://backoffice.web.microb-uy.lat"},
                 {"MainTenantId", 0},
-                {"UserId", 0},
+                {"LoggedUserId", 0},
+                {"LoggedUserEmail", "usuario2@email.com"},
                 {"UserToken", ""},
                 {"IntegratedTenantId", 0}
 	            // Agrega otras configuraciones según sea necesario
