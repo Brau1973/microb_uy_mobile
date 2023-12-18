@@ -10,7 +10,7 @@ public partial class SearchPostsPage : ContentPage
 		InitializeComponent();
 
         // Instancia el modelo de vista
-        HomePageViewModel viewModel = new();
+        SearchPostsPageViewModel viewModel = new();
 
         // Asigna el modelo de vista como contexto de datos para la página
         this.BindingContext = viewModel;
