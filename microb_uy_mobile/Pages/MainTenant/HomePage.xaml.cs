@@ -51,10 +51,20 @@ public partial class HomePage : ContentPage
             //await Navigation.PushAsync(new BaseNewReplyPage(selectedPost));
         }
     }
-    public void OnRetweetIconTapped(object sender, EventArgs e)
+    public async void OnRetweetIconTapped(object sender, EventArgs e)
     {
-        DisplayAlert("Main", "Llamo a la api de mi instancia principal " + "Retweet", "OK");
-        // Lógica para manejar el retweet
+        var image = (Image)sender;
+
+        // Obtén el contexto (en este caso, el objeto vinculado al elemento del CollectionView)
+        if (image.BindingContext is PostDto selectedPost)
+        {
+            // Crear una nueva página para el modal
+            var newRepostPage = new NewRepostPage(selectedPost);
+
+            // Mostrar la página como un modal
+            await Navigation.PushModalAsync(newRepostPage);
+            //await Navigation.PushAsync(new BaseNewReplyPage(selectedPost));
+        }
     }
 
     public void OnLikeIconTapped(object sender, EventArgs e)

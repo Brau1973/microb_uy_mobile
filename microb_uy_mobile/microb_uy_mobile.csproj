@@ -126,6 +126,9 @@
 	  <Compile Update="Pages\Integrations\SearchPages\IntegrationsSearchUsersPage.xaml.cs">
 	    <DependentUpon>IntegrationsSearchUsersPage.xaml</DependentUpon>
 	  </Compile>
+	  <Compile Update="Pages\MainTenant\NewRepostPage.xaml.cs">
+	    <DependentUpon>NewRepostPage.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Pages\MainTenant\PostDetailPage.xaml.cs">
 	    <DependentUpon>PostDetailPage.xaml</DependentUpon>
 	  </Compile>
@@ -160,6 +163,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\MainTenant\NewPostPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\MainTenant\NewRepostPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\MainTenant\NewReplyPage.xaml">
