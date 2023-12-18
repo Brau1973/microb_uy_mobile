@@ -161,9 +161,10 @@ public partial class PostDetailPage : ContentPage
     }
     public async void OnRetweetIconTapped(object sender, EventArgs e)
     {
-        // Maneja el evento cuando el icono de retweet es clicado
-        // Realiza la acción correspondiente, como retwittear el post
-        await DisplayAlert("MAIN TENANT", "Retweet", "OK");
+        var newRepostPage = new NewRepostPage(_mainPost);
+
+        // Mostrar la página como un modal
+        await Navigation.PushModalAsync(newRepostPage);
     }
 
     public async void OnLikeIconTapped(object sender, EventArgs e)
