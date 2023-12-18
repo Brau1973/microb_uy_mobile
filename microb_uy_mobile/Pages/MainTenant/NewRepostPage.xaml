@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:microb_uy_mobile.Pages.MainTenant"
+             x:Class="microb_uy_mobile.Pages.MainTenant.NewRepostPage"
+             xmlns:converters="clr-namespace:microb_uy_mobile.Converters"
+             Title="New Post">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:HashTagListToStringConverter x:Key="HashTagListToStringConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <StackLayout Spacing="10" Padding="20">
+
+                    <!-- Campo para ingresar el título del post -->
+                    <Entry x:Name="RepostTitleEntry" Placeholder="Título de la cita" MaxLength="100" />
+
+                    <!-- Editor para ingresar el contenido del post -->
+                    <Editor x:Name="RepostEditor" Placeholder="¿Qué estás pensando?" MaxLength="280" AutoSize="TextChanges" VerticalOptions="Start" HeightRequest="150" />
+
+                </StackLayout>
+
+                <StackLayout Padding="8" Margin="0,2,0,0" BackgroundColor="#ffffff">
+                    <Frame Padding="10" Margin="10,-20,10,0" BackgroundColor="#F0F0F0" CornerRadius="10">
+                        <StackLayout>
+                            <!-- Encabezado del repost: Imagen de perfil, nombre de usuario y fecha del repost -->
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <StackLayout Orientation="Horizontal" Spacing="10" Grid.Column="0">
+                                    <Frame HeightRequest="40" WidthRequest="40" CornerRadius="20" HorizontalOptions="Center" IsClippedToBounds="True" Padding="0" BorderColor="Gray" Margin="0,0,0,0">
+                                        <Image Aspect="AspectFit" Source="{Binding AutorImg}" HeightRequest="40" WidthRequest="40" VerticalOptions="Center" HorizontalOptions="Center"/>
+                                    </Frame>
+                                    <Label Text="{Binding Autor}" FontAttributes="Bold" VerticalOptions="Center"/>
+                                </StackLayout>
+
+                                <Label Text="{Binding Fecha, StringFormat='{0:dd MMM yyyy}'}" Grid.Column="1" HorizontalOptions="End" VerticalOptions="Center" FontSize="Small" TextColor="Gray"/>
+                            </Grid>
+
+                            <!-- Contenido del repost con hashtags si los tiene -->
+                            <Label Text="{Binding Title}" VerticalOptions="Start" FontAttributes="Bold" Margin="5,10,0,0" ></Label>
+
+                            <Label VerticalOptions="Start" Margin="5,5,0,0">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="{Binding Contenido}" />
+                                        <Span Text=" " />
+                                        <Span Text="{Binding HashTags, Converter={StaticResource HashTagListToStringConverter}}" FontAttributes="Italic" TextColor="Blue"/>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            
+                        </StackLayout>
+                    </Frame>
+
+                    <StackLayout Spacing="10" Padding="8" Margin="0,10,0,0" >
+                        <!-- Botón para Publicar -->
+                        <Button Text="Publicar" TextColor="White" CornerRadius="5" HeightRequest="50" VerticalOptions="Start" Clicked="OnPublishButtonClicked" />
+
+                        <!-- Botón para Cancelar -->
+                        <Button Text="Cancelar" BackgroundColor="LightGray" TextColor="Black" CornerRadius="5" HeightRequest="50" VerticalOptions="Start" Clicked="OnCancelButtonClicked" />
+                    </StackLayout>
+                    
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
