@@ -14,7 +14,33 @@
         public string Rol { get; set; }
         public DateTime FechaNacimiento { get; set; }
         public int TenantId { get; set; }
-        public string BannerImg { get; set; }
-        public string PerfilImg { get; set; }
+
+        private string _bannerImg;
+        public string BannerImg
+        {
+            get
+            {
+                // Retorna la imagen predeterminada si _perfilImg no está establecida
+                return string.IsNullOrEmpty(_bannerImg) ? "diego_forlan.jpg" : _bannerImg;
+            }
+            set
+            {
+                _bannerImg = value;
+            }
+        }
+
+        private string _perfilImg;
+        public string PerfilImg
+        {
+            get
+            {
+                // Retorna la imagen predeterminada si _perfilImg no está establecida
+                return string.IsNullOrEmpty(_perfilImg) ? "default_user.png" : _perfilImg;
+            }
+            set
+            {
+                _perfilImg = value;
+            }
+        }
     }
 }

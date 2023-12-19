@@ -5,7 +5,7 @@ namespace microb_uy_mobile.Services
 {
 internal interface ILoginService
     {
-        [Get("/api/iniciosesion/iniciar_sesion")]
-        Task<string> InternalLogin(string email, int tenantid, string password);
+        [Post("/api/iniciosesion/iniciar_sesion")]
+        Task<LoginDto> InternalLogin(string email, int tenantid, string password);
     }
 }

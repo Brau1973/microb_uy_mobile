@@ -1,4 +1,6 @@
-﻿namespace microb_uy_mobile
+﻿using microb_uy_mobile.DTOs;
+
+namespace microb_uy_mobile
 {
     public partial class App : Application
     {
@@ -12,10 +14,9 @@
                 {"BaseUrl", "https://backoffice.web.microb-uy.lat"},
                 {"MainTenantId", 0},
                 {"LoggedUserId", 0},
-                {"LoggedUserEmail", "usuario2@email.com"},
+                {"LoggedUserEmail", ""},
                 {"UserToken", ""},
-                {"IntegratedTenantId", 0}
-	            // Agrega otras configuraciones según sea necesario
+                {"IntegratedTenant", new IntegracionDto()}
 	        };
 
             //MainPage = new AppShell();

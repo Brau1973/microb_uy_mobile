@@ -6,12 +6,13 @@ using MvvmHelpers;
 using Refit;
 using ObservableObject = Microsoft.Toolkit.Mvvm.ComponentModel.ObservableObject;
 
-namespace microb_uy_mobile.ViewModels
+namespace microb_uy_mobile.ViewModels.Integrations
 {
-    public partial class SearchHashtagsViewModel : ObservableObject
+    public partial class IntegrationsSearchHashtagsViewModel : ObservableObject
     {
         private readonly string BaseApiUrl = (string)App.SessionInfo["BaseUrl"];
         private readonly int TenantId = (int)App.SessionInfo["MainTenantId"];
+        private readonly IntegracionDto IntegratedTenant = (IntegracionDto)App.SessionInfo["IntegratedTenant"];
         private readonly string UserToken = (string)App.SessionInfo["UserToken"];
 
         //-------------------------------- INFO PAGINADO --------------------------------
@@ -38,18 +39,25 @@ namespace microb_uy_mobile.ViewModels
         private bool _isLoading = false;
 
         // -------------------------------- CONSTRUCTOR --------------------------------
-        public SearchHashtagsViewModel()
+        public IntegrationsSearchHashtagsViewModel()
         {
             IsLabelVisible = true;
-            _labelMsg = "Busca Hashtags!";
+            _labelMsg = "Busca Hashtags en la integracion!";
         }
 
         // -------------------------------- METODOS --------------------------------
         private async Task<List<HashTagDto>> DownloadHashTagsAsync(int page, int pageSize, string searchText)
         {
-            var api = RestService.For<IHashTagService>(BaseApiUrl);
-            var hashtagResponse = await api.GetHashtags($"Bearer {UserToken}", TenantId, page, pageSize, searchText);
-            return hashtagResponse?.Response.Results.ToList() ?? new List<HashTagDto>();
+            if (IntegratedTenant.IntegracionBusqueda == true)
+            {
+                var api = RestService.For<IHashTagService>(BaseApiUrl);
+                var hashtagResponse = await api.GetHashtagsIntegrados($"Bearer {UserToken}", TenantId, IntegratedTenant.TenantId, searchText, page, pageSize);
+                return hashtagResponse?.Response.Results.ToList() ?? new List<HashTagDto>();
+            }
+            else
+            {
+                return new List<HashTagDto>(); //Lista vacia
+            }
         }
 
         [ICommand]
@@ -73,7 +81,16 @@ namespace microb_uy_mobile.ViewModels
                     else
                     {
                         IsLabelVisible = true;
-                        LabelMsg = "No hay resultados para tu busqueda!";
+                        if (IntegratedTenant.IntegracionBusqueda == true)
+                        {
+                            //LA INTEGRACION ESTA ACTIVADA SOLO QUE NO HAY HTs
+                            LabelMsg = "No hay HashTags para la búsqueda!";
+                        }
+                        else
+                        {
+                            //INTEGRACION DESACTIVADA
+                            LabelMsg = "Integracion desactivada.";
+                        }
                     }
                 });
             }

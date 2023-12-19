@@ -1,4 +1,5 @@
 using microb_uy_mobile.DTOs;
+using microb_uy_mobile.ViewModels;
 using MvvmHelpers;
 using Refit;
 using System.Collections.ObjectModel;
@@ -140,18 +141,6 @@ public partial class PostDetailPage : ContentPage
         }
     }
 
-
-    private void LoadPostResponsesHardcodeado()
-    {
-        ObservableCollection<PostDto> Posts = new ObservableCollection<PostDto>();
-
-        // Generar algunos posts normales
-        for (int i = 1; i <= 5; i++)
-        {
-            Posts.Add(GenerarPostNormal($"Usuario{i}", $"Contenido del post {i}", $"Titulo del post{i}"));
-        }
-        CollectionViewRespuestas.ItemsSource = Posts;
-    }
     public async void OnReplyIconTapped(object sender, EventArgs e)
     {
         var NewReplyPage = new NewReplyPage(_mainPost);
@@ -169,24 +158,20 @@ public partial class PostDetailPage : ContentPage
 
     public async void OnLikeIconTapped(object sender, EventArgs e)
     {
-        // Maneja el evento cuando el icono de "me gusta" es clicado
-        // Realiza la acción correspondiente, como dar "me gusta" al post
-        await DisplayAlert("MAIN TENANT", "Like", "OK");
-    }
-
-    // Método para generar un post normal
-    private PostDto GenerarPostNormal(string autor, string contenido, string titulo)
-    {
-        return new PostDto
+        var viewModel = new HomePageViewModel();
+        if (viewModel != null)
         {
-            AutorImg = "https://img.freepik.com/vector-premium/perfil-avatar-hombre-icono-redondo_24640-14044.jpg",
-            Autor = autor,
-            Title = titulo,
-            Contenido = contenido,
-            Fecha = DateTime.Now,
-            TipoPost = "NORMAL",
-            Likes = new Random().Next(1, 10), // Genera likes aleatorios para fines de prueba
-            CantRespuestas = new Random().Next(0, 5) // Genera respuestas aleatorias para fines de prueba
-        };
+            if(_mainPost.Likeado)
+            {
+                await viewModel.RemoveLike(_mainPost);
+            }
+            else
+            {
+                await viewModel.GiveLike(_mainPost);
+            }
+
+            // Refresca el contenido del post principal
+            LoadMainPostContent();
+        }
     }
 }
