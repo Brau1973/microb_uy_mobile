@@ -15,6 +15,17 @@ public partial class HomePage : ContentPage
         // Asigna el modelo de vista como contexto de datos para la página
         BindingContext = new HomePageViewModel();
     }
+    protected override async void OnAppearing()
+    {
+        base.OnAppearing();
+
+        // Obtiene el ViewModel desde el BindingContext
+        if (BindingContext is HomePageViewModel viewModel)
+        {
+            // Llama al método que necesitas del ViewModel
+            await viewModel.GetPostList();
+        }
+    }
 
     private async void OnRefreshIconTapped(object sender, EventArgs e)
     {
@@ -67,10 +78,30 @@ public partial class HomePage : ContentPage
         }
     }
 
-    public void OnLikeIconTapped(object sender, EventArgs e)
+    public async void OnLikeIconTapped(object sender, EventArgs e)
     {
-        DisplayAlert("Main", "Llamo a la api de mi instancia principal " + "Like", "OK");
-        // Lógica para manejar el "Me gusta"
+        if (sender is Image image && image.BindingContext is PostDto post)
+        {
+            var viewModel = BindingContext as HomePageViewModel;
+            if (viewModel != null)
+            {
+                if (post.Likeado)
+                {
+                    await viewModel.RemoveLike(post);
+                }
+                else
+                {
+                    await viewModel.GiveLike(post);
+                }
+
+                // Refresca el post específico en la lista
+                int index = viewModel.PostList.IndexOf(post);
+                if (index != -1)
+                {
+                    viewModel.PostList[index] = post;
+                }
+            }
+        }
     }
 
     public async void OnFeatherIconTapped(object sender, EventArgs e)

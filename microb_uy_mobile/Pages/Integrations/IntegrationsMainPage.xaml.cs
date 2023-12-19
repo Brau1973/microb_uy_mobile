@@ -1,5 +1,4 @@
 ﻿using microb_uy_mobile.DTOs;
-using microb_uy_mobile.Services.Interfaces;
 using microb_uy_mobile.ViewModels.Integrations;
 
 namespace microb_uy_mobile.Pages.Integrations
@@ -12,8 +11,6 @@ namespace microb_uy_mobile.Pages.Integrations
         {
             InitializeComponent();
 
-            //_sessionInfoService = Handler.MauiContext.Services.GetRequiredService<ISessionInfoService>();
-
             // Ocultar completamente la barra de navegación
             NavigationPage.SetHasNavigationBar(this, false);
 
@@ -25,10 +22,10 @@ namespace microb_uy_mobile.Pages.Integrations
         private async void OnCardTapped(object sender, EventArgs e)
         {
             // Obtener la InstanciaDTO seleccionada
-            var selectedInstancia = ((Frame)sender).BindingContext as TenantDto;
+            var selectedInstancia = ((Frame)sender).BindingContext as IntegracionDto;
 
             // Setear info de la instancia integrada seleccionada
-            App.SessionInfo["IntegratedTenantId"] = selectedInstancia.Id;
+            App.SessionInfo["IntegratedTenant"] = selectedInstancia;
 
             await Navigation.PushAsync(new IntegrationsTabMenu());
         }
@@ -36,7 +33,7 @@ namespace microb_uy_mobile.Pages.Integrations
         protected override async void OnAppearing()
         {
             base.OnAppearing();
-            await ViewModel.GetIntegratedInstances();
+            await ViewModel.LoadIntegratedInstances();
         }
     }
 }

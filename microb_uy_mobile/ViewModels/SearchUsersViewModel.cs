@@ -12,6 +12,7 @@ namespace microb_uy_mobile.ViewModels
     {
         private readonly string BaseApiUrl = (string)App.SessionInfo["BaseUrl"];
         private readonly int TenantId = (int)App.SessionInfo["MainTenantId"];
+        private readonly string UserToken = (string)App.SessionInfo["UserToken"];
 
         //-------------------------------- INFO PAGINADO --------------------------------
         private int _firstPage = 1;
@@ -47,7 +48,7 @@ namespace microb_uy_mobile.ViewModels
         private async Task<List<UserDto>> DownloadUsersAsync(int page, int pageSize, string searchText)
         {
             var api = RestService.For<IUsuariosService>(BaseApiUrl);
-            var usuariosResponse = await api.GetUsuarios(TenantId, page, pageSize, searchText);
+            var usuariosResponse = await api.GetUsuarios($"Bearer {UserToken}", TenantId, page, pageSize, searchText);
             return usuariosResponse?.Response.Results.ToList() ?? new List<UserDto>();
         }
 

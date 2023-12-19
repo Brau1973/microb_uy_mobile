@@ -1,39 +1,70 @@
 <!-- SearchPageUsuarios.xaml -->
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:microb_uy_mobile.ViewModels.Integrations"
+             x:DataType="viewModels:IntegrationsSearchUsersViewModel"
+             xmlns:dto="clr-namespace:microb_uy_mobile.DTOs"
              x:Class="microb_uy_mobile.Pages.Integrations.SearchPages.IntegrationsSearchUsersPage"
              xmlns:local="clr-namespace:microb_uy_mobile.Pages.Integrations.SearchPages"
              IconImageSource="search_icon_users.png">
     <ContentPage.Content>
-        <ScrollView>
-            <StackLayout>
-                <!-- Contenido específico de la pestaña "Usuarios" -->
-                <SearchBar x:Name="_searchBar" Placeholder="Buscar en microbuy" SearchButtonPressed="OnSearchButtonPressed"/>
+        <StackLayout>
+            <!-- Contenido específico de la pestaña "Usuarios" -->
+            <Grid>
+                <SearchBar x:Name="_searchBar" Placeholder="Buscar en microbuy" Grid.Column="0"/>
+                <Button Text="Buscar" Command="{Binding GetUsersListCommand}" 
+                 CommandParameter="{Binding Text, Source={x:Reference _searchBar}}"
+                 Grid.Column="1" WidthRequest="40" HeightRequest="40"  HorizontalOptions="EndAndExpand"/>
+            </Grid>
 
-                <!-- Colección y plantilla para la pestaña "Usuarios" -->
-                <CollectionView x:Name="SearchResultsUsuarios" IsVisible="true">
-                    <CollectionView.ItemTemplate>
-                        <!-- SearchPageUsuarios.xaml -->
-                        <DataTemplate>
-                            <Frame CornerRadius="10" HasShadow="True" BorderColor="#dddddd" BackgroundColor="White" Margin="10">
-                                <StackLayout BackgroundColor="#ffffff">
-                                    <!-- Encabezado del post: Imagen de perfil y nombre de usuario -->
-                                    <StackLayout Orientation="Horizontal" Spacing="10">
-                                        <Frame HeightRequest="50" WidthRequest="50" CornerRadius="70" HorizontalOptions="Center" IsClippedToBounds="True" Padding="0" BorderColor="Gray" Margin="0,0,0,0">
-                                            <Image Aspect="AspectFit" Source="{Binding PerfilImg}" SemanticProperties.Description="Cute dot net bot waving hi to you!" HeightRequest="50" WidthRequest="50" VerticalOptions="Center" HorizontalOptions="Center" />
-                                        </Frame>
-                                        <Label Text="{Binding Nombre}" FontAttributes="Bold" VerticalOptions="Center" />
-                                    </StackLayout>
+            <Label IsVisible="{Binding IsLabelVisible}" x:Name="NoResults" Text="{Binding LabelMsg}" FontAttributes="Bold" FontSize="16" TextColor="Black" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"/>
 
-                                    <!-- Contenido del post -->
-                                    <Label Text="{Binding Biografia}" VerticalOptions="Start" Margin="0, 10"></Label>
-                                    <!-- Línea separadora -->
+            <!-- Colección y plantilla para la pestaña "Usuarios" -->
+            <CollectionView x:Name="SearchResultsUsuarios" IsVisible="true" VerticalOptions="FillAndExpand" VerticalScrollBarVisibility="Always"
+                        ItemsSource="{Binding UsersList}"
+                        RemainingItemsThreshold="1"
+                        RemainingItemsThresholdReachedCommand="{Binding LoadMoreDataCommand}">
+
+                <CollectionView.Header>
+                    <StackLayout>
+                        <ActivityIndicator IsRunning="True" IsVisible="{Binding IsBusy}"
+                   HeightRequest="40" WidthRequest="40" HorizontalOptions="Center"/>
+                    </StackLayout>
+                </CollectionView.Header>
+
+                <CollectionView.ItemTemplate>
+                    <!-- SearchPageUsuarios.xaml -->
+                    <DataTemplate x:DataType="dto:UserDto">
+                        <Frame x:Name="userFrame" CornerRadius="10" HasShadow="True" BorderColor="#dddddd" BackgroundColor="White" Margin="10" >
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnFrameUserTapped"/>
+                            </Frame.GestureRecognizers>
+
+                            <StackLayout BackgroundColor="#ffffff">
+                                <!-- Encabezado del post: Imagen de perfil y nombre de usuario -->
+                                <StackLayout Orientation="Horizontal" Spacing="10">
+                                    <Frame HeightRequest="50" WidthRequest="50" CornerRadius="70" HorizontalOptions="Center" IsClippedToBounds="True" Padding="0" BorderColor="Gray" Margin="0,0,0,0">
+                                        <Image Aspect="AspectFit" Source="{Binding PerfilImg }" SemanticProperties.Description="Cute dot net bot waving hi to you!" HeightRequest="50" WidthRequest="50" VerticalOptions="Center" HorizontalOptions="Center" />
+                                    </Frame>
+                                    <Label Text="{Binding Nombre}" FontAttributes="Bold" VerticalOptions="Center" />
                                 </StackLayout>
-                            </Frame>
-                        </DataTemplate>
-                    </CollectionView.ItemTemplate>
-                </CollectionView>
-            </StackLayout>
-        </ScrollView>
+
+                                <!-- Contenido del post -->
+                                <Label Text="{Binding Biografia}" VerticalOptions="Start" Margin="0, 10"></Label>
+                                <!-- Línea separadora -->
+                            </StackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+
+                <CollectionView.Footer>
+                    <StackLayout>
+                        <ActivityIndicator IsRunning="True" IsVisible="{Binding IsLoading}"
+                                   HeightRequest="40" WidthRequest="40" HorizontalOptions="Center"/>
+                    </StackLayout>
+                </CollectionView.Footer>
+
+            </CollectionView>
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

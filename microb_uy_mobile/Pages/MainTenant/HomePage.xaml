@@ -4,10 +4,10 @@
              xmlns:viewModels="clr-namespace:microb_uy_mobile.ViewModels"
              x:DataType="viewModels:HomePageViewModel"
              xmlns:dto="clr-namespace:microb_uy_mobile.DTOs"
-             x:Class="microb_uy_mobile.Pages.MainTenant.HomePage"
              xmlns:helpers="clr-namespace:microb_uy_mobile.Helpers"
              xmlns:local="clr-namespace:microb_uy_mobile"
              xmlns:converters="clr-namespace:microb_uy_mobile.Converters"
+             x:Class="microb_uy_mobile.Pages.MainTenant.HomePage"
              IconImageSource="home_icon.png">
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -153,34 +153,6 @@
                         </StackLayout>
                     </Frame>
 
-                    <!-- Acciones del post (misma estructura que en NormalPostTemplate) -->
-                    <!-- ... -->
-                    <!--Acciones del post: Responder ,Retweet y Me gusta-->
-                    <!--<Grid x:Name="ActionsGrid" Margin="0,8,0,0" HorizontalOptions="CenterAndExpand" RowSpacing="0" ColumnSpacing="75">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="Auto" />
-                        </Grid.ColumnDefinitions>
-
-                        <Image x:Name="ReplyIcon" Source="reply_icon.png" HeightRequest="24" WidthRequest="24" HorizontalOptions="Center">
-                            <Image.GestureRecognizers>
-                                <TapGestureRecognizer Tapped="OnReplyIconTapped"/>
-                            </Image.GestureRecognizers>
-                        </Image>
-
-                        <Image x:Name="RetweetIcon" Source="retweet_icon.png" HeightRequest="24" WidthRequest="24" HorizontalOptions="Center" Grid.Column="1">
-                            <Image.GestureRecognizers>
-                                <TapGestureRecognizer Tapped="OnRetweetIconTapped" />
-                            </Image.GestureRecognizers>
-                        </Image>
-
-                        <Image x:Name="LikeIcon" Source="empty_like_icon.png" HeightRequest="24" WidthRequest="24" HorizontalOptions="Center" Grid.Column="2">
-                            <Image.GestureRecognizers>
-                                <TapGestureRecognizer Tapped="OnLikeIconTapped" />
-                            </Image.GestureRecognizers>
-                        </Image>
-                    </Grid>-->
                     <!-- Línea Separadora -->
                     <BoxView HeightRequest="0.05" BackgroundColor="#F0F0F0" Margin="0,8,0,0"/>
                 </StackLayout>

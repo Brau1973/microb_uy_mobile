@@ -50,6 +50,7 @@ public partial class NewRepostPage : ContentPage
         int tenantId = (int)App.SessionInfo["MainTenantId"];
         string loggedUserEmail = (string)App.SessionInfo["LoggedUserEmail"];
         DateTime currentDateTimeUtc = DateTime.UtcNow;
+        string UserToken = (string)App.SessionInfo["UserToken"];
 
         try
         {
@@ -68,7 +69,7 @@ public partial class NewRepostPage : ContentPage
             };
 
             var api = RestService.For<IPostService>(baseApiUrl);
-            var newPostResponse = await api.PostPost(newResponse, tenantId);
+            var newPostResponse = await api.PostPost($"Bearer {UserToken}", newResponse, tenantId);
 
             if (newPostResponse != null)
             {
