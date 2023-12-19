@@ -4,7 +4,20 @@
     {
         public int Id { get; set; }
         public string Autor { get; set; }
-        public string AutorImg { get; set; }
+
+        private string _autorImg;
+        public string AutorImg
+        {
+            get
+            {
+                // Retorna la imagen predeterminada si _perfilImg no está establecida
+                return string.IsNullOrEmpty(_autorImg) ? "default_user.png" : _autorImg;
+            }
+            set
+            {
+                _autorImg = value;
+            }
+        }
         public string MailAutor { get; set; }
         public DateTime Fecha { get; set; }
         public string Title { get; set; }
@@ -18,13 +31,10 @@
         public int Tenantid { get; set; }
         public bool Likeado { get; set; }
 
-        // Constructor por defecto
         public PostDto()
         {
-            // Puedes inicializar propiedades predeterminadas aquí si es necesario.
         }
 
-        // Constructor con parámetros para facilitar la creación de instancias
         public PostDto(int id, string autor, string mailAutor, DateTime fecha, string contenido, string tipoPost, List<HashTagDto> hashTags, int likes, int cantRespuestas, int tenantid)
         {
             Id = id;

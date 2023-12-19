@@ -102,6 +102,7 @@
 		<PackageReference Include="Refit.HttpClientFactory" Version="7.0.0" />
 		<PackageReference Include="Refit.Newtonsoft.Json" Version="7.0.0" />
 		<PackageReference Include="Refractored.MvvmHelpers" Version="1.6.2" />
+		<PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="7.0.3" />
 	</ItemGroup>
 
 	<ItemGroup>

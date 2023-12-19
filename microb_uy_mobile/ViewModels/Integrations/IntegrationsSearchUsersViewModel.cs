@@ -6,12 +6,13 @@ using MvvmHelpers;
 using Refit;
 using ObservableObject = Microsoft.Toolkit.Mvvm.ComponentModel.ObservableObject;
 
-namespace microb_uy_mobile.ViewModels
+namespace microb_uy_mobile.ViewModels.Integrations
 {
-    public partial class SearchHashtagsViewModel : ObservableObject
+    public partial class IntegrationsSearchUsersViewModel : ObservableObject
     {
         private readonly string BaseApiUrl = (string)App.SessionInfo["BaseUrl"];
         private readonly int TenantId = (int)App.SessionInfo["MainTenantId"];
+        private readonly IntegracionDto IntegratedTenant = (IntegracionDto)App.SessionInfo["IntegratedTenant"];
         private readonly string UserToken = (string)App.SessionInfo["UserToken"];
 
         //-------------------------------- INFO PAGINADO --------------------------------
@@ -21,7 +22,7 @@ namespace microb_uy_mobile.ViewModels
         private string _searchText;
 
         //------------------------------------------------- LISTA ------------------------------------------------
-        public ObservableRangeCollection<HashTagDto> HashTagList { get; set; } = new ObservableRangeCollection<HashTagDto>();
+        public ObservableRangeCollection<UserDto> UsersList { get; set; } = new ObservableRangeCollection<UserDto>();
 
         //-------------------------------- OBSERVABLES PARA COMPORTAMIENTO DE LA VISTA --------------------------------
 
@@ -38,48 +39,64 @@ namespace microb_uy_mobile.ViewModels
         private bool _isLoading = false;
 
         // -------------------------------- CONSTRUCTOR --------------------------------
-        public SearchHashtagsViewModel()
+        public IntegrationsSearchUsersViewModel()
         {
             IsLabelVisible = true;
-            _labelMsg = "Busca Hashtags!";
+            _labelMsg = "Busca Usuarios en esta Integracion!";
         }
 
         // -------------------------------- METODOS --------------------------------
-        private async Task<List<HashTagDto>> DownloadHashTagsAsync(int page, int pageSize, string searchText)
+        private async Task<List<UserDto>> DownloadUsersAsync(int page, int pageSize, string searchText)
         {
-            var api = RestService.For<IHashTagService>(BaseApiUrl);
-            var hashtagResponse = await api.GetHashtags($"Bearer {UserToken}", TenantId, page, pageSize, searchText);
-            return hashtagResponse?.Response.Results.ToList() ?? new List<HashTagDto>();
+            if (IntegratedTenant.IntegracionBusqueda == true)
+            {
+                var api = RestService.For<IUsuariosService>(BaseApiUrl);
+                var usuariosResponse = await api.GetUsuariosIntegrados($"Bearer {UserToken}", TenantId, IntegratedTenant.TenantId, page, pageSize, searchText);
+                return usuariosResponse?.Response?.Results.ToList() ?? new List<UserDto>();
+            }
+            else
+            {
+                return new List<UserDto>();
+            }
         }
 
         [ICommand]
-        public async Task GetHashTagList(string searchText)
+        public async Task GetUsersList(string searchText)
         {
             _searchText = searchText;
             _currentPage = 1;
-            HashTagList.Clear();
+            UsersList.Clear();
             IsBusy = true;
             try
             {
-                var results = await DownloadHashTagsAsync(_firstPage, _pageSize, searchText);
+                var results = await DownloadUsersAsync(_firstPage, _pageSize, searchText);
                 App.Current.Dispatcher.Dispatch(() =>
                 {
                     IsBusy = false;
                     if (results.Count > 0)
                     {
                         IsLabelVisible = false;
-                        HashTagList.ReplaceRange(results);
+                        UsersList.ReplaceRange(results);
                     }
                     else
                     {
                         IsLabelVisible = true;
-                        LabelMsg = "No hay resultados para tu busqueda!";
+                        if (IntegratedTenant.IntegracionBusqueda == true)
+                        {
+                            //LA INTEGRACION ESTA ACTIVADA SOLO QUE NO HAY USERS
+                            LabelMsg = "No hay Usuarios para la búsqueda!";
+                        }
+                        else
+                        {
+                            //INTEGRACION DESACTIVADA
+                            LabelMsg = "Integracion desactivada.";
+                        }
                     }
                 });
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error en GetHashTagList: {ex}");
+                Console.WriteLine($"Error en GetUsersList: {ex}");
             }
         }
 
@@ -88,15 +105,15 @@ namespace microb_uy_mobile.ViewModels
         {
             if (IsLoading) return;
 
-            if (HashTagList?.Count > 0)
+            if (UsersList?.Count > 0)
             {
                 try
                 {
                     IsLoading = true;
                     await Task.Delay(500);
-                    var results = await DownloadHashTagsAsync(_currentPage + 1, _pageSize, _searchText);
+                    var results = await DownloadUsersAsync(_currentPage + 1, _pageSize, _searchText);
                     IsLoading = false;
-                    HashTagList.AddRange(results);
+                    UsersList.AddRange(results);
                     _currentPage++;
                 }
                 catch (Exception ex)

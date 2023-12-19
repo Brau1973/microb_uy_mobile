@@ -6,4 +6,7 @@ internal interface IInstanceService
 {
     [Get("/api/tenants")]
     Task <BaseApiResponseDTO<TenantDto>> GetInstancesAsync();
+
+    [Get("/{id}")]
+    Task<BaseApiResponseNoPaginationInfo<TenantDto>> GetTenantById(int id);
 }

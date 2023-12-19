@@ -19,6 +19,18 @@ public partial class IntegrationsHomePage : ContentPage
         this.BindingContext = viewModel;
     }
 
+    protected override async void OnAppearing()
+    {
+        base.OnAppearing();
+
+        // Obtiene el ViewModel desde el BindingContext
+        if (BindingContext is IntegrationsHomePageViewModel viewModel)
+        {
+            // Llama al método que necesitas del ViewModel
+            await viewModel.GetPostList();
+        }
+    }
+
     public async void OnPostItemSelected(object sender, SelectionChangedEventArgs e)
     {
         if (e.CurrentSelection.FirstOrDefault() is PostDTOOld selectedPost)
@@ -29,38 +41,14 @@ public partial class IntegrationsHomePage : ContentPage
         ((CollectionView)sender).SelectedItem = null;
     }
 
-    // Sobrescribe el evento OnReplyIconTapped
-    public async void OnReplyIconTapped(object sender, EventArgs e)
+    private async void OnRefreshIconTapped(object sender, EventArgs e)
     {
-        // Lógica para manejar la respuesta al post
-        await DisplayAlert("Integrations", "Chequear si esta habilitada la integracion entre usuarios para poder interactuar " +
-            "Responder al post", "OK");
-
-        var image = (Image)sender;
-
-        // Obtén el contexto (en este caso, el objeto vinculado al elemento del CollectionView)
-        if (image.BindingContext is PostDTOOld selectedPost)
+        var viewModel = BindingContext as IntegrationsHomePageViewModel;
+        if (viewModel != null)
         {
-            // Crear una nueva página para el modal
-            var integrationsNewReplyPage = new IntegrationsNewReplyPage(selectedPost); //Clase hija de BaseNewReplyPage
-
-            // Mostrar la página como un modal
-            await Navigation.PushModalAsync(integrationsNewReplyPage);
+            viewModel.IsBusy = true; // Opcional, para mostrar el indicador de carga
+            await viewModel.GetPostList();
+            viewModel.IsBusy = false;
         }
     }
-
-    // Sobrescribe el evento OnRetweetIconTapped
-    public void OnRetweetIconTapped(object sender, EventArgs e)
-    {
-        DisplayAlert("Integrations", "Chequear si esta habilitada la integracion entre usuarios para poder interactuar " + "Retweet", "OK");
-        // Lógica para manejar el retweet
-    }
-
-    // Sobrescribe el evento OnLikeIconTapped
-    public void OnLikeIconTapped(object sender, EventArgs e)
-    {
-        DisplayAlert("Integrations", "Chequear si esta habilitada la integracion entre usuarios para poder interactuar " + "Like", "OK");
-        // Lógica para manejar el "Me gusta"
-    }
-
 }

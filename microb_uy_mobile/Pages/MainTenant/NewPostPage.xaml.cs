@@ -43,6 +43,7 @@ namespace microb_uy_mobile.Pages
             int tenantId = (int)App.SessionInfo["MainTenantId"];
             string loggedUserEmail = (string)App.SessionInfo["LoggedUserEmail"];
             DateTime currentDateTimeUtc = DateTime.UtcNow;
+            string UserToken = (string)App.SessionInfo["UserToken"];
 
             try
             {
@@ -59,7 +60,7 @@ namespace microb_uy_mobile.Pages
                 };
 
                 var api = RestService.For<IPostService>(baseApiUrl);
-                var newPostResponse = await api.PostPost(newPost, tenantId);
+                var newPostResponse = await api.PostPost($"Bearer {UserToken}", newPost, tenantId);
 
                 if (newPostResponse != null)
                 {
